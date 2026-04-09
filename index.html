@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marilyn Payne – Applewood Farm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #72133E; --brand-dark: #56102f;
+      --body-bg: #F3F3F3; --body-text: #333333;
+      --gray-mid: #C7C7C7; --gray-light: #EBEBEB; --gray-dark: #555555;
+      --white: #FFFFFF;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --nav-h: 80px; --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,0.16);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); font-size: 17px; line-height: 1.7; color: var(--body-text); background: var(--body-bg); }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.25; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+    h3 { font-size: 1.25rem; }
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+    ul { list-style: none; }
+
+    /* Buttons */
+    .btn { display: inline-block; font-family: var(--font-sans); font-weight: 600; font-size: 0.9rem; padding: 0.65rem 1.4rem; border-radius: var(--radius); border: 2px solid var(--brand); background: var(--brand); color: var(--white); cursor: pointer; transition: background 0.2s, border-color 0.2s; text-decoration: none; white-space: nowrap; }
+    .btn:hover { background: var(--brand-dark); border-color: var(--brand-dark); color: var(--white); text-decoration: none; }
+    .btn-outline { background: transparent; color: var(--brand); }
+    .btn-outline:hover { background: var(--brand); color: var(--white); }
+    .btn-white { background: var(--white); color: var(--brand); border-color: var(--white); }
+    .btn-white:hover { background: var(--gray-light); border-color: var(--gray-light); color: var(--brand); }
+
+    /* Layout */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 80px 0; }
+    .section-alt { background: var(--gray-light); }
+    .section-dark { background: var(--brand); color: var(--white); }
+    .section-dark h2 { color: var(--white); }
+    .section-title { text-align: center; margin-bottom: 3rem; }
+    .section-title p { color: var(--gray-dark); max-width: 640px; margin: 0.5rem auto 0; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .card-body { padding: 1.75rem; }
+    .card-body h3 { margin-bottom: 0.5rem; color: var(--brand); font-family: var(--font-serif); }
+    .card-body p { color: var(--gray-dark); font-size: 0.95rem; }
+
+    /* ===== NAV ===== */
+    .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+
+    /* Left: CTA buttons */
+    .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-cta-left a {
+      font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600;
+      color: var(--brand); border: 2px solid var(--brand); background: transparent;
+      padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap;
+      text-decoration: none; transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta-left a:hover { background: var(--brand); color: var(--white); text-decoration: none; }
+
+    /* Center: main nav links */
+    .nav-menu { display: flex; align-items: center; gap: 0.1rem; }
+    .nav-item { position: relative; }
+    .nav-item > a {
+      font-family: var(--font-sans); font-size: 0.88rem; font-weight: 500;
+      color: var(--body-text); padding: 0.4rem 0.65rem; border-radius: var(--radius);
+      transition: color 0.2s, background 0.2s; white-space: nowrap; text-decoration: none;
+      display: flex; align-items: center; gap: 0.2rem;
+    }
+    .nav-item > a:hover { color: var(--brand); background: #f5e6ed; }
+
+    /* Dropdown arrow */
+    .has-dropdown > a::after { content: '▾'; font-size: 0.65rem; opacity: 0.55; margin-left: 0.1rem; }
+
+    /* Dropdown menu */
+    .dropdown {
+      display: none; position: absolute; top: calc(100% + 4px); left: 0;
+      background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg);
+      min-width: 180px; padding: 0.4rem 0; z-index: 200;
+      border-top: 3px solid var(--brand);
+    }
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown { display: block; }
+    .dropdown a {
+      display: block; padding: 0.5rem 1.1rem; font-size: 0.86rem;
+      color: var(--body-text); text-decoration: none;
+      transition: color 0.15s, background 0.15s;
+    }
+    .dropdown a:hover { color: var(--brand); background: #f5e6ed; }
+
+    /* Right: logo */
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 54px; width: auto; }
+
+    /* Hamburger */
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--brand); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav panel */
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--white); box-shadow: var(--shadow-lg); padding: 1rem 1.5rem 1.5rem; z-index: 999; max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a { display: block; font-size: 1rem; font-weight: 500; color: var(--body-text); padding: 0.7rem 0.25rem; border-bottom: 1px solid var(--gray-light); text-decoration: none; }
+    .nav-mobile a:hover { color: var(--brand); }
+    .nav-mobile .nav-sub { padding-left: 1.25rem; font-size: 0.92rem; color: var(--gray-dark); font-weight: 400; }
+
+    /* ===== HERO BARN BANNER ===== */
+    .hero-barn {
+      width: 100%;
+      height: 660px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-barn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    /* ===== MARILYN INTRO (2-column) ===== */
+    .marilyn-intro {
+      background: var(--body-bg);
+      padding: 80px 0;
+    }
+    .marilyn-intro .grid-2 {
+      align-items: flex-start;
+    }
+    .intro-left {
+      padding-right: 1.5rem;
+    }
+    .intro-name {
+      font-family: var(--font-serif);
+      font-size: clamp(4.5rem, 9vw, 7.5rem);
+      font-weight: 700;
+      color: var(--brand);
+      line-height: 1.0;
+      margin-bottom: 1.5rem;
+    }
+    .intro-tagline {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .tagline-bar {
+      width: 4px;
+      min-height: 3.2rem;
+      background: var(--brand);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .tagline-text {
+      font-family: var(--font-sans);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 700;
+      color: var(--body-text);
+      line-height: 1.5;
+    }
+    .intro-bio {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--body-text);
+      margin-bottom: 1.75rem;
+    }
+
+    /* Slider — right column */
+    .intro-slider-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      height: 720px;
+    }
+    .intro-slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.6s ease;
+    }
+    .intro-slider-track img {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      flex-shrink: 0;
+    }
+    .intro-slider-prev,
+    .intro-slider-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(114,19,62,0.8);
+      border: none;
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 5;
+    }
+    .intro-slider-prev { left: 0.75rem; }
+    .intro-slider-next { right: 0.75rem; }
+    .intro-slider-prev:hover,
+    .intro-slider-next:hover { background: var(--brand); }
+    .intro-slider-dots {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .intro-slider-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gray-mid);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .intro-slider-dot.active { background: var(--brand); }
+
+    /* ===== PHOTO CAROUSEL (section) ===== */
+    .photo-carousel { position: relative; overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+    .photo-carousel-track { display: flex; transition: transform 0.5s ease; }
+    .photo-carousel-track img { min-width: 100%; height: 420px; object-fit: cover; flex-shrink: 0; }
+    .photo-prev, .photo-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(114,19,62,0.75); border: none; color: white;
+      width: 42px; height: 42px; border-radius: 50%; font-size: 1.1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; z-index: 5;
+    }
+    .photo-prev { left: 0.75rem; }
+    .photo-next { right: 0.75rem; }
+    .photo-prev:hover, .photo-next:hover { background: var(--brand); }
+    .photo-dots { text-align: center; margin-top: 0.75rem; display: flex; gap: 6px; justify-content: center; }
+    .photo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-mid); border: none; cursor: pointer; transition: background 0.2s; }
+    .photo-dot.active { background: var(--brand); }
+
+
+    /* ===== APPLEWOOD FARM SECTION ===== */
+    .af-photo img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      display: block;
+    }
+    .af-text h2 { margin-bottom: 1rem; }
+    .af-tagline {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+    .af-bar {
+      display: inline-block;
+      width: 4px;
+      height: 1.4rem;
+      background: var(--brand);
+      flex-shrink: 0;
+    }
+    .af-tagline span:last-child {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--body-text);
+    }
+    .af-bullets {
+      list-style: disc;
+      padding-left: 1.4rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .af-bullets li {
+      margin-bottom: 0.5rem;
+      font-size: 0.97rem;
+      line-height: 1.6;
+      color: var(--body-text);
+    }
+    .af-link {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--brand);
+      text-decoration: none;
+    }
+    .af-link:hover { text-decoration: underline; }
+
+    /* ===== AT APPLEWOOD CAROUSEL ===== */
+    .at-applewood {
+      background: var(--body-bg);
+      padding: 48px 0 0;
+      overflow: hidden;
+    }
+    .at-applewood-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(4rem, 10vw, 9rem);
+      font-weight: 700;
+      color: rgba(0,0,0,0.07);
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 24px;
+      pointer-events: none;
+      user-select: none;
+    }
+    .at-applewood-carousel {
+      position: relative;
+      overflow: hidden;
+    }
+    .at-applewood-track {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+    .at-applewood-track img {
+      flex-shrink: 0;
+      width: 25vw;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .at-applewood-track img { width: 33.333vw; }
+    }
+    @media (max-width: 600px) {
+      .at-applewood-track img { width: 50vw; height: 160px; }
+    }
+
+    /* ===== JOIN THE RIDE ===== */
+    .join-the-ride {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 360px;
+    }
+    .jtr-left {
+      background: var(--gray-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 56px;
+    }
+    .jtr-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--body-text);
+      margin-bottom: 0.6rem;
+    }
+    .jtr-sub {
+      font-size: 0.95rem;
+      color: var(--gray-dark);
+      max-width: 320px;
+      margin-bottom: 1.25rem;
+    }
+    .jtr-form {
+      display: flex;
+      gap: 0.6rem;
+      max-width: 380px;
+    }
+    .jtr-input {
+      flex: 1;
+      padding: 0.6rem 0.9rem;
+      border: 1.5px solid var(--gray-mid);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      background: var(--white);
+      color: var(--body-text);
+    }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 40px 1.5rem; }
+      .jtr-right { height: 260px; }
+      .jtr-form { flex-direction: column; }
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-col h4 { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
+    .footer-col p { color: #aaa; line-height: 1.6; }
+    .footer-col a { color: #aaa; }
+    .footer-col a:hover { color: var(--white); text-decoration: none; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 1rem; filter: brightness(0) invert(1); opacity: 0.85; }
+    .footer-bottom { border-top: 1px solid #444; padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; color: #888; font-size: 0.82rem; }
+
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .photo-strip { grid-template-columns: repeat(3, 1fr); }
+      .photo-strip img:nth-child(n+4) { display: none; }
+      .intro-left { padding-right: 0; }
+      .intro-slider-wrap { height: 500px; }
+      .hero-barn { height: 460px; }
+    }
+    @media (max-width: 768px) {
+      :root { --nav-h: 68px; }
+      .nav-menu { display: none; }
+      .nav-cta-left { display: none; }
+      .nav-hamburger { display: flex; }
+      .section { padding: 56px 0; }
+      .marilyn-intro { padding: 48px 0; }
+      .hero-barn { height: 280px; }
+      .intro-name { font-size: clamp(3.5rem, 14vw, 5rem); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+      .photo-strip { grid-template-columns: repeat(2, 1fr); }
+      .photo-strip img:nth-child(n+3) { display: none; }
+      .photo-carousel-track img { height: 280px; }
+      .intro-slider-wrap { height: 380px; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+
+      <!-- LEFT: CTA buttons -->
+      <div class="nav-cta-left">
+        <a href="#">Ride Times</a>
+        <a href="#">Entry Forms</a>
+      </div>
+
+      <!-- CENTER: main navigation -->
+      <nav class="nav-menu" aria-label="Main navigation">
+
+        <div class="nav-item has-dropdown">
+          <a href="#">About Marilyn</a>
+          <div class="dropdown">
+            <a href="#">Marilyn's Bio</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="#">Applewood Farm</a>
+          <div class="dropdown">
+            <a href="#">Lessons</a>
+            <a href="#">Horses</a>
+            <a href="#">Training</a>
+            <a href="#">Christmas</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Clinics</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Shows</a>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="#">Lesson Calendar</a>
+          <div class="dropdown">
+            <a href="#">Horse Schedule</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="#">Working Student</a>
+        </div>
+
+      </nav>
+
+      <!-- RIGHT: logo -->
+      <a href="#" class="nav-logo">
+        <img src="images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm">
+      </a>
+
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="nav-mobile" id="mobile-nav">
+    <a href="#" style="color: var(--brand); font-weight: 700; border-bottom: 2px solid var(--brand);">Ride Times</a>
+    <a href="#" style="color: var(--brand); font-weight: 600;">Entry Forms</a>
+    <a href="#">About Marilyn</a>
+    <a href="#" class="nav-sub">Marilyn's Bio</a>
+    <a href="#">Applewood Farm</a>
+    <a href="#" class="nav-sub">Lessons</a>
+    <a href="#" class="nav-sub">Horses</a>
+    <a href="#" class="nav-sub">Training</a>
+    <a href="#" class="nav-sub">Christmas</a>
+    <a href="#">Clinics</a>
+    <a href="#">Shows</a>
+    <a href="#">Lesson Calendar</a>
+    <a href="#" class="nav-sub">Horse Schedule</a>
+    <a href="#">Working Student</a>
+  </nav>
+
+  <!-- ===== SECTION 1: FULL-WIDTH BARN BANNER ===== -->
+  <section class="hero-barn">
+    <img src="images/Barn_722x300.jpg" alt="Applewood Farm – autumn barn">
+  </section>
+
+  <!-- ===== SECTION 2: MARILYN PAYNE INTRO (2-column) ===== -->
+  <section class="marilyn-intro">
+    <div class="container grid-2">
+
+      <!-- LEFT: name, tagline, bio, button -->
+      <div class="intro-left">
+        <h1 class="intro-name">Marilyn<br>Payne</h1>
+        <div class="intro-tagline">
+          <span class="tagline-bar"></span>
+          <span class="tagline-text">Eventing &nbsp;~&nbsp; Dressage &nbsp;~&nbsp; Judging</span>
+        </div>
+        <p class="intro-bio">Marilyn is a distinguished trainer, competitor, judge, and breeder of horses for eventing and dressage. She was President of the Ground Jury at the 2016 Rio Olympics and a member of the Ground Jury at the 2008 Beijing Olympics. She was also President of the Ground Jury at the World Equestrian Games (WEG) in 2010 at the Kentucky Horse Park.</p>
+        <p class="intro-bio">Marilyn works with all levels of riders at Applewood Farm, and is well known for bringing the average horse and rider to their full potential. Experienced eventing and dressage schoolmasters with winning track records are available for lessons at all levels.</p>
+        <a href="#" class="btn btn-outline">About Marilyn</a>
+      </div>
+
+      <!-- RIGHT: photo slider (all photos) -->
+      <div>
+        <div class="intro-slider-wrap" id="introWrap">
+          <div class="intro-slider-track" id="introTrack">
+            <img src="images/DSCF6729.jpg" alt="Applewood Farm">
+            <img src="images/PT_Dressage_2.jpg" alt="Dressage">
+            <img src="images/PUN_XC_2017-2.jpg" alt="Cross country">
+            <img src="images/Gamine_water_XC_fav.jpg" alt="Water cross country">
+            <img src="images/AVSJ3580.jpg" alt="Applewood Farm riding">
+            <img src="images/MP-White-Jacket-2.jpg" alt="Marilyn Payne">
+          </div>
+          <button class="intro-slider-prev" id="introPrev" aria-label="Previous">&#8249;</button>
+          <button class="intro-slider-next" id="introNext" aria-label="Next">&#8250;</button>
+        </div>
+        <div class="intro-slider-dots" id="introDots"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== APPLEWOOD FARM ===== -->
+  <section class="section section-alt">
+    <div class="container grid-2" style="align-items:flex-start;">
+      <!-- LEFT: sign photo -->
+      <div class="af-photo">
+        <img src="images/ApplewoodFarmSign.jpg" alt="Applewood Farm sign">
+      </div>
+      <!-- RIGHT: text + bullets -->
+      <div class="af-text">
+        <h2>Applewood Farm</h2>
+        <div class="af-tagline">
+          <span class="af-bar"></span>
+          <span>Training, Lessons, Clinics, Shows</span>
+        </div>
+        <p>The facilities are ideally suited for both Dressage and schooling Eventing, and include the following:</p>
+        <ul class="af-bullets">
+          <li>Indoor riding arena 70′ &times; 200′ with mirrors, heated viewing room and tack up area, sand and rubber footing</li>
+          <li>Outdoor ring 70′ &times; 200′ with sand and rubber footing</li>
+          <li>Schooling cross country course with water complex, ditches, banks, mounds, tables, logs, and a large variety of other obstacles</li>
+          <li>Large grass show jumping field</li>
+        </ul>
+        <a href="#" class="af-link">At Applewood</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHOWS / CLINICS / TRAINING ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Join Us</h2>
+        <p>Applewood welcomes riders of all levels for Shows, Clinics, and Training.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <img src="images/ULIF3645.jpg" alt="2026 Shows" style="height:200px;object-fit:cover;width:100%;">
+          <div class="card-body" style="padding:1.75rem;">
+            <h3 style="font-size:1.3rem;margin-bottom:0.6rem;">2026 Shows</h3>
+            <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping for riders of all levels. There are also two USEA Young Event Horse shows, and two Mini Event Competitions.</p>
+            <a href="#" class="btn" style="margin-top:1.25rem;">View Shows &amp; Entry Forms</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="images/AF-Winter-Clinic-Cavaletti-2024-2.jpg" alt="2026 Clinics" style="height:200px;object-fit:cover;width:100%;">
+          <div class="card-body" style="padding:1.75rem;">
+            <h3 style="font-size:1.3rem;margin-bottom:0.6rem;">2026 Clinics</h3>
+            <p>Clinics are held throughout the year for both eventers and dressage riders. All horses and riders from entry level through advanced are welcome! Participants are scheduled in groups of four to six.</p>
+            <a href="#" class="btn" style="margin-top:1.25rem;">View Clinics</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="images/Trainer.jpg" alt="Training at Applewood" style="height:200px;object-fit:cover;width:100%;">
+          <div class="card-body" style="padding:1.75rem;">
+            <h3 style="font-size:1.3rem;margin-bottom:0.6rem;">Training &amp; Lessons</h3>
+            <p>Ride with Marilyn Payne, the Olympic judge whose specialty is bringing horse and rider to their full potential! Every rider receives personalized attention to their individual goals.</p>
+            <a href="#" class="btn" style="margin-top:1.25rem;">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AT APPLEWOOD ROTATING CAROUSEL ===== -->
+  <section class="at-applewood">
+    <div class="at-applewood-heading">At Applewood</div>
+    <div class="at-applewood-carousel">
+      <div class="at-applewood-track" id="aawTrack">
+        <img src="images/IWHN2710.jpg" alt="At Applewood Farm">
+        <img src="images/IMG_7096.jpg" alt="At Applewood Farm">
+        <img src="images/DSCF1567.jpg" alt="At Applewood Farm">
+        <img src="images/DSCF6613.jpg" alt="At Applewood Farm">
+        <img src="images/Mary_Jumping.jpg" alt="At Applewood Farm">
+        <img src="images/JoAnnReins_M.jpg" alt="At Applewood Farm">
+        <img src="images/Dream-and-Kai-2020.jpg" alt="At Applewood Farm">
+        <img src="images/Kylie-and-Val-2020.jpg" alt="At Applewood Farm">
+        <img src="images/DSCF4909.jpg" alt="At Applewood Farm">
+        <img src="images/IMG_3663.jpg" alt="At Applewood Farm">
+        <img src="images/M_Walking.jpg" alt="At Applewood Farm">
+        <img src="images/M_Leg.jpg" alt="At Applewood Farm">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORKING STUDENT CTA ===== -->
+  <section class="section section-dark">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <h2 style="color:#fff;margin-bottom:0.5rem;">Working Student Positions Available</h2>
+        <p style="color:rgba(255,255,255,0.88);max-width:600px;margin:0;">Train directly with an Olympic-level judge and trainer, ride quality schoolmasters, and develop real skills at Applewood Farm. Part-time, flexible hours. Don't assume positions are filled — Marilyn actively wants motivated riders.</p>
+      </div>
+      <a href="#" class="btn btn-white" style="flex-shrink:0;font-size:1rem;padding:0.85rem 1.75rem;">Apply Now</a>
+    </div>
+  </section>
+
+  <!-- ===== JOIN THE RIDE ===== -->
+  <section class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form action="#" class="jtr-form">
+        <input type="email" placeholder="Email" class="jtr-input">
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </div>
+    <div class="jtr-right">
+      <img src="images/join-the-ride.jpg" alt="Applewood Farm">
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#">About Marilyn</a></li>
+            <li><a href="#">Lessons</a></li>
+            <li><a href="#">Training</a></li>
+            <li><a href="#">Shows &amp; Entry Forms</a></li>
+            <li><a href="#">Clinics</a></li>
+            <li><a href="#">Christmas</a></li>
+            <li><a href="#">Working Student</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p style="margin-top:0.75rem;"><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p style="margin-top:0.5rem;font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; Marilyn Payne 2026</span>
+        <span>Applewood Farm &mdash; Califon, NJ</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== HAMBURGER =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    }));
+
+    // ===== INTRO SLIDER (all photos) =====
+    const introTrack  = document.getElementById('introTrack');
+    const introDots   = document.getElementById('introDots');
+    const introCount  = introTrack.children.length;
+    let introIdx = 0;
+
+    // Build dots
+    for (let i = 0; i < introCount; i++) {
+      const d = document.createElement('button');
+      d.className = 'intro-slider-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+      d.addEventListener('click', () => goIntro(i));
+      introDots.appendChild(d);
+    }
+
+    function goIntro(n) {
+      introIdx = (n + introCount) % introCount;
+      introTrack.style.transform = `translateX(-${introIdx * 100}%)`;
+      document.querySelectorAll('.intro-slider-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === introIdx)
+      );
+    }
+
+    document.getElementById('introPrev').addEventListener('click', () => goIntro(introIdx - 1));
+    document.getElementById('introNext').addEventListener('click', () => goIntro(introIdx + 1));
+
+    // Auto-advance every 4 seconds
+    setInterval(() => goIntro(introIdx + 1), 4000);
+
+    // ===== AT APPLEWOOD STRIP CAROUSEL (infinite loop) =====
+    (function() {
+      const track = document.getElementById('aawTrack');
+      if (!track) return;
+
+      const origImgs = Array.from(track.children);
+      const total = origImgs.length; // 12 real images
+      let idx = 0;
+      let isSnapping = false;
+      let timer = null;
+
+      function getVisible() {
+        if (window.innerWidth <= 600) return 2;
+        if (window.innerWidth <= 900) return 3;
+        return 4;
+      }
+
+      // Pixel width per image — derived from viewport, matches CSS exactly
+      function imgPx() {
+        return window.innerWidth / getVisible();
+      }
+
+      // Clone exactly getVisible() images at end so the loop is seamless
+      function buildClones() {
+        track.querySelectorAll('.aaw-clone').forEach(c => c.remove());
+        const visible = getVisible();
+        for (let i = 0; i < visible; i++) {
+          const clone = origImgs[i % total].cloneNode(true);
+          clone.classList.add('aaw-clone');
+          track.appendChild(clone);
+        }
+      }
+
+      function moveTo(n, animate) {
+        track.style.transition = animate ? 'transform 0.6s ease' : 'none';
+        track.style.transform = `translateX(-${n * imgPx()}px)`;
+      }
+
+      function advance() {
+        if (isSnapping) return;
+        idx++;
+        moveTo(idx, true);
+
+        // idx has just entered the cloned zone — after animation, silently reset
+        if (idx >= total) {
+          isSnapping = true;
+          setTimeout(() => {
+            track.style.transition = 'none';
+            idx = 0;
+            track.style.transform = 'translateX(0)';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+              isSnapping = false;
+            }));
+          }, 680); // slightly longer than the 0.6s CSS transition
+        }
+      }
+
+      // Build clones, set initial position, then start rolling
+      buildClones();
+      moveTo(0, false);
+
+      timer = setInterval(advance, 2800);
+
+      window.addEventListener('resize', () => {
+        buildClones();
+        moveTo(idx, false);
+      });
+    })();
+
+    // Touch/swipe support
+    let introTouchX = null;
+    introTrack.addEventListener('touchstart', e => { introTouchX = e.touches[0].clientX; });
+    introTrack.addEventListener('touchend', e => {
+      if (introTouchX === null) return;
+      const diff = introTouchX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goIntro(introIdx + (diff > 0 ? 1 : -1));
+      introTouchX = null;
+    });
+  </script>
+
+</body>
+</html>
