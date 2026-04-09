@@ -1,249 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shows &amp; Competitions - Marilyn Payne</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shows & Competitions - Marilyn Payne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--brand:#72133E;--bg:#F3F3F3;--text:#333333;--section:#C7C7C7;--disabled:#CCCCCC;--white:#ffffff}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6}
-    nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid #e0e0e0;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px}
-    .nav-pills{display:flex;gap:.5rem;flex-shrink:0}
-    .nav-pill{font-size:13px;font-weight:600;color:var(--brand);border:1.5px solid var(--brand);border-radius:20px;padding:5px 14px;text-decoration:none;white-space:nowrap}
-    .nav-links{display:flex;gap:1.4rem;list-style:none;flex-wrap:wrap;justify-content:center}
-    .nav-links a{font-size:15px;color:var(--brand);text-decoration:none;text-transform:capitalize;white-space:nowrap}
-    .nav-logo img{height:48px}
-    .hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
-    .hamburger span{display:block;width:24px;height:2px;background:var(--brand);margin:5px 0}
-    .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid #e0e0e0;z-index:99;padding:1rem 2rem}
-    .mobile-menu.open{display:block}
-    .mobile-menu a{display:block;padding:10px 0;font-size:15px;color:var(--brand);text-decoration:none;text-transform:capitalize;border-bottom:1px solid #f0f0f0}
-    .mobile-menu a:last-child{border-bottom:none}
-    @media(max-width:900px){.nav-links{display:none}.hamburger{display:block}}
-
-    /* BANNER */
-    .page-banner{width:100%;height:380px;overflow:hidden;position:relative}
-    .page-banner img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
-    .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.08),rgba(114,19,62,0.55));display:flex;align-items:flex-end;padding:2rem 3rem}
-    .page-banner h1{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--white);line-height:1.15;text-shadow:0 2px 16px rgba(0,0,0,0.5)}
-
-    .page-intro{max-width:860px;margin:0 auto;padding:2.8rem 2rem 1.5rem;text-align:center}
-    .page-intro p{font-size:17px;line-height:1.75}
-    .show-section{padding:3.5rem 2rem}
-    .show-section:nth-child(even){background:var(--section)}
-    .show-section-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:380px 1fr;gap:3rem;align-items:start}
-    .show-section-inner.reverse{grid-template-columns:1fr 380px}
-    .show-section-inner.reverse .show-image{order:2}
-    .show-section-inner.reverse .show-content{order:1}
-
-    /* Photo grid for sections with multiple images */
-    .show-image{display:flex;flex-direction:column;gap:.75rem}
-    .show-image img{width:100%;object-fit:cover;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,.12)}
-    .show-image .img-main{aspect-ratio:16/10}
-    .show-image .img-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-    .show-image .img-row img{aspect-ratio:4/3}
-
-    .show-content h2{font-family:'Libre Baskerville',serif;font-size:2rem;color:var(--brand);margin-bottom:.6rem;line-height:1.2}
-    .show-content .section-bar{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
-    .section-bar::before{content:'';display:block;width:4px;height:20px;background:var(--brand);border-radius:2px;flex-shrink:0}
-    .section-bar span{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--brand)}
-    .show-content p{font-size:15px;line-height:1.75;margin-bottom:1rem}
-    .show-card{background:var(--white);border-radius:10px;padding:1.5rem 1.75rem;margin-top:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-    .show-card h3{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid #e8e8e8}
-    .date-rows{margin-bottom:1.2rem}
-    .date-row{display:flex;align-items:center;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid #f0f0f0;gap:1rem}
-    .date-row:last-child{border-bottom:none}
-    .date-label{font-size:15px;font-weight:500;min-width:140px}
-    .date-btns{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:flex-end}
-    .btn{display:inline-block;font-size:12px;font-weight:600;padding:6px 13px;border-radius:5px;text-decoration:none;border:none;cursor:pointer;white-space:nowrap;letter-spacing:.02em}
-    .btn-active{background:var(--brand);color:var(--white)}
-    .btn-disabled{background:var(--disabled);color:#888;cursor:not-allowed;pointer-events:none}
-    .section-btns{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem}
-    .section-btns .btn{font-size:13px;padding:8px 18px}
-    .join-section{background:var(--brand);color:var(--white);padding:3.5rem 2rem;text-align:center}
-    .join-section h2{font-family:'Libre Baskerville',serif;font-size:2rem;margin-bottom:.5rem}
-    .join-section p{font-size:15px;opacity:.9;margin-bottom:1.5rem}
-    .subscribe-form{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
-    .subscribe-form input{padding:10px 18px;border-radius:5px;border:none;font-size:15px;min-width:260px}
-    .subscribe-form button{padding:10px 24px;background:var(--white);color:var(--brand);font-weight:600;font-size:15px;border:none;border-radius:5px;cursor:pointer}
-    footer{background:transparent;color:var(--text);padding:3rem 2rem 1.5rem}
-    .footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;padding-bottom:2rem;border-bottom:1px solid #ddd}
-    .footer-logo img{height:52px;margin-bottom:.5rem}
-    .footer-col h4{font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8rem}
-    .footer-col p,.footer-col a{font-size:14px;line-height:1.8;color:var(--text);text-decoration:none;display:block}
-    .footer-bottom{max-width:1100px;margin:1.2rem auto 0;font-size:13px;color:#666}
-
-    @media(max-width:860px){
-      .show-section-inner,.show-section-inner.reverse{grid-template-columns:1fr;gap:1.5rem}
-      .show-section-inner .show-image,.show-section-inner.reverse .show-image{order:1}
-      .show-section-inner .show-content,.show-section-inner.reverse .show-content{order:2}
-      .show-section{padding:2.2rem 1rem}.page-intro{padding:1.8rem 1rem 1rem}
-      .page-banner{height:220px}.page-banner-overlay{padding:1rem 1.2rem}
-      .show-card{padding:1.1rem 1rem}
-      .date-row{flex-direction:column;align-items:flex-start;gap:.6rem;padding:.75rem 0}
-      .date-btns{display:flex;gap:.5rem;width:100%}
-      .date-btns .btn{flex:1;text-align:center;min-width:90px;padding:8px 6px}
-      .section-btns .btn{flex:1;text-align:center;min-width:120px}
-      .footer-inner{grid-template-columns:1fr}
-      .subscribe-form{flex-direction:column;padding:0 1rem}
-      .subscribe-form input,.subscribe-form button{width:100%}
-      .img-row{grid-template-columns:1fr !important}
+    :root {
+      --brand: #72133E; --brand-dark: #56102f; --body-bg: #F3F3F3;
+      --body-text: #333333; --gray-mid: #C7C7C7; --gray-light: #EBEBEB;
+      --gray-dark: #555555; --white: #FFFFFF;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --nav-h: 80px; --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,0.16);
     }
-    @media(max-width:480px){.nav-pills{display:none}nav{padding:0 1rem}}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--body-bg); color: var(--body-text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+    .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+    .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-cta-left a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-cta-left a:hover { background: var(--brand); color: var(--white); }
+    .nav-menu { display: flex; align-items: center; gap: 0.15rem; list-style: none; flex: 1; justify-content: center; flex-wrap: nowrap; }
+    .nav-item { position: relative; }
+    .nav-item > a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 400; color: var(--brand); text-transform: capitalize; padding: 0.4rem 0.55rem; display: block; white-space: nowrap; transition: opacity 0.2s; }
+    .nav-item > a:hover { opacity: 0.75; }
+    .nav-item.active > a { font-weight: 600; }
+    .nav-item.has-dropdown:hover .dropdown { display: block; }
+    .dropdown { display: none; position: absolute; top: 100%; left: 0; background: var(--white); box-shadow: var(--shadow-lg); border-radius: var(--radius); padding: 0.5rem 0; min-width: 160px; z-index: 999; }
+    .dropdown a { display: block; font-size: 0.88rem; color: var(--body-text); padding: 0.5rem 1.1rem; transition: background 0.15s; }
+    .dropdown a:hover { background: var(--gray-light); }
+    .nav-logo img { height: 56px; width: auto; flex-shrink: 0; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-shrink: 0; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--brand); border-radius: 2px; }
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--white); box-shadow: var(--shadow-lg); padding: 1rem 1.5rem 1.5rem; z-index: 999; max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a { display: block; font-size: 1rem; font-weight: 500; color: var(--body-text); padding: 0.7rem 0.25rem; border-bottom: 1px solid var(--gray-light); text-decoration: none; }
+    .nav-mobile a:hover { color: var(--brand); }
+    .nav-mobile .nav-sub { padding-left: 1.25rem; font-size: 0.92rem; color: var(--gray-dark); font-weight: 400; }
+    @media (max-width: 860px) { :root { --nav-h: 68px; } .nav-menu { display: none; } .nav-cta-left { display: none; } .nav-hamburger { display: flex; } }
+    .page-banner { position: relative; width: 100%; height: 380px; overflow: hidden; }
+    .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+    .page-banner-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(114,19,62,0.45) 0%, rgba(114,19,62,0.15) 50%, rgba(0,0,0,0.0) 100%); display: flex; align-items: flex-end; padding: 2.5rem 3rem; }
+    .page-banner-overlay h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); color: var(--white); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .shows-intro { background: var(--white); padding: 2.5rem 0; text-align: center; }
+    .shows-intro p { max-width: 720px; margin: 0 auto; font-size: 1.08rem; color: var(--body-text); line-height: 1.75; }
+    .show-section { padding: 3.5rem 0; }
+    .show-section:nth-child(even) { background: var(--gray-light); }
+    .show-section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .show-photos { display: flex; flex-direction: column; gap: 1rem; }
+    .show-photo-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .show-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); border-left: 3px solid var(--brand); padding-left: 0.6rem; margin-bottom: 0.75rem; }
+    .show-content h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--body-text); margin-bottom: 1rem; line-height: 1.2; }
+    .show-content p { font-size: 0.97rem; line-height: 1.75; color: var(--body-text); margin-bottom: 1rem; }
+    .show-btn-row { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .btn { display: inline-block; font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600; padding: 0.55rem 1.3rem; border-radius: var(--radius); border: none; cursor: pointer; transition: background 0.2s, opacity 0.2s; text-decoration: none; }
+    .btn-active { background: var(--brand); color: var(--white); }
+    .btn-active:hover { background: var(--brand-dark); }
+    .btn-disabled { background: var(--gray-mid); color: var(--white); cursor: not-allowed; pointer-events: none; }
+    .show-dates { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .show-dates-header { background: var(--body-text); color: var(--white); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 1.25rem; }
+    .date-row { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--gray-light); gap: 1rem; }
+    .date-row:last-child { border-bottom: none; }
+    .date-label { font-size: 0.95rem; font-weight: 500; color: var(--body-text); }
+    .date-btns { display: flex; gap: 0.5rem; flex-shrink: 0; }
+    .date-btns .btn { font-size: 0.8rem; padding: 0.35rem 0.9rem; }
+    .subscribe-section { background: var(--brand); color: var(--white); padding: 3rem 0; text-align: center; }
+    .subscribe-section h2 { font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .subscribe-section p { margin-bottom: 1.5rem; opacity: 0.9; }
+    .subscribe-form { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .subscribe-form input { padding: 0.65rem 1.1rem; border-radius: var(--radius); border: none; font-size: 1rem; min-width: 260px; }
+    .subscribe-form .btn-sub { background: var(--white); color: var(--brand); font-weight: 700; padding: 0.65rem 1.5rem; border-radius: var(--radius); border: none; cursor: pointer; font-size: 1rem; }
+    .site-footer { padding: 2rem 0; text-align: center; font-size: 0.88rem; color: var(--body-text); line-height: 1.8; }
+    .site-footer a { color: var(--brand); }
+    @media (max-width: 768px) { .show-section-inner { grid-template-columns: 1fr; } .page-banner { height: 260px; } .page-banner-overlay { padding: 1.5rem; } }
   </style>
 </head>
 <body>
-<nav>
-  <div class="nav-pills">
-    <a class="nav-pill" href="/ride-times/">Ride Times</a>
-    <a class="nav-pill" href="/entry-form/">Entry Forms</a>
-  </div>
-  <ul class="nav-links">
-    <li><a href="/about/">About Marilyn</a></li>
-    <li><a href="/bio/">Marilyn's Bio</a></li>
-    <li><a href="/applewood-farm/">Applewood Farm</a></li>
-    <li><a href="/lessons/">Lessons</a></li>
-    <li><a href="/horses/">Horses</a></li>
-    <li><a href="/training/">Training</a></li>
-    <li><a href="/christmas/">Christmas</a></li>
-    <li><a href="/clinics/">Clinics</a></li>
-    <li><a href="/shows/">Shows</a></li>
-    <li><a href="/lesson-calendar/">Lesson Calendar</a></li>
-    <li><a href="/horse-schedule/">Horse Schedule</a></li>
-    <li><a href="/working-student/">Working Student</a></li>
-  </ul>
-  <div class="nav-logo"><a href="/"><img src="https://marilynpayne.com/wp-content/uploads/2025/11/MP-Logo-2@2x.png" alt="Marilyn Payne" /></a></div>
-  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="/about/">About Marilyn</a><a href="/bio/">Marilyn's Bio</a><a href="/applewood-farm/">Applewood Farm</a>
-  <a href="/lessons/">Lessons</a><a href="/horses/">Horses</a><a href="/training/">Training</a>
-  <a href="/christmas/">Christmas</a><a href="/clinics/">Clinics</a><a href="/shows/">Shows</a>
-  <a href="/lesson-calendar/">Lesson Calendar</a><a href="/horse-schedule/">Horse Schedule</a>
-  <a href="/working-student/">Working Student</a>
-</div>
-
-<!-- BANNER -->
-<div class="page-banner">
-  <img src="images/OutdoorDressageArena-2.jpg" alt="Applewood Farm Outdoor Dressage Arena" />
-  <div class="page-banner-overlay">
-    <h1>Shows &amp; Competitions</h1>
-  </div>
-</div>
-
-<div class="page-intro">
-  <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping for riders of all levels. There are also two USEA Young Event Horse (4- and 5-year olds) shows, and two Mini Event Competitions for riders at Starter through Training level.</p>
-</div>
-
-<!-- SCHOOLING SHOWS -->
-<div class="show-section">
-  <div class="show-section-inner">
-    <div class="show-image"><img src="images/Kylie-and-Val-2020.jpg" alt="Schooling Show at Applewood Farm" /></div>
-    <div class="show-content">
-      <div class="section-bar"><span>ESDCTA Registered</span></div>
-      <h2>Schooling Shows</h2>
-      <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping. Trophy and six ribbons per class. Dressage is in the outdoor dressage arena; warm-up is indoors; both arenas are sand/rubber and dust-free! Jumping takes place in the grass show jumping field.</p>
-      <p>Scores can be applied to ESDCTA Year-End Awards and volunteer hours to ESDCTA volunteer requirement. All shows are on Wednesday.</p>
-      <div class="section-btns">
-        <a class="btn btn-disabled">Prize List</a>
-        <a class="btn btn-active" href="pdfs/esdcta-entry-form.pdf" target="_blank">Entry Form</a>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <div class="nav-cta-left">
+        <a href="/shows/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
       </div>
-      <div class="show-card">
-        <h3>2026 Show Dates</h3>
-        <div class="date-rows">
-          <div class="date-row"><span class="date-label">Wednesday, May 13</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, June 17</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, July 8</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 5</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, September 9</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, October 10</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <div class="nav-item has-dropdown">
+          <a href="/about/">About Marilyn</a>
+          <div class="dropdown"><a href="/bio/">Marilyn's Bio</a></div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="/applewood-farm/">Applewood Farm</a>
+          <div class="dropdown">
+            <a href="/lessons/">Lessons</a>
+            <a href="/horses/">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/">Christmas</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="/clinics/">Clinics</a></div>
+        <div class="nav-item active"><a href="/shows/">Shows</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="#">More</a>
+          <div class="dropdown">
+            <a href="/lesson-calendar/">Lesson Calendar</a>
+            <a href="/horse-schedule/">Horse Schedule</a>
+            <a href="/working-student/">Working Student</a>
+          </div>
+        </div>
+      </nav>
+      <a href="/" class="nav-logo">
+        <img src="images/MP-Logo-2@2x.png" alt="Marilyn Payne - Applewood Farm">
+      </a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn's Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub">Lessons</a>
+    <a href="/horses/" class="nav-sub">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub">Christmas</a>
+    <a href="/clinics/">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/">Horse Schedule</a>
+    <a href="/working-student/">Working Student</a>
+  </div>
+
+  <div class="page-banner">
+    <img src="images/OutdoorDressageArena-2.jpg" alt="Outdoor Dressage Arena at Applewood Farm">
+    <div class="page-banner-overlay"><h1>Shows &amp; Competitions</h1></div>
+  </div>
+
+  <div class="shows-intro">
+    <div class="container">
+      <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping for riders of all levels. There are also two USEA Young Event Horse (4- and 5-year olds) shows, and two Mini Event Competitions for riders at Starter through Training level.</p>
+    </div>
+  </div>
+
+  <section class="show-section">
+    <div class="container show-section-inner">
+      <div class="show-photos">
+        <img class="show-photo-main" src="images/Kylie-and-Val-2020.jpg" alt="ESDCTA Schooling Show at Applewood Farm">
+      </div>
+      <div class="show-content">
+        <div class="show-label">ESDCTA Registered</div>
+        <h2>Schooling Shows</h2>
+        <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping. Trophy and six ribbons per class. Dressage is in the outdoor dressage arena; warm-up is indoors; both arenas are sand/rubber and dust-free! Jumping takes place in the grass show jumping field.</p>
+        <p>Scores can be applied to ESDCTA Year-End Awards and volunteer hours to ESDCTA volunteer requirement. All shows are on Wednesday.</p>
+        <div class="show-btn-row">
+          <span class="btn btn-disabled">Prize List</span>
+          <a href="pdfs/esdcta-entry-form.pdf" target="_blank" class="btn btn-active">Entry Form</a>
+        </div>
+        <div class="show-dates">
+          <div class="show-dates-header">2026 Show Dates</div>
+          <div class="date-row"><span class="date-label">Wednesday, May 13</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+          <div class="date-row"><span class="date-label">Wednesday, June 17</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+          <div class="date-row"><span class="date-label">Wednesday, July 8</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+          <div class="date-row"><span class="date-label">Wednesday, August 5</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+          <div class="date-row"><span class="date-label">Wednesday, September 9</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+          <div class="date-row"><span class="date-label">Wednesday, October 10</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- MINI EVENTS -->
-<div class="show-section">
-  <div class="show-section-inner reverse">
-    <div class="show-image"><img src="images/DSCF4883.jpg" alt="Mini Event at Applewood Farm" /></div>
-    <div class="show-content">
-      <div class="section-bar"><span>Eventing</span></div>
-      <h2>Mini Events</h2>
-      <p>Interested in Eventing? Thinking of moving up a level? The mini event consists of a dressage test appropriate for the level, and a jumping phase that starts with five stadium-type jumps in an open grass field flowing into a short cross country course.</p>
-      <p><strong>Levels include:</strong> Starter (X-rails–2'3"), Beginner Novice (2'3"–2+7"), Novice (2'7"–2'11"), Training (2'11"–3'3"). Trophy and 6 ribbons per division, plus Best Amateur Horse and Best Amateur Rider awards.</p>
-      <p><em>Dressage Test of Choice:</em> Select any USEF or USEA test, 8–10 minutes per test. (Not ESDCTA recognized.)</p>
-      <div class="section-btns">
-        <a class="btn btn-disabled">Prize List</a>
-        <a class="btn btn-disabled">Entry Form</a>
+  <section class="show-section">
+    <div class="container show-section-inner">
+      <div class="show-photos">
+        <img class="show-photo-main" src="images/DSCF4883.jpg" alt="Mini Event at Applewood Farm">
       </div>
-      <div class="show-card">
-        <h3>2026 Mini Event Dates</h3>
-        <div class="date-rows">
-          <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
+      <div class="show-content">
+        <div class="show-label">Eventing</div>
+        <h2>Mini Events</h2>
+        <p>Interested in Eventing? Thinking of moving up a level? The mini event consists of a dressage test appropriate for the level, and a jumping phase that starts with five stadium-type jumps in an open grass field flowing into a short cross country course.</p>
+        <p>Levels include: Starter (X-rails-2'3"), Beginner Novice (2'3"-2'7"), Novice (2'7"-2'11"), Training (2'11"-3'3"). Trophy and 6 ribbons per division, plus Best Amateur Horse and Best Amateur Rider awards. Dressage Test of Choice: Select any USEF or USEA test, 8-10 minutes per test. (Not ESDCTA recognized.)</p>
+        <div class="show-btn-row">
+          <span class="btn btn-disabled">Prize List</span>
+          <span class="btn btn-disabled">Entry Form</span>
+        </div>
+        <div class="show-dates">
+          <div class="show-dates-header">2026 Mini Event Dates</div>
+          <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+          <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- YOUNG EVENT HORSE -->
-<div class="show-section">
-  <div class="show-section-inner">
-    <div class="show-image">
-      <img src="images/IMG_0315.jpg" alt="Young Event Horse at Applewood Farm" />
-    </div>
-    <div class="show-content">
-      <div class="section-bar"><span>USEA Young Event Horse</span></div>
-      <h2>Young Event Horse</h2>
-      <p>YEH includes the YEH dressage test for either 4 or 5 year old eventing prospects, and a jumping phase that begins with five straightforward show jumps which feed directly into several inviting XC fences. The jumping phase is immediately followed by the galloping phase, in which horses are judged on the quality of the gallop and ability to cover ground.</p>
-      <p>YEH entries must be registered with USEA and must use the USEA Entry Form available from <a href="http://www.useventing.com" target="_blank">www.useventing.com</a>. YEH must use the special 4yo and 5yo dressage tests, also available at useventing.com.</p>
-      <div class="section-btns">
-        <a class="btn btn-disabled">Prize List</a>
-        <a class="btn btn-active" href="http://www.useventing.com" target="_blank">Entry Form (USEA)</a>
+  <section class="show-section">
+    <div class="container show-section-inner">
+      <div class="show-photos">
+        <img class="show-photo-main" src="images/IMG_0315.jpg" alt="Young Event Horse at Applewood Farm">
       </div>
-      <div class="show-card">
-        <h3>2026 YEH Dates</h3>
-        <div class="date-rows">
-          <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><a class="btn btn-disabled">Ride Times</a><a class="btn btn-disabled">Results</a></div></div>
+      <div class="show-content">
+        <div class="show-label">USEA Young Event Horse</div>
+        <h2>Young Event Horse</h2>
+        <p>YEH includes the YEH dressage test for either 4 or 5 year old eventing prospects, and a jumping phase that begins with five straightforward show jumps which feed directly into several inviting XC fences. The jumping phase is immediately followed by the galloping phase, in which horses are judged on the quality of the gallop and ability to cover ground.</p>
+        <p>YEH entries must be registered with USEA and must use the USEA Entry Form available from <a href="https://www.useventing.com" target="_blank" style="color:var(--brand);text-decoration:underline;">www.useventing.com</a>. YEH must use the special 4yo and 5yo dressage tests, also available at useventing.com.</p>
+        <div class="show-btn-row">
+          <span class="btn btn-disabled">Prize List</span>
+          <a href="https://www.useventing.com" target="_blank" class="btn btn-active">Entry Form (USEA)</a>
+        </div>
+        <div class="show-dates">
+          <div class="show-dates-header">2026 YEH Dates</div>
+          <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+          <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<div class="join-section">
-  <h2>Join The Ride</h2>
-  <p>Subscribe to receive emails about upcoming shows and clinics.</p>
-  <div class="subscribe-form">
-    <input type="email" placeholder="Your email address" />
-    <button type="button">Subscribe</button>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-col footer-logo"><a href="/"><img src="https://marilynpayne.com/wp-content/uploads/2025/11/MP-Logo-2@2x.png" alt="Marilyn Payne" /></a></div>
-    <div class="footer-col">
-      <h4>Get In Touch</h4>
-      <p>30 Fox Hill Road, Califon NJ 07830</p><p>908-334-0105</p>
-      <a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a>
-      <p style="font-size:13px;color:#888;margin-top:4px;">Email or text unless urgent</p>
+  <section class="subscribe-section">
+    <div class="container">
+      <h2>Join The Ride</h2>
+      <p>Subscribe to receive emails about upcoming shows and clinics.</p>
+      <div class="subscribe-form">
+        <input type="email" placeholder="Your email address">
+        <button class="btn-sub">Subscribe</button>
+      </div>
     </div>
-    <div class="footer-col"><h4>Buy Applewood Apparel</h4><a href="https://grandimpressiondesign.com/collections/applewood-farm" target="_blank">Click Here</a></div>
-  </div>
-  <div class="footer-bottom"><p>&copy; Marilyn Payne 2026</p></div>
-</footer>
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
-</script>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Get In Touch</strong></p>
+      <p>30 Fox Hill Road, Califon NJ 07830 &nbsp;|&nbsp; 908-334-0105 &nbsp;|&nbsp; <a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+      <p>Email or text unless urgent</p>
+      <p style="margin-top:0.75rem;"><a href="#">Buy Applewood Apparel &mdash; Click Here</a></p>
+      <p style="margin-top:0.75rem;">&copy; Marilyn Payne 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+  </script>
 </body>
 </html>
