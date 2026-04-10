@@ -55,23 +55,26 @@
     .nav-mobile .nav-sub { padding-left: 1.25rem; font-size: 0.92rem; color: var(--gray-dark); font-weight: 400; }
 
     /* ===== BIO PAGE ===== */
-    .bio-wrap { background: var(--brand); }
-    .bio-inner { max-width: 1400px; margin: 0 auto; padding: 4rem 3rem 5rem; display: grid; grid-template-columns: 1fr 220px; gap: 3.5rem; align-items: start; }
+    .bio-wrap { background: var(--body-bg); }
+    .bio-inner { display: grid; grid-template-columns: 2fr 1fr; gap: 0; align-items: start; }
 
-    /* LEFT: all text content */
-    .bio-content {}
-    .bio-title { font-family: var(--font-serif); font-size: clamp(2.4rem, 5vw, 3.8rem); color: var(--white); font-weight: 700; line-height: 1.1; margin-bottom: 3rem; }
+    /* LEFT: maroon text column */
+    .bio-content { background: var(--brand); padding: 4rem 3.5rem 6rem; }
+    .bio-title { font-family: var(--font-serif); font-size: clamp(2.4rem, 5vw, 3.8rem); color: var(--white); font-weight: 700; line-height: 1.1; margin-bottom: 2.5rem; }
     .bio-section { margin-bottom: 3rem; }
     .bio-section h2 { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--white); font-weight: 700; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255,255,255,0.25); }
     .bio-section p { font-size: 1rem; line-height: 1.85; color: rgba(255,255,255,0.88); margin-bottom: 1.1rem; }
     .bio-section p:last-child { margin-bottom: 0; }
-    .bio-img-block { display: block; width: 100%; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.35); margin: 1.75rem 0; object-fit: cover; }
+    .bio-img-block { display: block; width: 100%; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin: 1.75rem 0; object-fit: cover; }
     .bio-photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.75rem 0; }
-    .bio-photo-pair img { width: 100%; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.35); object-fit: cover; max-height: 340px; }
+    .bio-photo-pair img { width: 100%; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.4); object-fit: cover; max-height: 340px; }
 
-    /* RIGHT: continuous photo strip */
-    .bio-sidebar { display: flex; flex-direction: column; gap: 1rem; }
-    .bio-sidebar img { width: 100%; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.35); object-fit: cover; display: block; }
+    /* RIGHT: photo print strip */
+    .bio-sidebar { background: var(--body-bg); padding: 3rem 2.5rem 4rem; display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
+    .photo-print { background: var(--white); padding: 10px 10px 36px; box-shadow: 0 6px 28px rgba(0,0,0,0.22); width: 88%; position: relative; }
+    .photo-print:nth-child(odd) { transform: rotate(-2.5deg); }
+    .photo-print:nth-child(even) { transform: rotate(2deg); }
+    .photo-print img { display: block; width: 100%; height: auto; }
 
     /* ===== JOIN THE RIDE ===== */
     .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
@@ -105,8 +108,9 @@
       .nav-hamburger { display: flex; }
       .nav-logo img { height: 46px; }
       .bio-inner { grid-template-columns: 1fr; }
-      .bio-sidebar { flex-direction: row; flex-wrap: wrap; position: static; }
-      .bio-sidebar img { width: calc(50% - 0.5rem); }
+      .bio-content { padding: 2.5rem 1.5rem 3rem; }
+      .bio-sidebar { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 2rem 1rem; gap: 1.5rem; }
+      .photo-print { width: calc(50% - 1rem); transform: none !important; }
       .bio-photo-pair { grid-template-columns: 1fr; }
       .join-the-ride { grid-template-columns: 1fr; height: auto; }
       .jtr-left { padding: 2rem 1.5rem; }
@@ -251,13 +255,13 @@
 
       </div><!-- /bio-content -->
 
-      <!-- RIGHT: continuous photo strip -->
+      <!-- RIGHT: photo print strip -->
       <aside class="bio-sidebar">
-        <img src="/images/tab-1.jpg" alt="Marilyn as a child">
-        <img src="/images/tab-2.jpg" alt="Marilyn as a teenager">
-        <img src="/images/tab-3.jpg" alt="Applewood Farm">
-        <img src="/images/tab-4.jpg" alt="Marilyn Payne">
-        <img src="/images/tab-5.jpg" alt="Marilyn Payne">
+        <div class="photo-print"><img src="/images/tab-1.jpg" alt="Marilyn as a child"></div>
+        <div class="photo-print"><img src="/images/tab-2.jpg" alt="Marilyn as a teenager"></div>
+        <div class="photo-print"><img src="/images/tab-3.jpg" alt="Applewood Farm"></div>
+        <div class="photo-print"><img src="/images/tab-4.jpg" alt="Marilyn Payne"></div>
+        <div class="photo-print"><img src="/images/tab-5.jpg" alt="Marilyn Payne"></div>
       </aside>
 
     </div>
