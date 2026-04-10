@@ -26,9 +26,9 @@
     .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
     .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
-    .nav-cta-left a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-cta-left a { font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
     .nav-cta-left a:hover { background: var(--brand); color: var(--white); }
-    .nav-menu { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+    .nav-menu { display: flex; align-items: center; gap: 1.5rem; }
     .nav-item { position: relative; }
     .nav-item > a { font-size: 0.95rem; font-weight: 400; color: var(--brand); white-space: nowrap; padding: 0.3rem 0; transition: opacity 0.2s; }
     .nav-item > a:hover { opacity: 0.7; }
@@ -46,44 +46,45 @@
     .nav-mobile a.nav-sub { font-size: 0.92rem; font-weight: 400; color: var(--body-text); padding-left: 1rem; }
     .nav-mobile-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--brand); cursor: pointer; margin-bottom: 1rem; }
     .page-banner { position: relative; width: 100%; height: 380px; overflow: hidden; }
-    .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+    .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
     .page-banner-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0.05) 100%); display: flex; align-items: flex-end; padding: 2.5rem 3rem; }
     .page-banner-overlay h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); color: var(--white); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
     .shows-intro { background: var(--white); padding: 2.5rem 0; text-align: center; }
-    .shows-intro p { max-width: 720px; margin: 0 auto; font-size: 1.08rem; color: var(--body-text); line-height: 1.75; }
+    .shows-intro p { max-width: 720px; margin: 0 auto; font-size: 1.08rem; line-height: 1.75; }
     .show-section { padding: 3.5rem 0; }
     .show-section:nth-child(even) { background: var(--gray-light); }
     .show-section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    .show-photos { display: flex; flex-direction: column; gap: 1rem; }
     .show-photo-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
     .show-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); border-left: 3px solid var(--brand); padding-left: 0.6rem; margin-bottom: 0.75rem; }
-    .show-content h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--body-text); margin-bottom: 1rem; line-height: 1.25; }
-    .show-content p { font-size: 0.97rem; color: var(--body-text); line-height: 1.75; margin-bottom: 1.25rem; }
+    .show-content h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; line-height: 1.25; }
+    .show-content p { font-size: 0.97rem; line-height: 1.75; margin-bottom: 1.25rem; }
     .show-btn-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .btn { display: inline-block; padding: 0.45rem 1.1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+    .btn { display: inline-block; padding: 0.45rem 1.1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s; }
     .btn-active { background: var(--brand); color: var(--white); border: 2px solid var(--brand); }
     .btn-active:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
     .btn-disabled { background: transparent; color: var(--gray-dark); border: 2px solid var(--gray-mid); cursor: default; pointer-events: none; }
-    .show-dates { margin-top: 0.5rem; }
-    .show-dates-header { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-dark); margin-bottom: 0.5rem; }
+    .show-dates-header { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-dark); margin-bottom: 0.5rem; margin-top: 0.5rem; }
     .date-row { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--gray-light); gap: 1rem; }
-    .date-label { font-size: 0.9rem; color: var(--body-text); }
+    .date-label { font-size: 0.9rem; }
     .date-btns { display: flex; gap: 0.4rem; }
-    .subscribe-section { background: var(--brand); padding: 3rem 0; text-align: center; }
-    .subscribe-section h2 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--white); margin-bottom: 0.5rem; }
-    .subscribe-section p { color: rgba(255,255,255,0.85); margin-bottom: 1.5rem; }
-    .subscribe-btn { display: inline-block; background: var(--white); color: var(--brand); font-weight: 700; padding: 0.75rem 2rem; border-radius: 30px; font-size: 1rem; transition: opacity 0.2s; }
-    .subscribe-btn:hover { opacity: 0.88; }
-    .site-footer { background: var(--white); border-top: 1px solid var(--gray-mid); padding: 3rem 0 1.5rem; font-size: 0.9rem; color: var(--body-text); }
+    /* ── FOOTER (canonical — same on every page) ── */
+    .site-footer { background: var(--white); border-top: 1px solid var(--gray-mid); font-size: 0.9rem; }
+    .footer-subscribe { background: var(--brand); padding: 2.5rem 0; text-align: center; }
+    .footer-subscribe h2 { font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); margin-bottom: 0.4rem; }
+    .footer-subscribe p { color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; font-size: 0.95rem; }
+    .footer-subscribe-form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .footer-subscribe-form input[type="email"] { padding: 0.6rem 1.1rem; border-radius: 30px; border: none; font-size: 0.95rem; min-width: 260px; outline: none; }
+    .footer-subscribe-form button { padding: 0.6rem 1.5rem; border-radius: 30px; border: 2px solid var(--white); background: transparent; color: var(--white); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.2s, color 0.2s; }
+    .footer-subscribe-form button:hover { background: var(--white); color: var(--brand); }
+    .footer-grid-wrap { padding: 2.5rem 0 1.5rem; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; }
     .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; }
     .footer-col p { color: var(--gray-dark); line-height: 1.6; margin-bottom: 0.4rem; }
     .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--body-text); margin-bottom: 0.75rem; }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 0.4rem; }
-    .footer-col ul li a { color: var(--gray-dark); transition: color 0.2s; }
-    .footer-col ul li a:hover { color: var(--brand); }
-    .footer-col a { color: var(--brand); }
+    .footer-col ul li a, .footer-col a { color: var(--gray-dark); transition: color 0.2s; }
+    .footer-col ul li a:hover, .footer-col a:hover { color: var(--brand); }
     .footer-bottom { border-top: 1px solid var(--gray-light); padding-top: 1rem; display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray-dark); }
     @media (max-width: 768px) {
       .nav-menu, .nav-cta-left { display: none; }
@@ -94,6 +95,8 @@
       .date-row { flex-direction: column; align-items: flex-start; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer-bottom { flex-direction: column; gap: 0.25rem; }
+      .footer-subscribe-form { flex-direction: column; align-items: center; }
+      .footer-subscribe-form input[type="email"] { width: 100%; max-width: 320px; }
     }
   </style>
 </head>
@@ -126,12 +129,8 @@
         </div>
         <div class="nav-item"><a href="/working-student/">Working Student</a></div>
       </nav>
-      <a href="/" class="nav-logo">
-        <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne - Applewood Farm">
-      </a>
-      <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="/" class="nav-logo"><img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne - Applewood Farm"></a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger"><span></span><span></span><span></span></button>
     </div>
   </header>
   <div class="nav-mobile" id="mobileMenu">
@@ -160,30 +159,28 @@
   </div>
   <div class="show-section">
     <div class="container show-section-inner">
-      <div class="show-photos"><img class="show-photo-main" src="/images/Kylie-and-Val-2020.jpg" alt="Rider at Schooling Show"></div>
+      <div><img class="show-photo-main" src="/images/Kylie-and-Val-2020.jpg" alt="Rider at Schooling Show"></div>
       <div class="show-content">
         <div class="show-label">ESDCTA Registered</div>
         <h2>Schooling Shows</h2>
         <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping. Trophy and six ribbons per class. Dressage is in the outdoor dressage arena; warm-up is indoors; both arenas are sand/rubber and dust-free! Jumping takes place in the grass show jumping field. Scores can be applied to ESDCTA Year-End Awards and volunteer hours to ESDCTA volunteer requirement. All shows are on Wednesday.</p>
         <div class="show-btn-row">
           <span class="btn btn-disabled">Prize List</span>
-          <a href="pdfs/esdcta-entry-form.pdf" target="_blank" class="btn btn-active">Entry Form</a>
+          <a href="/pdfs/esdcta-entry-form.pdf" target="_blank" class="btn btn-active">Entry Form</a>
         </div>
-        <div class="show-dates">
-          <div class="show-dates-header">2026 Show Dates</div>
-          <div class="date-row"><span class="date-label">Wednesday, May 13</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, June 17</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, July 8</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 5</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, September 9</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, October 10</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-        </div>
+        <div class="show-dates-header">2026 Show Dates</div>
+        <div class="date-row"><span class="date-label">Wednesday, May 13</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, June 17</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, July 8</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, August 5</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, September 9</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, October 10</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
       </div>
     </div>
   </div>
   <div class="show-section">
     <div class="container show-section-inner">
-      <div class="show-photos"><img class="show-photo-main" src="/images/DSCF4883.jpg" alt="Mini Event Competition"></div>
+      <div><img class="show-photo-main" src="/images/DSCF4883.jpg" alt="Mini Event Competition"></div>
       <div class="show-content">
         <div class="show-label">Eventing</div>
         <h2>Mini Events</h2>
@@ -192,17 +189,15 @@
           <span class="btn btn-disabled">Prize List</span>
           <span class="btn btn-disabled">Entry Form</span>
         </div>
-        <div class="show-dates">
-          <div class="show-dates-header">2026 Mini Event Dates</div>
-          <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-        </div>
+        <div class="show-dates-header">2026 Mini Event Dates</div>
+        <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
       </div>
     </div>
   </div>
   <div class="show-section">
     <div class="container show-section-inner">
-      <div class="show-photos"><img class="show-photo-main" src="/images/IMG_0315.jpg" alt="Young Event Horse Competition"></div>
+      <div><img class="show-photo-main" src="/images/IMG_0315.jpg" alt="Young Event Horse Competition"></div>
       <div class="show-content">
         <div class="show-label">USEA Young Event Horse</div>
         <h2>Young Event Horse</h2>
@@ -211,51 +206,57 @@
           <span class="btn btn-disabled">Prize List</span>
           <a href="https://www.useventing.com" target="_blank" class="btn btn-active">Entry Form (USEA)</a>
         </div>
-        <div class="show-dates">
-          <div class="show-dates-header">2026 YEH Dates</div>
-          <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-        </div>
+        <div class="show-dates-header">2026 YEH Dates</div>
+        <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
       </div>
     </div>
   </div>
-  <div class="subscribe-section">
-    <div class="container">
-      <h2>Join The Ride</h2>
-      <p>Subscribe to receive emails about upcoming shows and clinics.</p>
-      <a href="#" class="subscribe-btn">Subscribe</a>
-    </div>
-  </div>
+  <!-- CANONICAL FOOTER — same on every page -->
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
-          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Navigate</h4>
-          <ul>
-            <li><a href="/about/">About Marilyn</a></li>
-            <li><a href="/lessons/">Lessons</a></li>
-            <li><a href="/training/">Training</a></li>
-            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
-            <li><a href="/clinics/">Clinics</a></li>
-            <li><a href="/christmas/">Christmas</a></li>
-            <li><a href="/working-student/">Working Student</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
-          <p style="margin-top:0.75rem;"><a href="tel:9083340105">908-334-0105</a></p>
-          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
-          <p style="margin-top:0.5rem;font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
+    <!-- Join The Ride band -->
+    <div class="footer-subscribe">
+      <div class="container">
+        <h2>Join The Ride</h2>
+        <p>Subscribe to receive emails about upcoming shows and clinics.</p>
+        <div class="footer-subscribe-form">
+          <input type="email" placeholder="Your email address">
+          <button type="button">Subscribe</button>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; Marilyn Payne 2026</span>
-        <span>Applewood Farm &mdash; Califon, NJ</span>
+    </div>
+    <!-- 3-column grid -->
+    <div class="footer-grid-wrap">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+            <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="/about/">About Marilyn</a></li>
+              <li><a href="/lessons/">Lessons</a></li>
+              <li><a href="/training/">Training</a></li>
+              <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+              <li><a href="/clinics/">Clinics</a></li>
+              <li><a href="/christmas/">Christmas</a></li>
+              <li><a href="/working-student/">Working Student</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+            <p style="margin-top:0.75rem;"><a href="tel:9083340105">908-334-0105</a></p>
+            <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+            <p style="margin-top:0.5rem;font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; Marilyn Payne 2026</span>
+          <span>Applewood Farm &mdash; Califon, NJ</span>
+        </div>
       </div>
     </div>
   </footer>
