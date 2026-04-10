@@ -1,10 +1,12 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shows &amp; Competitions - Marilyn Payne</title>
+  <title>Shows & Competitions - Marilyn Payne</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --brand: #72133E; --brand-dark: #56102f; --body-bg: #F3F3F3;
@@ -21,6 +23,7 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
     .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+    /* NAV */
     .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
     .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
@@ -43,10 +46,12 @@
     .nav-mobile a { display: block; padding: 0.75rem 0; font-size: 1.05rem; color: var(--brand); border-bottom: 1px solid var(--gray-light); font-weight: 600; }
     .nav-mobile a.nav-sub { font-size: 0.92rem; font-weight: 400; color: var(--body-text); padding-left: 1rem; }
     .nav-mobile-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--brand); cursor: pointer; margin-bottom: 1rem; }
+    /* PAGE BANNER */
     .page-banner { position: relative; width: 100%; height: 380px; overflow: hidden; }
     .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
     .page-banner-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0.05) 100%); display: flex; align-items: flex-end; padding: 2.5rem 3rem; }
     .page-banner-overlay h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); color: var(--white); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    /* SHOWS */
     .shows-intro { background: var(--white); padding: 2.5rem 0; text-align: center; }
     .shows-intro p { max-width: 720px; margin: 0 auto; font-size: 1.08rem; line-height: 1.75; }
     .show-section { padding: 3.5rem 0; }
@@ -65,25 +70,28 @@
     .date-row { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--gray-light); gap: 1rem; }
     .date-label { font-size: 0.9rem; }
     .date-btns { display: flex; gap: 0.4rem; }
-    /* ── FOOTER (canonical — same on every page) ── */
-    .site-footer { background: var(--white); border-top: 1px solid var(--gray-mid); font-size: 0.9rem; }
-    .footer-subscribe { background: var(--brand); padding: 2.5rem 0; text-align: center; }
-    .footer-subscribe h2 { font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); margin-bottom: 0.4rem; }
-    .footer-subscribe p { color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; font-size: 0.95rem; }
-    .footer-subscribe-form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
-    .footer-subscribe-form input[type="email"] { padding: 0.6rem 1.1rem; border-radius: 30px; border: none; font-size: 0.95rem; min-width: 260px; outline: none; }
-    .footer-subscribe-form button { padding: 0.6rem 1.5rem; border-radius: 30px; border: 2px solid var(--white); background: transparent; color: var(--white); font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.2s, color 0.2s; }
-    .footer-subscribe-form button:hover { background: var(--white); color: var(--brand); }
-    .footer-grid-wrap { padding: 2.5rem 0 1.5rem; }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; }
-    .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; }
-    .footer-col p { color: var(--gray-dark); line-height: 1.6; margin-bottom: 0.4rem; }
-    .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--body-text); margin-bottom: 0.75rem; }
+    /* JOIN THE RIDE — matches homepage exactly */
+    .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
+    .jtr-left { background: var(--gray-light); display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
+    .jtr-heading { font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--body-text); margin-bottom: 0.6rem; }
+    .jtr-sub { font-size: 0.95rem; color: var(--gray-dark); max-width: 320px; margin-bottom: 1.5rem; line-height: 1.6; }
+    .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
+    .jtr-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.95rem; background: var(--white); color: var(--body-text); }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    /* FOOTER — matches homepage exactly: dark bg */
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; filter: brightness(0) invert(1); opacity: 0.7; }
+    .footer-col p { color: #aaa; line-height: 1.6; margin-bottom: 0.4rem; }
+    .footer-col h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 0.4rem; }
-    .footer-col ul li a, .footer-col a { color: var(--gray-dark); transition: color 0.2s; }
-    .footer-col ul li a:hover, .footer-col a:hover { color: var(--brand); }
-    .footer-bottom { border-top: 1px solid var(--gray-light); padding-top: 1rem; display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray-dark); }
+    .footer-col ul li a, .footer-col a { color: #aaa; transition: color 0.2s; }
+    .footer-col ul li a:hover, .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 0; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav-menu, .nav-cta-left { display: none; }
       .nav-hamburger { display: flex; }
@@ -91,34 +99,14 @@
       .page-banner { height: 260px; }
       .page-banner-overlay { padding: 1.5rem; }
       .date-row { flex-direction: column; align-items: flex-start; }
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 2rem 1.5rem; }
+      .jtr-right { height: 200px; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .footer-bottom { flex-direction: column; gap: 0.25rem; }
-      .footer-subscribe-form { flex-direction: column; align-items: center; }
-      .footer-subscribe-form input[type="email"] { width: 100%; max-width: 320px; }
     }
   </style>
-<style id="claude-agent-animation-styles">
-      @keyframes claude-pulse {
-        0% {
-          box-shadow: 
-            inset 0 0 10px rgba(217, 119, 87, 0.5),
-            inset 0 0 20px rgba(217, 119, 87, 0.3),
-            inset 0 0 30px rgba(217, 119, 87, 0.1);
-        }
-        50% {
-          box-shadow: 
-            inset 0 0 15px rgba(217, 119, 87, 0.7),
-            inset 0 0 25px rgba(217, 119, 87, 0.5),
-            inset 0 0 35px rgba(217, 119, 87, 0.2);
-        }
-        100% {
-          box-shadow: 
-            inset 0 0 10px rgba(217, 119, 87, 0.5),
-            inset 0 0 20px rgba(217, 119, 87, 0.3),
-            inset 0 0 30px rgba(217, 119, 87, 0.1);
-        }
-      }
-    </style></head>
+</head>
 <body>
   <header class="site-header">
     <div class="container nav-inner">
@@ -153,7 +141,7 @@
     </div>
   </header>
   <div class="nav-mobile" id="mobileMenu">
-    <button class="nav-mobile-close" id="mobileClose">✕</button>
+    <button class="nav-mobile-close" id="mobileClose">&#x2715;</button>
     <a href="/about/">About Marilyn</a>
     <a href="/bio/" class="nav-sub">Marilyn's Bio</a>
     <a href="/applewood-farm/">Applewood Farm</a>
@@ -231,51 +219,51 @@
       </div>
     </div>
   </div>
-  <!-- CANONICAL FOOTER — same on every page -->
+  <!-- JOIN THE RIDE — matches homepage exactly -->
+  <section class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form action="#" class="jtr-form">
+        <input type="email" placeholder="Email" class="jtr-input">
+        <button type="submit" class="btn btn-active">Subscribe</button>
+      </form>
+    </div>
+    <div class="jtr-right">
+      <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
+    </div>
+  </section>
+  <!-- FOOTER — matches homepage exactly: dark background -->
   <footer class="site-footer">
-    <!-- Join The Ride band -->
-    <div class="footer-subscribe">
-      <div class="container">
-        <h2>Join The Ride</h2>
-        <p>Subscribe to receive emails about upcoming shows and clinics.</p>
-        <div class="footer-subscribe-form">
-          <input type="email" placeholder="Your email address">
-          <button type="button">Subscribe</button>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/about/">About Marilyn</a></li>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p style="margin-top:0.75rem;"><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p style="margin-top:0.5rem;font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
         </div>
       </div>
-    </div>
-    <!-- 3-column grid -->
-    <div class="footer-grid-wrap">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
-            <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
-          </div>
-          <div class="footer-col">
-            <h4>Navigate</h4>
-            <ul>
-              <li><a href="/about/">About Marilyn</a></li>
-              <li><a href="/lessons/">Lessons</a></li>
-              <li><a href="/training/">Training</a></li>
-              <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
-              <li><a href="/clinics/">Clinics</a></li>
-              <li><a href="/christmas/">Christmas</a></li>
-              <li><a href="/working-student/">Working Student</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Contact</h4>
-            <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
-            <p style="margin-top:0.75rem;"><a href="tel:9083340105">908-334-0105</a></p>
-            <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
-            <p style="margin-top:0.5rem;font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <span>© Marilyn Payne 2026</span>
-          <span>Applewood Farm — Califon, NJ</span>
-        </div>
+      <div class="footer-bottom">
+        <span>&copy; Marilyn Payne 2026</span>
+        <span>Applewood Farm &mdash; Califon, NJ</span>
       </div>
     </div>
   </footer>
@@ -286,5 +274,5 @@
     hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
     mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
   </script>
-
-<div id="claude-agent-glow-border" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483646; opacity: 1; transition: opacity 0.3s ease-in-out; animation: 2s ease-in-out 0s infinite normal none running claude-pulse; box-shadow: rgba(217, 119, 87, 0.5) 0px 0px 10px inset, rgba(217, 119, 87, 0.3) 0px 0px 20px inset, rgba(217, 119, 87, 0.1) 0px 0px 30px inset;"></div></body></html>
+</body>
+</html>
