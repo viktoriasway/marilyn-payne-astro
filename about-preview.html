@@ -1,0 +1,225 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Marilyn - Marilyn Payne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #72133E; --brand-dark: #56102f; --body-bg: #F3F3F3;
+      --body-text: #333333; --gray-mid: #C7C7C7; --gray-light: #EBEBEB;
+      --gray-dark: #555555; --white: #FFFFFF;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --nav-h: 80px; --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,0.16);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--body-bg); color: var(--body-text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+    .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+    .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-cta-left a { font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+    .nav-cta-left a:hover { background: var(--brand); color: var(--white); }
+    .nav-menu { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-item { position: relative; }
+    .nav-item > a { font-size: 0.95rem; font-weight: 400; color: var(--brand); white-space: nowrap; padding: 0.3rem 0; transition: opacity 0.2s; }
+    .nav-item > a:hover { opacity: 0.7; }
+    .nav-item.active > a { font-weight: 700; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: var(--white); border: 1px solid var(--gray-light); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 160px; padding: 0.4rem 0; z-index: 200; }
+    .dropdown a { display: block; padding: 0.5rem 1rem; font-size: 0.88rem; color: var(--body-text); white-space: nowrap; }
+    .dropdown a:hover { background: var(--gray-light); }
+    .nav-item.has-dropdown:hover .dropdown { display: block; }
+    .nav-logo img { height: 56px; width: auto; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--brand); border-radius: 2px; }
+    .nav-mobile { display: none; position: fixed; inset: 0; background: var(--white); z-index: 2000; flex-direction: column; padding: 1.5rem 2rem; overflow-y: auto; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { display: block; padding: 0.75rem 0; font-size: 1.05rem; color: var(--brand); border-bottom: 1px solid var(--gray-light); font-weight: 600; }
+    .nav-mobile a.nav-sub { font-size: 0.92rem; font-weight: 400; color: var(--body-text); padding-left: 1rem; }
+    .nav-mobile-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--brand); cursor: pointer; margin-bottom: 1rem; }
+    .btn { display: inline-block; padding: 0.55rem 1.2rem; border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; text-align: center; transition: background 0.2s, border-color 0.2s; cursor: pointer; }
+    .btn-active { background: var(--brand); color: var(--white); border: 2px solid var(--brand); }
+    .btn-active:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+    .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
+    .jtr-left { background: var(--gray-light); display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
+    .jtr-heading { font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--body-text); margin-bottom: 0.6rem; }
+    .jtr-sub { font-size: 0.95rem; color: var(--gray-dark); max-width: 320px; margin-bottom: 1.5rem; line-height: 1.6; }
+    .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
+    .jtr-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.95rem; background: var(--white); color: var(--body-text); }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; filter: brightness(0) invert(1); opacity: 0.7; }
+    .footer-col p { color: #aaa; line-height: 1.6; margin-bottom: 0.4rem; }
+    .footer-col h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-col ul li a, .footer-col a { color: #aaa; transition: color 0.2s; }
+    .footer-col ul li a:hover, .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
+    @media (max-width: 768px) {
+      .nav-menu, .nav-cta-left { display: none; }
+      .nav-hamburger { display: flex; }
+      .about-section { grid-template-columns: 1fr; padding: 2.5rem 0; gap: 2rem; }
+      .about-photo-col { max-width: 480px; margin: 0 auto; }
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 2rem 1.5rem; }
+      .jtr-right { height: 200px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.25rem; }
+    }
+    .about-section { display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: start; padding: 4.5rem 0 5rem; }
+    .about-text h1 { font-family: var(--font-serif); font-size: clamp(2.8rem, 5vw, 5rem); color: var(--brand); font-weight: 700; line-height: 1.1; margin-bottom: 0.5rem; }
+    .about-subheading { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-dark); margin-bottom: 1.75rem; }
+    .about-text p { font-size: 1rem; line-height: 1.8; color: var(--body-text); }
+    .about-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
+    .about-photo-col { position: sticky; top: calc(var(--nav-h) + 2rem); }
+    .about-photo-col img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-lg); object-fit: cover; }
+  </style>
+<style id="claude-agent-animation-styles">
+      @keyframes claude-pulse {
+        0% {
+          box-shadow: 
+            inset 0 0 10px rgba(217, 119, 87, 0.5),
+            inset 0 0 20px rgba(217, 119, 87, 0.3),
+            inset 0 0 30px rgba(217, 119, 87, 0.1);
+        }
+        50% {
+          box-shadow: 
+            inset 0 0 15px rgba(217, 119, 87, 0.7),
+            inset 0 0 25px rgba(217, 119, 87, 0.5),
+            inset 0 0 35px rgba(217, 119, 87, 0.2);
+        }
+        100% {
+          box-shadow: 
+            inset 0 0 10px rgba(217, 119, 87, 0.5),
+            inset 0 0 20px rgba(217, 119, 87, 0.3),
+            inset 0 0 30px rgba(217, 119, 87, 0.1);
+        }
+      }
+    </style></head>
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <div class="nav-cta-left">
+        <a href="/shows/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
+      </div>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <div class="nav-item has-dropdown active">
+          <a href="/about/">About Marilyn</a>
+          <div class="dropdown"><a href="/bio/">Marilyn's Bio</a></div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="/applewood-farm/">Applewood Farm</a>
+          <div class="dropdown">
+            <a href="/lessons/">Lessons</a>
+            <a href="/horses/">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/">Christmas</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="/clinics/">Clinics</a></div>
+        <div class="nav-item"><a href="/shows/">Shows</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="/lesson-calendar/">Lesson Calendar</a>
+          <div class="dropdown"><a href="/horse-schedule/">Horse Schedule</a></div>
+        </div>
+        <div class="nav-item"><a href="/working-student/">Working Student</a></div>
+      </nav>
+      <a href="/" class="nav-logo"><img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne - Applewood Farm"></a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="nav-mobile" id="mobileMenu">
+    <button class="nav-mobile-close" id="mobileClose">✕</button>
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn's Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub">Lessons</a>
+    <a href="/horses/" class="nav-sub">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub">Christmas</a>
+    <a href="/clinics/">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
+    <a href="/working-student/">Working Student</a>
+  </div>
+  <div class="container">
+    <section class="about-section">
+      <div class="about-text">
+        <h1>Marilyn Payne</h1>
+        <p class="about-subheading">The Highlights</p>
+        <p>Marilyn is an FEI 5* Eventing Judge and a USEF "S" Dressage Judge who has officiated at major eventing and dressage competitions in the U.S. and around the world. In addition to judging twice at the Olympics -- a rare honor -- and at the World Equestrian Games, she has presided at the European Eventing Championships and the Central American Games, and has officiated every 5* event in the world. She makes time in her busy judging schedule to teach seminars for FEI Eventing Officials and training programs for USEF dressage judges. Marilyn has been instrumental in establishing the U.S. Eventing Association's Young Event Horse (YEH) Committee, and spreading the word among breeders and competitors about this unique competition. Under her leadership, the YEH program and the training of YEH judges has grown by leaps and bounds. She is currently teaching a new program for YEH judges who are experts in the field, but not currently a USEF judge. An active competitor in eventing and dressage and a highly popular clinician and trainer, Marilyn enjoys teaching all levels of riders, using a systematic approach to bring out the best in each horse/rider team. Whether she is judging top riders or teaching a novice rider the basics of dressage, Marilyn gives her total concentration to the task at hand, using the skills acquired during her lifetime with horses to assure the best possible outcome.</p>
+        <div class="about-ctas">
+          <a href="/bio/" class="btn btn-active">Read Marilyn's Bio</a>
+          <a href="/bio/" class="btn btn-active">A Rider's Tale — Click Here</a>
+        </div>
+      </div>
+      <div class="about-photo-col">
+        <img src="/images/Rolex-Judge.jpg" alt="Marilyn Payne at competition">
+      </div>
+    </section>
+  </div>
+  <div class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form action="mailto:hollywc@comcast.net" method="get" class="jtr-form">
+        <input type="hidden" name="subject" value="Join The Ride - New Subscriber">
+        <input type="email" name="body" placeholder="Email" class="jtr-input">
+        <button type="submit" class="btn btn-active">Subscribe</button>
+      </form>
+    </div>
+    <div class="jtr-right">
+      <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/about/">About Marilyn</a></li>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p>Email or text unless urgent.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© Marilyn Payne 2026</span>
+        <span>Applewood Farm — Califon, NJ</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobileMenu').classList.add('open'); });
+    document.getElementById('mobileClose').addEventListener('click', () => { document.getElementById('mobileMenu').classList.remove('open'); });
+  </script>
+
+</body></html>
