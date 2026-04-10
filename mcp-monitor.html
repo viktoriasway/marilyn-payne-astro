@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Claude MCP Monitor</title>
+<style>
+  body { font-family: system-ui; background: #1a1a1a; color: #eee; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+  .status { font-size: 2rem; font-weight: bold; margin-bottom: 1rem; }
+  .dot { width: 24px; height: 24px; border-radius: 50%; display: inline-block; margin-right: 0.5rem; vertical-align: middle; }
+  .alive { background: #22c55e; box-shadow: 0 0 12px #22c55e; }
+  .dead { background: #ef4444; box-shadow: 0 0 12px #ef4444; }
+  .timer { font-size: 1.2rem; color: #aaa; margin-bottom: 2rem; }
+  button { padding: 0.6rem 1.4rem; border-radius: 8px; border: none; background: #333; color: #eee; font-size: 1rem; cursor: pointer; margin: 0.3rem; }
+  button:hover { background: #444; }
+  .log { margin-top: 2rem; font-size: 0.8rem; color: #666; max-height: 120px; overflow-y: auto; text-align: left; width: 400px; }
+</style>
+</head>
+<body>
+<div class="status"><span class="dot alive" id="dot"></span><span id="statusText">Claude MCP — ACTIVE</span></div>
+<div class="timer">Last ping: <span id="lastPing">just now</span> &nbsp;|&nbsp; Timeout in: <span id="countdown">4:00</span></div>
+<div>
+  <button onclick="resetTimer()">Reset Timer</button>
+  <button onclick="testAlarm()">Test Alarm</button>
+  <button onclick="toggleMute()">🔊 Mute</button>
+</div>
+<div class="log" id="log"></div>
+
+<script>
+const TIMEOUT_MS = 4 * 60 * 1000; // 4 minutes
+let lastActivity = Date.now();
+let muted = false;
+let alarmPlaying = false;
+let audioCtx = null;
+let alarmInterval = null;
+
+function getAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playBeep(freq, duration, vol) {
+  const ctx = getAudio();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.frequency.value = freq;
+  osc.type = 'sine';
+  gain.gain.setValueAtTime(vol || 0.4, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+  osc.start(ctx.currentTime);
+  osc.stop(ctx.currentTime + duration);
+}
+
+function playAlarm() {
+  if (muted) return;
+  // Three urgent beeps
+  playBeep(880, 0.3, 0.5);
+  setTimeout(() => playBeep(880, 0.3, 0.5), 400);
+  setTimeout(() => playBeep(660, 0.6, 0.5), 800);
+}
+
+function startAlarm() {
+  if (alarmPlaying) return;
+  alarmPlaying = true;
+  playAlarm();
+  alarmInterval = setInterval(playAlarm, 4000);
+  log('⚠️ ALARM: MCP timed out!');
+}
+
+function stopAlarm() {
+  alarmPlaying = false;
+  clearInterval(alarmInterval);
+}
+
+function testAlarm() {
+  getAudio(); // unlock audio context
+  playAlarm();
+  log('🔔 Test alarm triggered');
+}
+
+function toggleMute() {
+  muted = !muted;
+  document.querySelector('button:nth-child(3)').textContent = muted ? '🔇 Unmute' : '🔊 Mute';
+  log(muted ? '🔇 Muted' : '🔊 Unmuted');
+}
+
+function resetTimer() {
+  lastActivity = Date.now();
+  stopAlarm();
+  document.getElementById('dot').className = 'dot alive';
+  document.getElementById('statusText').textContent = 'Claude MCP — ACTIVE';
+  document.getElementById('dot').style.background = '#22c55e';
+  document.getElementById('dot').style.boxShadow = '0 0 12px #22c55e';
+  log('✅ Timer reset manually');
+}
+
+function log(msg) {
+  const el = document.getElementById('log');
+  const time = new Date().toLocaleTimeString();
+  el.innerHTML = '<div>' + time + ' ' + msg + '</div>' + el.innerHTML;
+}
+
+// Ping endpoint to check if MCP is alive
+async function pingMCP() {
+  try {
+    const r = await fetch('/health', { cache: 'no-store' });
+    if (r.ok) {
+      lastActivity = Date.now();
+      if (alarmPlaying) {
+        stopAlarm();
+        document.getElementById('dot').className = 'dot alive';
+        document.getElementById('statusText').textContent = 'Claude MCP — ACTIVE';
+        log('✅ Connection restored');
+      }
+    }
+  } catch(e) { /* will catch as timeout */ }
+}
+
+setInterval(() => {
+  const elapsed = Date.now() - lastActivity;
+  const remaining = Math.max(0, TIMEOUT_MS - elapsed);
+  const mins = Math.floor(remaining / 60000);
+  const secs = Math.floor((remaining % 60000) / 1000);
+  document.getElementById('countdown').textContent = mins + ':' + String(secs).padStart(2,'0');
+  document.getElementById('lastPing').textContent = Math.floor(elapsed/1000) + 's ago';
+
+  if (remaining === 0 && !alarmPlaying) {
+    document.getElementById('dot').className = 'dot dead';
+    document.getElementById('statusText').textContent = 'Claude MCP — TIMED OUT';
+    startAlarm();
+  }
+}, 1000);
+
+// Ping every 30s to detect if Claude is still active
+setInterval(pingMCP, 30000);
+
+// Unlock audio on first click
+document.addEventListener('click', () => { getAudio(); }, { once: true });
+log('🟢 Monitor started — will alarm after 4 min idle');
+</script>
+</body>
+</html>
