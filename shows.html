@@ -27,9 +27,9 @@
     .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
     .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
-    .nav-cta-left a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-cta-left a { font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
     .nav-cta-left a:hover { background: var(--brand); color: var(--white); }
-    .nav-menu { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
+    .nav-menu { display: flex; align-items: center; gap: 1.5rem; }
     .nav-item { position: relative; }
     .nav-item > a { font-size: 0.95rem; font-weight: 400; color: var(--brand); white-space: nowrap; padding: 0.3rem 0; transition: opacity 0.2s; }
     .nav-item > a:hover { opacity: 0.7; }
@@ -41,7 +41,6 @@
     .nav-logo img { height: 56px; width: auto; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--brand); border-radius: 2px; }
-    /* MOBILE NAV */
     .nav-mobile { display: none; position: fixed; inset: 0; background: var(--white); z-index: 999; flex-direction: column; padding: 2rem 1.5rem; gap: 0; overflow-y: auto; }
     .nav-mobile.open { display: flex; }
     .nav-mobile a { display: block; padding: 0.75rem 0; font-size: 1.05rem; color: var(--brand); border-bottom: 1px solid var(--gray-light); font-weight: 600; }
@@ -49,50 +48,49 @@
     .nav-mobile-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--brand); cursor: pointer; margin-bottom: 1rem; }
     /* PAGE BANNER */
     .page-banner { position: relative; width: 100%; height: 380px; overflow: hidden; }
-    .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+    .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
     .page-banner-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0.05) 100%); display: flex; align-items: flex-end; padding: 2.5rem 3rem; }
     .page-banner-overlay h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); color: var(--white); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-    /* SHOWS INTRO */
+    /* SHOWS */
     .shows-intro { background: var(--white); padding: 2.5rem 0; text-align: center; }
-    .shows-intro p { max-width: 720px; margin: 0 auto; font-size: 1.08rem; color: var(--body-text); line-height: 1.75; }
-    /* SHOW SECTIONS */
+    .shows-intro p { max-width: 720px; margin: 0 auto; font-size: 1.08rem; line-height: 1.75; }
     .show-section { padding: 3.5rem 0; }
     .show-section:nth-child(even) { background: var(--gray-light); }
     .show-section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    .show-photos { display: flex; flex-direction: column; gap: 1rem; }
     .show-photo-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
     .show-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); border-left: 3px solid var(--brand); padding-left: 0.6rem; margin-bottom: 0.75rem; }
-    .show-content h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--body-text); margin-bottom: 1rem; line-height: 1.25; }
-    .show-content p { font-size: 0.97rem; color: var(--body-text); line-height: 1.75; margin-bottom: 1.25rem; }
+    .show-content h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; line-height: 1.25; }
+    .show-content p { font-size: 0.97rem; line-height: 1.75; margin-bottom: 1.25rem; }
     .show-btn-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .btn { display: inline-block; padding: 0.45rem 1.1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+    .btn { display: inline-block; padding: 0.45rem 1.1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s; }
     .btn-active { background: var(--brand); color: var(--white); border: 2px solid var(--brand); }
     .btn-active:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
     .btn-disabled { background: transparent; color: var(--gray-dark); border: 2px solid var(--gray-mid); cursor: default; pointer-events: none; }
-    .show-dates { margin-top: 0.5rem; }
-    .show-dates-header { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-dark); margin-bottom: 0.5rem; }
+    .show-dates-header { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-dark); margin-bottom: 0.5rem; margin-top: 0.5rem; }
     .date-row { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--gray-light); gap: 1rem; }
-    .date-label { font-size: 0.9rem; color: var(--body-text); }
+    .date-label { font-size: 0.9rem; }
     .date-btns { display: flex; gap: 0.4rem; }
-    /* SUBSCRIBE */
-    .subscribe-section { background: var(--brand); padding: 3rem 0; text-align: center; }
-    .subscribe-section h2 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--white); margin-bottom: 0.5rem; }
-    .subscribe-section p { color: rgba(255,255,255,0.85); margin-bottom: 1.5rem; }
-    .subscribe-btn { display: inline-block; background: var(--white); color: var(--brand); font-weight: 700; padding: 0.75rem 2rem; border-radius: 30px; font-size: 1rem; transition: opacity 0.2s; }
-    .subscribe-btn:hover { opacity: 0.88; }
-    /* FOOTER */
-    .site-footer { background: transparent; padding: 3rem 0 1.5rem; border-top: 1px solid var(--gray-mid); }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; }
-    .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; }
-    .footer-col p { font-size: 0.9rem; color: var(--gray-dark); line-height: 1.6; }
-    .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--body-text); margin-bottom: 0.75rem; }
+    /* JOIN THE RIDE — matches homepage exactly */
+    .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
+    .jtr-left { background: var(--gray-light); display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
+    .jtr-heading { font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--body-text); margin-bottom: 0.6rem; }
+    .jtr-sub { font-size: 0.95rem; color: var(--gray-dark); max-width: 320px; margin-bottom: 1.5rem; line-height: 1.6; }
+    .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
+    .jtr-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.95rem; background: var(--white); color: var(--body-text); }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    /* FOOTER — matches homepage exactly: dark bg */
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; filter: brightness(0) invert(1); opacity: 0.7; }
+    .footer-col p { color: #aaa; line-height: 1.6; margin-bottom: 0.4rem; }
+    .footer-col h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 0.4rem; }
-    .footer-col ul li a { font-size: 0.9rem; color: var(--gray-dark); transition: color 0.2s; }
-    .footer-col ul li a:hover { color: var(--brand); }
-    .footer-col a { color: var(--gray-dark); transition: color 0.2s; }
-    .footer-col a:hover { color: var(--brand); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--gray-light); font-size: 0.82rem; color: var(--gray-dark); }
+    .footer-col ul li a, .footer-col a { color: #aaa; transition: color 0.2s; }
+    .footer-col ul li a:hover, .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 0; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav-menu, .nav-cta-left { display: none; }
@@ -101,13 +99,15 @@
       .page-banner { height: 260px; }
       .page-banner-overlay { padding: 1.5rem; }
       .date-row { flex-direction: column; align-items: flex-start; }
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 2rem 1.5rem; }
+      .jtr-right { height: 200px; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .footer-bottom { flex-direction: column; gap: 0.25rem; }
     }
   </style>
 </head>
 <body>
-
   <header class="site-header">
     <div class="container nav-inner">
       <div class="nav-cta-left">
@@ -136,15 +136,10 @@
         </div>
         <div class="nav-item"><a href="/working-student/">Working Student</a></div>
       </nav>
-      <a href="/" class="nav-logo">
-        <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm">
-      </a>
-      <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="/" class="nav-logo"><img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne - Applewood Farm"></a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger"><span></span><span></span><span></span></button>
     </div>
   </header>
-
   <div class="nav-mobile" id="mobileMenu">
     <button class="nav-mobile-close" id="mobileClose">&#x2715;</button>
     <a href="/about/">About Marilyn</a>
@@ -160,25 +155,18 @@
     <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
     <a href="/working-student/">Working Student</a>
   </div>
-
   <div class="page-banner">
     <img src="/images/OutdoorDressageArena-2.jpg" alt="Outdoor Dressage Arena at Applewood Farm">
-    <div class="page-banner-overlay">
-      <h1>Shows &amp; Competitions</h1>
-    </div>
+    <div class="page-banner-overlay"><h1>Shows &amp; Competitions</h1></div>
   </div>
-
   <div class="shows-intro">
     <div class="container">
       <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping for riders of all levels. There are also two USEA Young Event Horse (4- and 5-year olds) shows, and two Mini Event Competitions for riders at Starter through Training level.</p>
     </div>
   </div>
-
   <div class="show-section">
     <div class="container show-section-inner">
-      <div class="show-photos">
-        <img class="show-photo-main" src="/images/Kylie-and-Val-2020.jpg" alt="Rider at Schooling Show">
-      </div>
+      <div><img class="show-photo-main" src="/images/Kylie-and-Val-2020.jpg" alt="Rider at Schooling Show"></div>
       <div class="show-content">
         <div class="show-label">ESDCTA Registered</div>
         <h2>Schooling Shows</h2>
@@ -187,24 +175,19 @@
           <span class="btn btn-disabled">Prize List</span>
           <a href="/pdfs/esdcta-entry-form.pdf" target="_blank" class="btn btn-active">Entry Form</a>
         </div>
-        <div class="show-dates">
-          <div class="show-dates-header">2026 Show Dates</div>
-          <div class="date-row"><span class="date-label">Wednesday, May 13</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, June 17</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, July 8</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 5</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, September 9</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, October 10</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-        </div>
+        <div class="show-dates-header">2026 Show Dates</div>
+        <div class="date-row"><span class="date-label">Wednesday, May 13</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, June 17</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, July 8</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, August 5</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, September 9</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, October 10</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
       </div>
     </div>
   </div>
-
   <div class="show-section">
     <div class="container show-section-inner">
-      <div class="show-photos">
-        <img class="show-photo-main" src="/images/DSCF4883.jpg" alt="Mini Event Competition">
-      </div>
+      <div><img class="show-photo-main" src="/images/DSCF4883.jpg" alt="Mini Event Competition"></div>
       <div class="show-content">
         <div class="show-label">Eventing</div>
         <h2>Mini Events</h2>
@@ -213,20 +196,15 @@
           <span class="btn btn-disabled">Prize List</span>
           <span class="btn btn-disabled">Entry Form</span>
         </div>
-        <div class="show-dates">
-          <div class="show-dates-header">2026 Mini Event Dates</div>
-          <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-        </div>
+        <div class="show-dates-header">2026 Mini Event Dates</div>
+        <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
       </div>
     </div>
   </div>
-
   <div class="show-section">
     <div class="container show-section-inner">
-      <div class="show-photos">
-        <img class="show-photo-main" src="/images/IMG_0315.jpg" alt="Young Event Horse Competition">
-      </div>
+      <div><img class="show-photo-main" src="/images/IMG_0315.jpg" alt="Young Event Horse Competition"></div>
       <div class="show-content">
         <div class="show-label">USEA Young Event Horse</div>
         <h2>Young Event Horse</h2>
@@ -235,23 +213,27 @@
           <span class="btn btn-disabled">Prize List</span>
           <a href="https://www.useventing.com" target="_blank" class="btn btn-active">Entry Form (USEA)</a>
         </div>
-        <div class="show-dates">
-          <div class="show-dates-header">2026 YEH Dates</div>
-          <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-          <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
-        </div>
+        <div class="show-dates-header">2026 YEH Dates</div>
+        <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
+        <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><span class="btn btn-disabled">Ride Times</span><span class="btn btn-disabled">Results</span></div></div>
       </div>
     </div>
   </div>
-
-  <div class="subscribe-section">
-    <div class="container">
-      <h2>Join The Ride</h2>
-      <p>Subscribe to receive emails about upcoming shows and clinics.</p>
-      <a href="#" class="subscribe-btn">Subscribe</a>
+  <!-- JOIN THE RIDE — matches homepage exactly -->
+  <section class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form action="#" class="jtr-form">
+        <input type="email" placeholder="Email" class="jtr-input">
+        <button type="submit" class="btn btn-active">Subscribe</button>
+      </form>
     </div>
-  </div>
-
+    <div class="jtr-right">
+      <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
+    </div>
+  </section>
+  <!-- FOOTER — matches homepage exactly: dark background -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -285,7 +267,6 @@
       </div>
     </div>
   </footer>
-
   <script>
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -293,6 +274,5 @@
     hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
     mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
   </script>
-
 </body>
 </html>
