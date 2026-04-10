@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marilyn's Bio – Marilyn Payne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #72133E; --brand-dark: #56102f; --body-bg: #F3F3F3;
+      --body-text: #333333; --gray-mid: #C7C7C7; --gray-light: #EBEBEB;
+      --gray-dark: #555555; --white: #FFFFFF;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --nav-h: 80px; --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,0.16);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--body-bg); color: var(--body-text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ===== NAV ===== */
+    .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+    .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-cta-left a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-cta-left a:hover { background: var(--brand); color: var(--white); }
+    .nav-menu { display: flex; align-items: center; gap: 0.1rem; }
+    .nav-item { position: relative; }
+    .nav-item > a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 500; color: var(--body-text); padding: 0.4rem 0.65rem; border-radius: var(--radius); transition: color 0.2s, background 0.2s; white-space: nowrap; text-decoration: none; display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item > a:hover { color: var(--brand); background: #f5e6ed; }
+    .nav-item.active > a { color: var(--brand); font-weight: 600; background: #f5e6ed; }
+    .has-dropdown > a::after { content: '▾'; font-size: 0.65rem; opacity: 0.55; margin-left: 0.1rem; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 180px; padding: 0.4rem 0; z-index: 200; border-top: 3px solid var(--brand); }
+    .nav-item:hover .dropdown, .nav-item:focus-within .dropdown { display: block; }
+    .dropdown a { display: block; padding: 0.5rem 1.1rem; font-size: 0.86rem; color: var(--body-text); text-decoration: none; transition: color 0.15s, background 0.15s; }
+    .dropdown a:hover { color: var(--brand); background: #f5e6ed; }
+    .dropdown a.active { color: var(--brand); font-weight: 600; }
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 54px; width: auto; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--brand); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--white); box-shadow: var(--shadow-lg); padding: 1rem 1.5rem 1.5rem; z-index: 999; max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a { display: block; font-size: 1rem; font-weight: 500; color: var(--body-text); padding: 0.7rem 0.25rem; border-bottom: 1px solid var(--gray-light); text-decoration: none; }
+    .nav-mobile a:hover { color: var(--brand); }
+    .nav-mobile .nav-sub { padding-left: 1.25rem; font-size: 0.92rem; color: var(--gray-dark); font-weight: 400; }
+
+    /* ===== BIO PAGE ===== */
+    .bio-wrap { background: var(--white); }
+    .bio-inner { max-width: 1060px; margin: 0 auto; padding: 4rem 1.5rem 5rem; display: grid; grid-template-columns: 1fr 260px; gap: 3.5rem; align-items: start; }
+
+    /* LEFT: all text content */
+    .bio-content {}
+    .bio-title { font-family: var(--font-serif); font-size: clamp(2.4rem, 5vw, 3.8rem); color: var(--brand); font-weight: 700; line-height: 1.1; margin-bottom: 3rem; }
+    .bio-section { margin-bottom: 3rem; }
+    .bio-section h2 { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--brand); font-weight: 700; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gray-light); }
+    .bio-section p { font-size: 1rem; line-height: 1.85; color: var(--body-text); margin-bottom: 1.1rem; }
+    .bio-section p:last-child { margin-bottom: 0; }
+    .bio-img-block { display: block; width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); margin: 1.75rem 0; object-fit: cover; }
+    .bio-photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.75rem 0; }
+    .bio-photo-pair img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); object-fit: cover; max-height: 340px; }
+
+    /* RIGHT: continuous photo strip */
+    .bio-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+    .bio-sidebar img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); object-fit: cover; display: block; }
+
+    /* ===== JOIN THE RIDE ===== */
+    .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
+    .jtr-left { background: var(--gray-light); display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
+    .jtr-heading { font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--body-text); margin-bottom: 0.6rem; }
+    .jtr-sub { font-size: 0.95rem; color: var(--gray-dark); max-width: 320px; margin-bottom: 1.5rem; line-height: 1.6; }
+    .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
+    .jtr-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.95rem; background: var(--white); color: var(--body-text); }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .btn { display: inline-block; padding: 0.55rem 1.4rem; border-radius: 30px; font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; cursor: pointer; border: 2px solid var(--brand); text-align: center; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+    .btn-active { background: var(--brand); color: var(--white); }
+    .btn-active:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; filter: brightness(0) invert(1); opacity: 0.7; }
+    .footer-col p { color: #aaa; line-height: 1.6; margin-bottom: 0.4rem; }
+    .footer-col h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-col ul li a, .footer-col a { color: #aaa; transition: color 0.2s; }
+    .footer-col ul li a:hover, .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-menu, .nav-cta-left { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-logo img { height: 46px; }
+      .bio-inner { grid-template-columns: 1fr; }
+      .bio-sidebar { flex-direction: row; flex-wrap: wrap; position: static; }
+      .bio-sidebar img { width: calc(50% - 0.5rem); }
+      .bio-photo-pair { grid-template-columns: 1fr; }
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 2rem 1.5rem; }
+      .jtr-right { height: 200px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <div class="nav-cta-left">
+        <a href="/shows/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
+      </div>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <div class="nav-item has-dropdown active">
+          <a href="/about/">About Marilyn</a>
+          <div class="dropdown">
+            <a href="/bio/" class="active">Marilyn&#x2019;s Bio</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="/applewood-farm/">Applewood Farm</a>
+          <div class="dropdown">
+            <a href="/lessons/">Lessons</a>
+            <a href="/horses/">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/">Christmas</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="/clinics/">Clinics</a></div>
+        <div class="nav-item"><a href="/shows/">Shows</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="/lesson-calendar/">Lesson Calendar</a>
+          <div class="dropdown"><a href="/horse-schedule/">Horse Schedule</a></div>
+        </div>
+        <div class="nav-item"><a href="/working-student/">Working Student</a></div>
+      </nav>
+      <a href="/" class="nav-logo"><img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm"></a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile" id="mobileMenu">
+    <a href="/shows/" style="color: var(--brand); font-weight: 700; border-bottom: 2px solid var(--brand);">Ride Times</a>
+    <a href="/shows/" style="color: var(--brand); font-weight: 600;">Entry Forms</a>
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn&#x2019;s Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub">Lessons</a>
+    <a href="/horses/" class="nav-sub">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub">Christmas</a>
+    <a href="/clinics/">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
+    <a href="/working-student/">Working Student</a>
+  </nav>
+
+  <div class="bio-wrap">
+    <div class="bio-inner">
+
+      <!-- LEFT: text content -->
+      <div class="bio-content">
+      <h1 class="bio-title">A Rider&#x2019;s Tale</h1>
+
+      <!-- SECTION 1: Dreaming Big Dreams -->
+      <section class="bio-section">
+        <h2>Dreaming Big Dreams</h2>
+        <p>Once upon a time, in a place called New Jersey, a baby girl was born into a large family. She had three sisters and a brother, and later, another sister joined the family. As the baby girl grew and thrived, it became clear that she was not exactly like any of the rest of them. Her mother claimed the first word the toddler said was &#x201C;pony&#x201D;. What is known to be true is that her focus never varied from that central theme: it was &#x201C;pony, pony, pony&#x201D;, every day, and every hour.</p>
+        <p>This family lived in the suburbs, in a development consisting of small lots, all the same size. The little girl hatched a scheme in which she would somehow acquire five of these lots &#x2013; by kicking out her neighbors or convincing them to move &#x2013; which would equal an acre of land. Anyone with an acre was permitted to keep a horse. Presto! She&#x2019;d have a horse.</p>
+        <p>Unlike most of her future plans, this one didn&#x2019;t work out. She had to settle for playing &#x201C;horse&#x201D; with her friends. They set up &#x201C;jumps&#x201D; in the back yard, and jumped the hedges from one house to another until the long-suffering neighbors made them stop. When that happened, her big brother would cheer her up with pony rides on his back, sometimes bucking her off onto the living room carpet.</p>
+        <img src="/images/MP-teen.jpg" alt="Marilyn Payne as a teenager" class="bio-img-block" style="max-height:420px;">
+      </section>
+
+      <!-- SECTION 2: Living the Dream -->
+      <section class="bio-section">
+        <h2>Living the Dream</h2>
+        <p>Time passed, the child became a teenager, and her favorite word by then was &#x201C;horse&#x201D;. And now she was old enough to work on making her dream come true. Taking advantage of the traditional bartering system in horse establishments, she labored at all sorts of things: mucking stalls, cleaning tack, clipping and grooming, to gain the privilege of riding other people&#x2019;s horses.</p>
+        <p>She persuaded her patient parents to drive her and her equally horse-crazed sidekick to the Watchung Stables for riding lessons. But even patient parents have their limits, and it was decreed that the girls had to get there on their own except on lesson days. They solved this problem by hopping on their bikes and riding for an hour to the stables, and another hour to get home. The family rule did not allow bicycling in the dark&#x2026; but of course everyone else was still snoozing away when the two girls sneaked out before dawn to get to their equine heart-throbs.</p>
+        <p>At 15, the teenager acquired her first horse, which she bought with her own earnings. No free lunches in this family! She paid her own board bills, too, by working at the barn, giving lessons, and doing any other horse chores that presented themselves.</p>
+        <img src="/images/AM_Slide_4.jpg" alt="Marilyn Payne" class="bio-img-block" style="max-height:380px;">
+        <p>At 16, she competed at her first Pony Club Rally. She also competed at horse shows, and she foxhunted with the Spring Valley Hounds. By polishing her skills, she earned her Pony Club &#x201C;B&#x201D; rating and helped teach the younger Pony Clubbers. Like everybody else in Pony Club, she would run out of time at the age of 21 and be mustered out. Instead of going quietly, she took over the reins, becoming the District Commissioner of the Spring Valley Hounds Pony Club at the youngest age that anyone is allowed to take on the job. After that, she never really left Pony Club behind, but that&#x2019;s another story.</p>
+        <p>She became a college girl at the appointed time. Like many other students, she had to sell her horse to buy a car, so she could commute to school. Some people might have given up on riding at this point. But giving up was never her style. She found a way to stay in the game by training other people&#x2019;s horses. One of her steady clients was a horse trader, who made a living buying and reselling horses. Those horses needed training to bring in a good price, and that was the college girl&#x2019;s job.</p>
+        <p>Nearly every day, rain, shine, sleet or snow, she trundled up the steep and winding dirt road that led to the horse trader&#x2019;s barn. Her car &#x2013; it was a Mustang, of course &#x2013; heaved and groaned its way through the dust, the mud, or the ice, depending on the season. And the college girl rode the horses, dreaming about a barn and a farm of her own, and how she would train her own horses.</p>
+        <p>She studied all the farms she passed on her trips to the sale barn. Some were beautiful and well kept&#x2026; some not so much. She would have taken any one of them, and she made up her mind that one day, she would have her own place. Knowing that would take more than she could ever earn by riding other people&#x2019;s horses, she studied hard, graduated with a degree in biology and landed a good job at a pharmaceutical company where she worked for 10 years.</p>
+      </section>
+
+      <!-- SECTION 3: Hitting the Road -->
+      <section class="bio-section">
+        <h2>Hitting the Road</h2>
+        <p>At work, she met a tall, handsome fellow who had just finished his military service and was headed back to college himself. Things happened. One of them was a marriage ceremony, followed by the purchase of a small house in a suburban town. There was no place in the back yard to put one, but &#x201C;horse&#x201D; remained her favorite word, or at least it was neck and neck with &#x201C;Dick&#x201D;.</p>
+        <p>Bride and groom began improving the little house, and a new idea took shape. Sell the house, make a profit, buy a farm. The young couple made a plan, and set out to put it into action. You might be surprised that the plan actually worked, but that&#x2019;s only because you don&#x2019;t know them well enough. Together, they made a great team, an Irresistible Object backed up by an Immovable Force. How could they lose?</p>
+        <p>Searching for a farm was great fun, but most places were too expensive for them to lay a finger on. Then one day the real estate agent drove them up a steep and winding dirt road to the top of a hill, and rather apologetically pointed out a little house with a ramshackle barn and a motley collection of raggedy farm animals. This place, she said, would suit their budget, and maybe they could fix it up for horses? Did they think so?</p>
+        <img src="/images/tab-3.jpg" alt="Applewood Farm" class="bio-img-block" style="max-height:480px; object-position: center;">
+        <p>The former college girl had to laugh. She knew this farm, had ridden by it many times as she exercised the horse trader&#x2019;s equines. She knew every pothole in the dirt road. Her dream had been about a bigger, fancier place, but never mind. We can make this work, she said to herself. Onward and upward.</p>
+        <img src="/images/Barn_722x300-1.jpg" alt="Applewood Farm barn" class="bio-img-block" style="max-height:320px;">
+        <p>Today she and the tall, handsome guy still live in the same spot. They named it Applewood Farm, and shooed out the goats and chickens to build horse stalls. Over the years, two children arrived, and the little house seemed to get smaller and smaller. So they expanded it, creating a high-ceilinged living room and much more space. The family flourished, the living room was often filled with people of all ages, and the word &#x201C;horse&#x201D; was a constant refrain. A club was founded, meetings were held to organize horse trials and dressage shows, new judges were trained, and many joyous celebrations took place.</p>
+        <img src="/images/Applewd_1-1.jpg" alt="Applewood Farm" class="bio-img-block" style="max-height:400px;">
+        <p>Marilyn and Dick Payne, the little girl who wanted a pony and the tall, handsome guy, turned Applewood Farm into a premier training and boarding facility. The dirt road has long since been paved, but it still twists and turns its way to the top of the steep hill. The farm&#x2019;s fields are dotted with an impressive array of cross-country obstacles and grazing horses. The indoor arena has the best footing most people will ever know the pleasure of riding on, plus a sound system for practicing freestyle tests or just enjoying riding to music, and a heated viewing room for the many people who come to observe lessons and clinics.</p>
+      </section>
+
+      <!-- SECTION 4: Home Sweet Home -->
+      <section class="bio-section">
+        <h2>Home Sweet Home</h2>
+        <p>The children traded in their chubby ponies, and &#x201C;horse&#x201D; became their favorite word, too. Today Holly and Doug Payne are stars on the eventing scene nationally and internationally.</p>
+        <img src="/images/Holly_XC_2-1.jpg" alt="Holly Payne Caravella cross-country" class="bio-img-block" style="max-height:400px;">
+        <p>Holly married Eric Caravella in 2015 and now competes as Holly Payne Caravella. Together, they have two adventurous children, Harper and William, who are already following in their parents&#x2019; footsteps. Holly has successfully competed numerous horses at the 4* and 5* levels, both in the U.S. and internationally. She was among the select few to jump clear around Burghley with her longtime partner, Never Outfoxed. Based at Cloverfield Farm, Holly currently trains dozens of horses and riders and is developing an exciting new 5* prospect, Cashflow, whom she plans to move up to the 3* level this year.</p>
+        <p>Doug and his wife, fellow eventer Jessica Hampf, live in North Carolina where they designed and built their dream farm on 30 acres of land in prime horse country. Doug successfully competed in Eventing at the 4 &amp; 5* Level on dozens of horses he started as babies. He has competed several abroad, including winning a Team Gold Medal at the Pan Am Games. The highlight was at the Tokyo Olympics on Van Diver where he was the top place American. Doug then competed his Pan AM partner successfully in Grand Prix Dressage earning his USDF Gold Medal. Currently he is now successfully competing in Grand Prix Show Jumping with several horses.</p>
+        <img src="/images/IMG_6085-1024x640.jpg" alt="Marilyn Payne" class="bio-img-block" style="max-height:400px;">
+        <p>Marilyn&#x2019;s particular success in dressage was with Bold Chance, a thoroughbred event horse who wasn&#x2019;t as bold as he might have been when it came to leaping over fences. Not one to waste her resources, Marilyn started taking Chance to dressage shows, hoping to find his niche. In the end, he became a Grand Prix dressage horse &#x2013; not exactly chopped liver.</p>
+        <p>While Applewood has always been home base, Marilyn packed her toothbrush and her rulebook early on, launching herself into the national and then the international scene. Judging, competing and teaching are all part of her story, with each aspect of her expertise contributing to the others. As a young competitor, she participated in Pony Club rallies, then moved on to USEF/USEA events. Marilyn was a presence at local competitions such as Somerset Hills and Essex, as well as the Radnor and Ledyard Farm 3-day events, and many others. Eventing stimulated her interest in dressage, and she has long had a foot in both camps.</p>
+        <p>As a twenty-something, she earned her &#x201C;r&#x201D; dressage judge&#x2019;s license to become one of the youngest judges ever. She was already an eventing TD before she became a judge, and steadily rose through the ranks of officialdom. Marilyn is now an FEI 4* judge, the highest international ranking. She also has had the rare privilege of judging at the Olympics not once but twice: as a Member of the Ground Jury in Hong Kong 2008, and as President of the Ground Jury in Rio 2016. She is also a USEF &#x201C;S&#x201D; Eventing TD and an &#x201C;S&#x201D; Dressage judge, holding the highest national ranking in both licenses.</p>
+        <div class="bio-photo-pair">
+          <img src="/images/WEG.jpg" alt="World Equestrian Games">
+          <img src="/images/Rio_2016_1.jpg" alt="Rio 2016 Olympics">
+        </div>
+        <p>She is also the darling of the airline industry. Who can say how many miles Marilyn has racked up in her travels to Asia, Australia and Europe to judge? Enough, apparently, to become a lifetime super-duper, gold-plated, Most Honorable Frequent Flyer. She is intimately familiar with the red-eye from California, where she often judges when not officiating in such interesting venues as Badminton in the U.K., or Pau in France, and so on and so on.</p>
+        <p>Marilyn never fails to make a considerable annual addition to her frequent flyer miles. In 2016, she went to South America for the Rio Olympics and to Europe several times to Judge at Tattersall in Ireland and Badminton in England, and to attend FEI meetings in Switzerland. In 2017 she&#x2019;ll be all over the map as usual, judging, competing and teaching eventing officials in the U.S. and around the globe.</p>
+        <img src="/images/JIBJ4234.jpg" alt="Marilyn Payne judging" class="bio-img-block bio-img-block--portrait" style="max-height:520px; width:auto; margin-left:auto; margin-right:auto;">
+        <p>Marilyn is one of the founders and principal developers of the USEF/USEA training program for eventing officials. When these programs take place at Applewood Farm, Marilyn and Dick donate their facilities and often house the other instructors, while Marilyn&#x2019;s students cheerfully serve as volunteer &#x201C;guinea pig&#x201D; riders for the officials-in-training to observe and critique. The Applewood Farm brand of hospitality even includes pizza runs by Dick to feed starving participants, when he&#x2019;s not changing a flat tire, or parking a horse trailer in a tight spot for someone who can&#x2019;t back up.</p>
+        <p>Traveling around the world to judge is exciting, but Applewood Farm always beckons. Home is where her human and equine students are, eagerly waiting for the next lesson. Marilyn is happy to work with all levels of horses and riders, asking only that they have a true desire to learn. She is particularly well known for reschooling difficult horses, and bringing the average horse and rider to their full potential. Marilyn has been teaching for more than 30 years and has produced dozens of successful event riders, from Novice through Advanced and on to the FEI levels. Her dressage students have accounted for many national and regional year-end awards and championships from Training Level through Grand Prix.</p>
+        <p>Home is also where the broodmares are. The first one was HR Puf&#x2019;nStuff, purchased with Marilyn&#x2019;s first paycheck for the astonishing sum of $500. Marilyn and &#x201C;H&#x201D; evented, showed in hunters and jumpers, foxhunted, and then turned their attention to selecting fine stallions. The mare produced 8 foals, all of them good jumpers. One was Marc Anthony, who was evented by Marilyn through Preliminary, and was then sold, becoming a successful Advanced horse. Another is Kensington, who evented through Preliminary, competed successfully in dressage through Prix St. Georges, and still resides at Applewood, where he is King Of The Field and a superb schoolmaster. If asked politely and correctly, &#x201C;Kenny&#x201D; produces impeccable pirouettes and half passes to this day.</p>
+        <p>Marilyn&#x2019;s interest in breeding event horses has resulted in a leadership role in the USEA&#x2019;s Young Event Horse and Future Event Horse competitions. She currently chairs the USEA&#x2019;s Young Event Horse Committee, and heads up the USEA program for educating judges about evaluating young horses. Marilyn also presents seminars on how young horses are judged, so that breeders, trainers and riders can gain a better understanding of how judges rank these youngsters in terms of their future potential.</p>
+        <p>But home at Applewood is where Marilyn has to be when a mare is due to foal. She sleeps in the barn at those times, to troubleshoot if there are problems, but mainly so as not to miss the amazing experience of a new foal&#x2019;s arrival.</p>
+        <p>Best of all, home is where Marilyn&#x2019;s own horses are, hanging over the pasture fence and waiting to hop on the Applewood trailer and have an adventure.</p>
+      </section>
+
+      <!-- SECTION 5: Looking Ahead -->
+      <section class="bio-section">
+        <h2>Looking Ahead</h2>
+        <img src="/images/applewood-jump.jpg" alt="Applewood Farm cross-country jump" class="bio-img-block" style="max-height:400px;">
+        <p>Where do we go from here? Having joined the extremely exclusive &#x2013; and very tiny &#x2013; club of officials who have judged every 4* event in the world, Marilyn&#x2019;s focus now is on continually improving the quality of judging worldwide. Her goal is to increase the pool of upper level judges in every country that participates in eventing. Reaching that point requires a consistent, high quality worldwide effort to train and develop younger judges, so they can eventually become 3* and 4* officials.</p>
+        <p>When she&#x2019;s not skipping around the world to get that done, Marilyn plans to keep on riding, training and competing in eventing and dressage. In her own words, &#x201C;I want to stay involved in all of it and do the most I can do. I don&#x2019;t intend to get stuck in a rut. And oh yes, I want to pay off the mortgage!&#x201D;</p>
+        <img src="/images/DSCF6392-1024x640.jpg" alt="Marilyn Payne at Applewood Farm" class="bio-img-block" style="max-height:400px;">
+        <p>It appears that her favorite word is still &#x201C;horse&#x201D;, running neck and neck with &#x201C;Dick&#x201D;.</p>
+      </section>
+
+      </div><!-- /bio-content -->
+
+      <!-- RIGHT: continuous photo strip -->
+      <aside class="bio-sidebar">
+        <img src="/images/tab-1.jpg" alt="Marilyn as a child">
+        <img src="/images/tab-2.jpg" alt="Marilyn as a teenager">
+        <img src="/images/tab-3.jpg" alt="Applewood Farm">
+        <img src="/images/tab-4.jpg" alt="Marilyn Payne">
+        <img src="/images/tab-5.jpg" alt="Marilyn Payne">
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- JOIN THE RIDE -->
+  <section class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form action="mailto:hollywc@comcast.net" method="get" enctype="text/plain" class="jtr-form">
+        <input type="hidden" name="subject" value="Join The Ride - New Subscriber">
+        <input type="email" name="body" placeholder="Your email address" class="jtr-input" required>
+        <button type="submit" class="btn btn-active">Subscribe</button>
+      </form>
+    </div>
+    <div class="jtr-right">
+      <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/about/">About Marilyn</a></li>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p style="font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; Marilyn Payne 2026</span>
+        <span>Applewood Farm &mdash; Califon, NJ</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && e.target !== hamburger) {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
