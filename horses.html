@@ -145,7 +145,7 @@
   <header class="site-header">
     <div class="container nav-inner">
       <div class="nav-cta-left">
-        <a href="/shows/">Ride Times</a>
+        <a href="/ride-times/">Ride Times</a>
         <a href="/shows/">Entry Forms</a>
       </div>
       <nav class="nav-menu" aria-label="Main navigation">
@@ -177,14 +177,14 @@
     </div>
   </header>
 
-  <nav class="nav-mobile" id="mobileMenu">
-    <a href="/shows/" style="color: var(--brand); font-weight: 700; border-bottom: 2px solid var(--brand);">Ride Times</a>
+  <nav class="nav-mobile" id="mobile-nav">
+    <a href="/lesson-calendar/" style="color: var(--brand); font-weight: 700; border-bottom: 2px solid var(--brand);">Ride Times</a>
     <a href="/shows/" style="color: var(--brand); font-weight: 600;">Entry Forms</a>
     <a href="/about/">About Marilyn</a>
     <a href="/bio/" class="nav-sub">Marilyn&#x2019;s Bio</a>
     <a href="/applewood-farm/">Applewood Farm</a>
     <a href="/lessons/" class="nav-sub">Lessons</a>
-    <a href="/horses/" class="nav-sub" style="color: var(--brand); font-weight: 600;">Horses</a>
+    <a href="/horses/" class="nav-sub active">Horses</a>
     <a href="/training/" class="nav-sub">Training</a>
     <a href="/christmas/" class="nav-sub">Christmas</a>
     <a href="/clinics/">Clinics</a>
@@ -384,9 +384,10 @@
     <div class="jtr-left">
       <h2 class="jtr-heading">Join The Ride</h2>
       <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
-      <form class="jtr-form" onsubmit="return false;">
-        <input class="jtr-input" type="email" placeholder="Email" aria-label="Email address">
-        <button class="btn btn-active" type="submit">Subscribe</button>
+      <form action="mailto:hollywc@comcast.net" method="get" enctype="text/plain" class="jtr-form">
+        <input type="hidden" name="subject" value="Join The Ride - New Subscriber">
+        <input type="email" name="body" placeholder="Your email address" class="jtr-input" required>
+        <button type="submit" class="btn btn-active">Subscribe</button>
       </form>
     </div>
     <div class="jtr-right">
@@ -399,46 +400,47 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <img class="footer-logo" src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne">
-          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
-          <p style="margin-top:0.5rem;"><a href="tel:9083340105">908-334-0105</a></p>
-          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
-          <p style="margin-top:0.4rem; font-size:0.85rem;">Email or text unless urgent</p>
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
         </div>
         <div class="footer-col">
-          <h4>Applewood Farm</h4>
+          <h4>Navigate</h4>
           <ul>
+            <li><a href="/about/">About Marilyn</a></li>
             <li><a href="/lessons/">Lessons</a></li>
-            <li><a href="/horses/">Horses</a></li>
             <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
             <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
             <li><a href="/working-student/">Working Student</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Information</h4>
-          <ul>
-            <li><a href="/bio/">Marilyn&#x2019;s Bio</a></li>
-            <li><a href="/lesson-calendar/">Lesson Calendar</a></li>
-            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
-            <li><a href="/christmas/">Christmas</a></li>
-          </ul>
+          <h4>Contact</h4>
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p style="margin-top:0.75rem;"><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p style="margin-top:0.5rem;font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
         </div>
       </div>
       <div class="footer-bottom">
         <span>&copy; Marilyn Payne 2026</span>
-        <span>30 Fox Hill Road, Califon NJ 07830</span>
+        <span>Applewood Farm &mdash; Califon, NJ</span>
       </div>
     </div>
   </footer>
 
   <script>
     const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileNav = document.getElementById('mobile-nav');
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
+      const open = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
     });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    }));
   </script>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shows & Competitions - Marilyn Payne</title>
+  <title>Ride Times - Marilyn Payne</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -48,29 +48,21 @@
     .nav-mobile-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--brand); cursor: pointer; margin-bottom: 1rem; }
     /* PAGE BANNER */
     .page-banner { position: relative; width: 100%; height: 380px; overflow: hidden; }
-    .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+    .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
     .page-banner-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0.05) 100%); display: flex; align-items: flex-end; padding: 2.5rem 3rem; }
     .page-banner-overlay h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); color: var(--white); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-    /* SHOWS */
-    .shows-intro { background: var(--white); padding: 2.5rem 0; text-align: center; }
-    .shows-intro p { max-width: 720px; margin: 0 auto; font-size: 1.08rem; line-height: 1.75; }
-    .show-section { padding: 3.5rem 0; }
-    .show-section:nth-child(even) { background: var(--gray-light); }
-    .show-section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    .show-photo-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
-    .show-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); border-left: 3px solid var(--brand); padding-left: 0.6rem; margin-bottom: 0.75rem; }
-    .show-content h2 { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 1rem; line-height: 1.25; }
-    .show-content p { font-size: 0.97rem; line-height: 1.75; margin-bottom: 1.25rem; }
-    .show-btn-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .btn { display: inline-block; padding: 0.45rem 1.1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s; }
-    .btn-active { background: var(--brand); color: var(--white); border: 2px solid var(--brand); }
-    .btn-active:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
-    .btn-disabled { background: transparent; color: var(--gray-dark); border: 2px solid var(--gray-mid); cursor: default; pointer-events: none; }
-    .show-dates-header { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-dark); margin-bottom: 0.5rem; margin-top: 0.5rem; }
-    .date-row { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--gray-light); gap: 1rem; }
-    .date-label { font-size: 0.9rem; }
-    .date-btns { display: flex; gap: 0.4rem; }
-    /* JOIN THE RIDE — matches homepage exactly */
+    /* RIDE TIMES CONTENT */
+    .rt-section { padding: 4rem 0; }
+    .rt-intro { text-align: center; max-width: 600px; margin: 0 auto 3rem; font-size: 1.05rem; color: var(--gray-dark); line-height: 1.75; }
+    .rt-empty { text-align: center; padding: 4rem 0; }
+    .rt-empty p { font-size: 1.1rem; color: var(--gray-dark); margin-bottom: 0.5rem; }
+    .rt-empty small { font-size: 0.88rem; color: var(--gray-mid); }
+    .rt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .rt-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+    .rt-card h2 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--body-text); line-height: 1.3; }
+    .rt-card a { display: inline-block; background: var(--brand); color: var(--white); font-weight: 600; font-size: 0.88rem; padding: 0.5rem 1.2rem; border-radius: 30px; transition: background 0.2s; align-self: flex-start; }
+    .rt-card a:hover { background: var(--brand-dark); }
+    /* JOIN THE RIDE */
     .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
     .jtr-left { background: var(--gray-light); display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
     .jtr-heading { font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--body-text); margin-bottom: 0.6rem; }
@@ -78,9 +70,11 @@
     .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
     .jtr-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.95rem; background: var(--white); color: var(--body-text); }
     .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .btn-active { display: inline-block; padding: 0.45rem 1.1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; background: var(--brand); color: var(--white); border: 2px solid var(--brand); transition: background 0.2s; }
+    .btn-active:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
     .jtr-right { overflow: hidden; }
     .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-    /* FOOTER — matches homepage exactly: dark bg */
+    /* FOOTER */
     .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; filter: brightness(0) invert(1); opacity: 0.7; }
@@ -90,15 +84,13 @@
     .footer-col ul li { margin-bottom: 0.4rem; }
     .footer-col ul li a, .footer-col a { color: #aaa; transition: color 0.2s; }
     .footer-col ul li a:hover, .footer-col a:hover { color: var(--white); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 0; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav-menu, .nav-cta-left { display: none; }
       .nav-hamburger { display: flex; }
-      .show-section-inner { grid-template-columns: 1fr; }
       .page-banner { height: 260px; }
       .page-banner-overlay { padding: 1.5rem; }
-      .date-row { flex-direction: column; align-items: flex-start; }
       .join-the-ride { grid-template-columns: 1fr; height: auto; }
       .jtr-left { padding: 2rem 1.5rem; }
       .jtr-right { height: 200px; }
@@ -157,83 +149,29 @@
   </div>
   <div class="page-banner">
     <img src="/images/OutdoorDressageArena-2.jpg" alt="Outdoor Dressage Arena at Applewood Farm">
-    <div class="page-banner-overlay"><h1>Shows &amp; Competitions</h1></div>
+    <div class="page-banner-overlay"><h1>Ride Times</h1></div>
   </div>
-  <div class="shows-intro">
+  <section class="rt-section">
     <div class="container">
-      <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping for riders of all levels. There are also two USEA Young Event Horse (4- and 5-year olds) shows, and two Mini Event Competitions for riders at Starter through Training level.</p>
+      <p class="rt-intro">Current ride times for upcoming Applewood Farm shows. Check back closer to your show date — PDFs are posted as they become available.</p>
+      <div id="rt-content"></div>
     </div>
-  </div>
-  <div class="show-section">
-    <div class="container show-section-inner">
-      <div><img class="show-photo-main" src="/images/Kylie-and-Val-2020.jpg" alt="Rider at Schooling Show"></div>
-      <div class="show-content">
-        <div class="show-label">ESDCTA Registered</div>
-        <h2>Schooling Shows</h2>
-        <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping. Trophy and six ribbons per class. Dressage is in the outdoor dressage arena; warm-up is indoors; both arenas are sand/rubber and dust-free! Jumping takes place in the grass show jumping field. Scores can be applied to ESDCTA Year-End Awards and volunteer hours to ESDCTA volunteer requirement. All shows are on Wednesday.</p>
-        <div class="show-btn-row">
-          <span class="btn btn-disabled">Prize List</span>
-          <a href="/pdfs/esdcta-entry-form.pdf" target="_blank" class="btn btn-active">Entry Form</a>
-        </div>
-        <div class="show-dates-header">2026 Show Dates</div>
-        <div class="date-row"><span class="date-label">Wednesday, May 13</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="schooling-2026-may-13">Results</span></div></div>
-        <div class="date-row"><span class="date-label">Wednesday, June 17</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="schooling-2026-jun-17">Results</span></div></div>
-        <div class="date-row"><span class="date-label">Wednesday, July 8</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="schooling-2026-jul-08">Results</span></div></div>
-        <div class="date-row"><span class="date-label">Wednesday, August 5</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="schooling-2026-aug-05">Results</span></div></div>
-        <div class="date-row"><span class="date-label">Wednesday, September 9</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="schooling-2026-sep-09">Results</span></div></div>
-        <div class="date-row"><span class="date-label">Wednesday, October 10</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="schooling-2026-oct-10">Results</span></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="show-section">
-    <div class="container show-section-inner">
-      <div><img class="show-photo-main" src="/images/DSCF4883.jpg" alt="Mini Event Competition"></div>
-      <div class="show-content">
-        <div class="show-label">Eventing</div>
-        <h2>Mini Events</h2>
-        <p>Interested in Eventing? Thinking of moving up a level? The mini event consists of a dressage test appropriate for the level, and a jumping phase that starts with five stadium-type jumps in an open grass field flowing into a short cross country course. Levels include: Starter (X-rails-2'3"), Beginner Novice (2'3"-2'7"), Novice (2'7"-2'11"), Training (2'11"-3'3"). Trophy and 6 ribbons per division, plus Best Amateur Horse and Best Amateur Rider awards. Dressage Test of Choice: Select any USEF or USEA test, 8-10 minutes per test. (Not ESDCTA recognized.)</p>
-        <div class="show-btn-row">
-          <span class="btn btn-disabled">Prize List</span>
-          <span class="btn btn-disabled">Entry Form</span>
-        </div>
-        <div class="show-dates-header">2026 Mini Event Dates</div>
-        <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="mini-event-2026-jul-15">Results</span></div></div>
-        <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="mini-event-2026-aug-12">Results</span></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="show-section">
-    <div class="container show-section-inner">
-      <div><img class="show-photo-main" src="/images/IMG_0315.jpg" alt="Young Event Horse Competition"></div>
-      <div class="show-content">
-        <div class="show-label">USEA Young Event Horse</div>
-        <h2>Young Event Horse</h2>
-        <p>YEH includes the YEH dressage test for either 4 or 5 year old eventing prospects, and a jumping phase that begins with five straightforward show jumps which feed directly into several inviting XC fences. The jumping phase is immediately followed by the galloping phase, in which horses are judged on the quality of the gallop and ability to cover ground. YEH entries must be registered with USEA and must use the USEA Entry Form available from <a href="https://www.useventing.com" target="_blank" style="color:var(--brand);text-decoration:underline;">useventing.com</a>. YEH must use the special 4yo and 5yo dressage tests, also available at useventing.com.</p>
-        <div class="show-btn-row">
-          <span class="btn btn-disabled">Prize List</span>
-          <a href="https://www.useventing.com" target="_blank" class="btn btn-active">Entry Form (USEA)</a>
-        </div>
-        <div class="show-dates-header">2026 YEH Dates</div>
-        <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="yeh-2026-jul-15">Results</span></div></div>
-        <div class="date-row"><span class="date-label">Wednesday, August 12</span><div class="date-btns"><a href="/ride-times/" class="btn btn-active">Ride Times</a><span class="btn btn-disabled results-btn" data-show="yeh-2026-aug-12">Results</span></div></div>
-      </div>
-    </div>
-  </div>
-  <!-- JOIN THE RIDE — matches homepage exactly -->
+  </section>
+  <!-- JOIN THE RIDE -->
   <section class="join-the-ride">
     <div class="jtr-left">
       <h2 class="jtr-heading">Join The Ride</h2>
       <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
       <form action="mailto:hollywc@comcast.net" method="get" enctype="text/plain" class="jtr-form">
-        <input type="hidden" name="subject" value="Join The Ride - New Subscriber"><input type="email" name="body" placeholder="Your email address" class="jtr-input" required>
-        <button type="submit" class="btn btn-active">Subscribe</button>
+        <input type="hidden" name="subject" value="Join The Ride - New Subscriber">
+        <input type="email" name="body" placeholder="Your email address" class="jtr-input" required>
+        <button type="submit" class="btn-active">Subscribe</button>
       </form>
     </div>
     <div class="jtr-right">
       <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
     </div>
   </section>
-  <!-- FOOTER — matches homepage exactly: dark background -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -269,34 +207,37 @@
   </footer>
   <script>
     const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      hamburger.classList.toggle('open', open);
-    });
-    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      hamburger.classList.remove('open');
-    }));
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+    mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
 
-    // Activate Results buttons when PDFs are available
+    // Load and render ride times from shows.json
     fetch('/pdfs/shows.json?_=' + Date.now())
       .then(r => r.json())
       .then(data => {
-        const results = data.results || {};
-        document.querySelectorAll('.results-btn').forEach(btn => {
-          const slug = btn.dataset.show;
-          if (results[slug]) {
-            const a = document.createElement('a');
-            a.href = results[slug];
-            a.target = '_blank';
-            a.className = 'btn btn-active';
-            a.textContent = 'Results';
-            btn.replaceWith(a);
-          }
-        });
+        const el = document.getElementById('rt-content');
+        const items = data.ride_times || [];
+        if (items.length === 0) {
+          el.innerHTML = '<div class="rt-empty"><p>No ride times posted yet.</p><small>Check back closer to your show date.</small></div>';
+        } else {
+          const cards = items.map(rt =>
+            `<div class="rt-card">
+              <h2>${escHtml(rt.event)}</h2>
+              <a href="${escHtml(rt.pdf)}" target="_blank">Download Ride Times PDF</a>
+            </div>`
+          ).join('');
+          el.innerHTML = '<div class="rt-grid">' + cards + '</div>';
+        }
       })
-      .catch(() => {}); // silently fail — buttons stay disabled
+      .catch(() => {
+        document.getElementById('rt-content').innerHTML =
+          '<div class="rt-empty"><p>Ride times will be posted here when available.</p></div>';
+      });
+
+    function escHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
   </script>
 </body>
 </html>

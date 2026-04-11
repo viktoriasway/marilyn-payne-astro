@@ -338,54 +338,54 @@
 
       <!-- LEFT: CTA buttons -->
       <div class="nav-cta-left">
-        <a href="#">Ride Times</a>
-        <a href="#">Entry Forms</a>
+        <a href="/ride-times/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
       </div>
 
       <!-- CENTER: main navigation -->
       <nav class="nav-menu" aria-label="Main navigation">
 
         <div class="nav-item has-dropdown">
-          <a href="#">About Marilyn</a>
+          <a href="/about/">About Marilyn</a>
           <div class="dropdown">
-            <a href="#">Marilyn's Bio</a>
+            <a href="/bio/">Marilyn's Bio</a>
           </div>
         </div>
 
         <div class="nav-item has-dropdown">
-          <a href="#">Applewood Farm</a>
+          <a href="/applewood-farm/">Applewood Farm</a>
           <div class="dropdown">
-            <a href="#">Lessons</a>
-            <a href="#">Horses</a>
-            <a href="#">Training</a>
-            <a href="#">Christmas</a>
+            <a href="/lessons/">Lessons</a>
+            <a href="/horses/">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/">Christmas</a>
           </div>
         </div>
 
         <div class="nav-item">
-          <a href="#">Clinics</a>
+          <a href="/clinics/">Clinics</a>
         </div>
 
         <div class="nav-item">
-          <a href="#">Shows</a>
+          <a href="/shows/">Shows</a>
         </div>
 
         <div class="nav-item has-dropdown">
-          <a href="#">Lesson Calendar</a>
+          <a href="/lesson-calendar/">Lesson Calendar</a>
           <div class="dropdown">
-            <a href="#">Horse Schedule</a>
+            <a href="/horse-schedule/">Horse Schedule</a>
           </div>
         </div>
 
         <div class="nav-item active">
-          <a href="#">Working Student</a>
+          <a href="/working-student/">Working Student</a>
         </div>
 
       </nav>
 
       <!-- RIGHT: logo -->
-      <a href="#" class="nav-logo">
-        <img src="images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm">
+      <a href="/" class="nav-logo">
+        <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm">
       </a>
 
       <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
@@ -396,20 +396,20 @@
 
   <!-- Mobile nav -->
   <nav class="nav-mobile" id="mobile-nav">
-    <a href="#">Ride Times</a>
-    <a href="#">Entry Forms</a>
-    <a href="#">About Marilyn</a>
-    <a href="#" class="nav-sub">Marilyn's Bio</a>
-    <a href="#">Applewood Farm</a>
-    <a href="#" class="nav-sub">Lessons</a>
-    <a href="#" class="nav-sub">Horses</a>
-    <a href="#" class="nav-sub">Training</a>
-    <a href="#" class="nav-sub">Christmas</a>
-    <a href="#">Clinics</a>
-    <a href="#">Shows</a>
-    <a href="#">Lesson Calendar</a>
-    <a href="#" class="nav-sub">Horse Schedule</a>
-    <a href="#" class="active">Working Student</a>
+    <a href="/ride-times/">Ride Times</a>
+    <a href="/shows/">Entry Forms</a>
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn's Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub">Lessons</a>
+    <a href="/horses/" class="nav-sub">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub">Christmas</a>
+    <a href="/clinics/">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
+    <a href="/working-student/" class="active">Working Student</a>
   </nav>
 
   <!-- ===== WORKING STUDENT CONTENT ===== -->
@@ -458,7 +458,7 @@
         <!-- RIGHT: photo + details sidebar -->
         <div class="ws-sidebar">
           <div class="ws-photo">
-            <img src="images/IMG_7029.jpg" alt="Working students at Applewood Farm">
+            <img src="/images/IMG_7029.jpg" alt="Working students at Applewood Farm">
           </div>
 
           <div class="ws-detail-block">
@@ -491,13 +491,14 @@
     <div class="jtr-left">
       <h2 class="jtr-heading">Join The Ride</h2>
       <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
-      <form action="#" class="jtr-form">
-        <input type="email" placeholder="Email" class="jtr-input">
-        <button type="submit" class="btn">Subscribe</button>
+      <form action="mailto:hollywc@comcast.net" method="get" enctype="text/plain" class="jtr-form">
+        <input type="hidden" name="subject" value="Join The Ride - New Subscriber">
+        <input type="email" name="body" placeholder="Your email address" class="jtr-input" required>
+        <button type="submit" class="btn btn-active">Subscribe</button>
       </form>
     </div>
     <div class="jtr-right">
-      <img src="images/join-the-ride.jpg" alt="Applewood Farm">
+      <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
     </div>
   </section>
 
@@ -506,19 +507,19 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
           <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
           <ul>
-            <li><a href="#">About Marilyn</a></li>
-            <li><a href="#">Lessons</a></li>
-            <li><a href="#">Training</a></li>
-            <li><a href="#">Shows &amp; Entry Forms</a></li>
-            <li><a href="#">Clinics</a></li>
-            <li><a href="#">Christmas</a></li>
-            <li><a href="#">Working Student</a></li>
+            <li><a href="/about/">About Marilyn</a></li>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
           </ul>
         </div>
         <div class="footer-col">
