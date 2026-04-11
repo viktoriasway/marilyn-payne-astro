@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Horses – Marilyn Payne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #72133E; --brand-dark: #56102f; --body-bg: #F3F3F3;
+      --body-text: #333333; --gray-mid: #C7C7C7; --gray-light: #EBEBEB;
+      --gray-dark: #555555; --white: #FFFFFF;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --nav-h: 80px; --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,0.16);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--body-bg); color: var(--body-text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ===== NAV ===== */
+    .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+    .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-cta-left a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-cta-left a:hover { background: var(--brand); color: var(--white); }
+    .nav-menu { display: flex; align-items: center; gap: 0.1rem; }
+    .nav-item { position: relative; }
+    .nav-item > a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 500; color: var(--body-text); padding: 0.4rem 0.65rem; border-radius: var(--radius); transition: color 0.2s, background 0.2s; white-space: nowrap; text-decoration: none; display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item > a:hover { color: var(--brand); background: #f5e6ed; }
+    .nav-item.active > a { color: var(--brand); font-weight: 600; background: #f5e6ed; }
+    .has-dropdown > a::after { content: '▾'; font-size: 0.65rem; opacity: 0.55; margin-left: 0.1rem; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 180px; padding: 0.4rem 0; z-index: 200; border-top: 3px solid var(--brand); }
+    .nav-item:hover .dropdown, .nav-item:focus-within .dropdown { display: block; }
+    .dropdown a { display: block; padding: 0.5rem 1.1rem; font-size: 0.86rem; color: var(--body-text); text-decoration: none; transition: color 0.15s, background 0.15s; }
+    .dropdown a:hover { color: var(--brand); background: #f5e6ed; }
+    .dropdown a.active { color: var(--brand); font-weight: 600; background: #f5e6ed; }
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 54px; width: auto; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--brand); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--white); box-shadow: var(--shadow-lg); padding: 1rem 1.5rem 1.5rem; z-index: 999; max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a { display: block; font-size: 1rem; font-weight: 500; color: var(--body-text); padding: 0.7rem 0.25rem; border-bottom: 1px solid var(--gray-light); text-decoration: none; }
+    .nav-mobile a:hover { color: var(--brand); }
+    .nav-mobile .nav-sub { padding-left: 1.25rem; font-size: 0.92rem; color: var(--gray-dark); font-weight: 400; }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header { background: var(--body-bg); padding: 5rem 0 2.5rem; text-align: center; }
+    .page-header-title { font-family: var(--font-serif); font-size: clamp(2.6rem, 5vw, 3.8rem); color: var(--body-text); font-weight: 700; line-height: 1.1; }
+
+    /* ===== INTRO ===== */
+    .intro-section { background: var(--body-bg); padding: 1.5rem 0 3.5rem; border-bottom: 1px solid var(--gray-mid); }
+    .intro-sub { font-size: 0.97rem; color: var(--body-text); line-height: 1.8; }
+    .intro-sub p { margin-bottom: 1rem; }
+    .intro-sub p:last-child { margin-bottom: 0; }
+
+    /* ===== HORSE PROFILES ===== */
+    .horse-profile { display: grid; grid-template-columns: 1fr 1fr; min-height: 420px; }
+    .horse-profile.reverse { direction: rtl; }
+    .horse-profile.reverse > * { direction: ltr; }
+
+    .horse-img-side { overflow: hidden; }
+    .horse-img-side img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .horse-video-side { overflow: hidden; background: #000; }
+    .horse-video-side video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .horse-text-side { padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; background: var(--white); }
+    .horse-profile:nth-child(even) .horse-text-side { background: #faf9f7; }
+
+    .horse-barn-name { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--brand); margin-bottom: 0.3rem; }
+    .horse-name { font-family: var(--font-serif); font-size: clamp(1.7rem, 3vw, 2.4rem); color: var(--body-text); font-weight: 700; line-height: 1.15; margin-bottom: 0.8rem; }
+    .horse-meta { font-size: 0.88rem; color: var(--gray-dark); margin-bottom: 1.2rem; }
+    .horse-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.4rem; }
+    .tag { display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.75rem; border-radius: 20px; }
+    .tag-dressage { background: #f5e6ed; color: var(--brand); }
+    .tag-eventing { background: #f9f3e2; color: #7a5c00; }
+    .tag-schoolmaster { background: #f0f0f0; color: #555; }
+    .horse-bio { font-size: 0.97rem; line-height: 1.8; color: var(--body-text); }
+    .horse-bio p { margin-bottom: 0.75rem; }
+    .horse-bio p:last-child { margin-bottom: 0; }
+
+    .profile-divider { border: none; border-top: 1px solid var(--gray-light); margin: 0; }
+
+    /* ===== JOIN THE RIDE ===== */
+    .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
+    .jtr-left { background: var(--gray-light); display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
+    .jtr-heading { font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--body-text); margin-bottom: 0.6rem; }
+    .jtr-sub { font-size: 0.95rem; color: var(--gray-dark); max-width: 320px; margin-bottom: 1.5rem; line-height: 1.6; }
+    .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
+    .jtr-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.95rem; background: var(--white); color: var(--body-text); }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .btn { display: inline-block; padding: 0.55rem 1.4rem; border-radius: 30px; font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; cursor: pointer; border: 2px solid var(--brand); text-align: center; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+    .btn-active { background: var(--brand); color: var(--white); }
+    .btn-active:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; filter: brightness(0) invert(1); opacity: 0.7; }
+    .footer-col p { color: #aaa; line-height: 1.6; margin-bottom: 0.4rem; }
+    .footer-col h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-col ul li a, .footer-col a { color: #aaa; transition: color 0.2s; }
+    .footer-col ul li a:hover, .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .horse-profile, .horse-profile.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .horse-profile.reverse > * { direction: ltr; }
+      .horse-img-side { height: 320px; }
+      .horse-video-side { height: 280px; }
+      .horse-text-side { padding: 2.5rem 1.75rem; }
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 2rem 1.5rem; }
+      .jtr-right { height: 200px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.25rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-menu, .nav-cta-left { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-logo img { height: 46px; }
+      .hero { height: 340px; }
+      .hero-content { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <div class="nav-cta-left">
+        <a href="/shows/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
+      </div>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <div class="nav-item has-dropdown">
+          <a href="/about/">About Marilyn</a>
+          <div class="dropdown">
+            <a href="/bio/">Marilyn&#x2019;s Bio</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown active">
+          <a href="/applewood-farm/">Applewood Farm</a>
+          <div class="dropdown">
+            <a href="/lessons/">Lessons</a>
+            <a href="/horses/" class="active">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/">Christmas</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="/clinics/">Clinics</a></div>
+        <div class="nav-item"><a href="/shows/">Shows</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="/lesson-calendar/">Lesson Calendar</a>
+          <div class="dropdown"><a href="/horse-schedule/">Horse Schedule</a></div>
+        </div>
+        <div class="nav-item"><a href="/working-student/">Working Student</a></div>
+      </nav>
+      <a href="/" class="nav-logo"><img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm"></a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile" id="mobileMenu">
+    <a href="/shows/" style="color: var(--brand); font-weight: 700; border-bottom: 2px solid var(--brand);">Ride Times</a>
+    <a href="/shows/" style="color: var(--brand); font-weight: 600;">Entry Forms</a>
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn&#x2019;s Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub">Lessons</a>
+    <a href="/horses/" class="nav-sub" style="color: var(--brand); font-weight: 600;">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub">Christmas</a>
+    <a href="/clinics/">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
+    <a href="/working-student/">Working Student</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-header-title">Horses at Applewood</h1>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-sub">
+        <p>Applewood has a really nice mix of good-minded, well-schooled horses for lessons and lease. Some are younger horses who are learning the ropes, others are steady, been-there-done-that teachers, and a few are true schoolmasters who can help you feel what correct flatwork and jumping should be like. All of them are brought along carefully under Marilyn Payne&#x2019;s eye, so you&#x2019;re riding horses that are educated, safe, and fun to learn on.</p>
+        <p>We do our best to match each rider with the right horse for their goals&#x2014;whether that&#x2019;s getting more confident, polishing your dressage, or getting out to events. Lease options (from part lease to more involved arrangements) are available, and many horses can also go to clinics and shows with you, depending on the horse and your experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. Rock me Mama — text L, image R -->
+  <article class="horse-profile">
+    <div class="horse-text-side">
+      <p class="horse-barn-name">&#x201C;Mama&#x201D;</p>
+      <h2 class="horse-name">Rock me Mama</h2>
+      <p class="horse-meta">2016 Irish Sport Horse Mare</p>
+      <div class="horse-tags">
+        <span class="tag tag-eventing">Eventing</span>
+        <span class="tag tag-dressage">Dressage</span>
+      </div>
+      <div class="horse-bio">
+        <p>Mama is a 2016 Irish Sport Horse mare with experience eventing through Training level and competing up to 3rd Level dressage. She has a wonderful temperament and a strong record, including multiple Training level wins and a top-six placing at the AECs at Novice. A talented, willing partner with both ability and brains, Mama is a joy to ride, and Marilyn is looking forward to the 2026 season of dressage and eventing with her.</p>
+      </div>
+    </div>
+    <div class="horse-img-side">
+      <img src="/images/DSCF6704-1024x640.jpg" alt="Rock me Mama" style="object-position: center center;">
+    </div>
+  </article>
+
+  <hr class="profile-divider">
+
+  <!-- 2. Maestro — image L, text R -->
+  <article class="horse-profile reverse">
+    <div class="horse-text-side">
+      <p class="horse-barn-name">&#x201C;Maestro&#x201D;</p>
+      <h2 class="horse-name">Maestro</h2>
+      <p class="horse-meta">2017 Dutch Warmblood Gelding</p>
+      <div class="horse-tags">
+        <span class="tag tag-eventing">Eventing</span>
+        <span class="tag tag-dressage">Dressage</span>
+      </div>
+      <div class="horse-bio">
+        <p>Maestro is a 2017 Dutch Warmblood gelding who has competed successfully through Beginner Novice eventing and Second Level dressage. He placed 2nd at the USDF Regional Finals at First Level and is currently being competed in eventing by Reily Thompson and in dressage by Amy Gimble. With an ever-curious personality that is bound to win you over, Maestro is as charming as he is talented.</p>
+      </div>
+    </div>
+    <div class="horse-img-side">
+      <img src="/images/IMG_1040.jpg" alt="Maestro" style="object-position: center 30%;">
+    </div>
+  </article>
+
+  <hr class="profile-divider">
+
+  <!-- 3. Premier Jet — text L, image R -->
+  <article class="horse-profile">
+    <div class="horse-text-side">
+      <p class="horse-barn-name">&#x201C;Jet&#x201D;</p>
+      <h2 class="horse-name">Premier Jet</h2>
+      <p class="horse-meta">2000 Percheron/Thoroughbred Mare</p>
+      <div class="horse-tags">
+        <span class="tag tag-eventing">Eventing</span>
+        <span class="tag tag-dressage">Dressage</span>
+        <span class="tag tag-schoolmaster">Schoolmaster</span>
+      </div>
+      <div class="horse-bio">
+        <p>Jet is a 2000 Percheron/Thoroughbred mare who has evented successfully to Novice and competed in dressage through First Level. She is an easy, comfortable ride with a steady, confidence-building way of going, making her a favorite among students. Honest, kind, and endlessly forgiving, Jet is the type of horse everyone hopes to learn on.</p>
+      </div>
+    </div>
+    <div class="horse-img-side">
+      <img src="/images/image1-2.jpg" alt="Premier Jet" style="object-position: center center;">
+    </div>
+  </article>
+
+  <hr class="profile-divider">
+
+  <!-- 4. Double Entendre (Pun) — image L, text R -->
+  <article class="horse-profile reverse">
+    <div class="horse-text-side">
+      <p class="horse-barn-name">&#x201C;Pun&#x201D;</p>
+      <h2 class="horse-name">Double Entendre</h2>
+      <p class="horse-meta">2010 Rhinelander</p>
+      <div class="horse-tags">
+        <span class="tag tag-eventing">Eventing</span>
+        <span class="tag tag-dressage">Dressage</span>
+      </div>
+      <div class="horse-bio">
+        <p>This 2010 Rhinelander has competed successfully through Training level eventing and shown in dressage through 3rd Level. He is a genuine confidence builder for riders learning to jump, offering a steady, honest feel that helps riders progress while having fun.</p>
+      </div>
+    </div>
+    <div class="horse-img-side">
+      <img src="/images/Pun_XC_2-e1764796074144-1024x714.jpg" alt="Double Entendre" style="object-position: center 25%;">
+    </div>
+  </article>
+
+  <hr class="profile-divider">
+
+  <!-- 5. Brief Encounter (Dream) — text L, image R -->
+  <article class="horse-profile">
+    <div class="horse-text-side">
+      <p class="horse-barn-name">&#x201C;Dream&#x201D;</p>
+      <h2 class="horse-name">Brief Encounter</h2>
+      <p class="horse-meta">2001 Danish/Thoroughbred Cross &mdash; Born at Applewood</p>
+      <div class="horse-tags">
+        <span class="tag tag-dressage">Dressage</span>
+        <span class="tag tag-schoolmaster">Schoolmaster</span>
+      </div>
+      <div class="horse-bio">
+        <p>Born at Applewood in 2001, this Danish/Thoroughbred cross has competed to Prix St. Georges in dressage and is an exceptional schoolmaster for riders learning upper-level work, particularly flying changes. A generous teacher with a wealth of experience, he offers riders the opportunity to refine their feel and develop true sophistication in the saddle.</p>
+      </div>
+    </div>
+    <div class="horse-img-side">
+      <img src="/images/Dream-and-Kai-2020.jpg" alt="Brief Encounter" style="object-position: center center;">
+    </div>
+  </article>
+
+  <hr class="profile-divider">
+
+  <!-- 6. Capital Heart (Zeus) — video L, text R -->
+  <article class="horse-profile reverse">
+    <div class="horse-text-side">
+      <p class="horse-barn-name">&#x201C;Zeus&#x201D;</p>
+      <h2 class="horse-name">Capital Heart</h2>
+      <p class="horse-meta">2016 Dutch Warmblood &mdash; Owned by Hallie Fonseca</p>
+      <div class="horse-tags">
+        <span class="tag tag-dressage">Dressage</span>
+        <span class="tag tag-eventing">Eventing</span>
+      </div>
+      <div class="horse-bio">
+        <p>Zeus is a 2016 Dutch Warmblood with plenty of talent and plenty of personality. He&#x2019;s a winner at First Level dressage and is schooling Second, with a lovely feel in the connection when his rider is clear and organized. He&#x2019;s also competed in eventing up through Beginner Novice and enjoys getting out on cross-country. Zeus is quirky in the best way&#x2014;he keeps his rider honest, makes you ride correctly, and rewards good riding with really nice work. And yes, he&#x2019;s absolutely convinced that bananas are the greatest treat on earth.</p>
+        <p>Shown by Valerie Kamp</p>
+      </div>
+    </div>
+    <div class="horse-video-side">
+      <video src="/images/zeus-capital-heart.mov" controls preload="metadata" controlsList="nodownload" poster="/images/IMG_9477.jpg" style="width:100%;height:100%;object-fit:cover;"></video>
+    </div>
+  </article>
+
+  <hr class="profile-divider">
+
+  <!-- 7. Buzz Lightyear — text L, image R -->
+  <article class="horse-profile">
+    <div class="horse-text-side">
+      <p class="horse-barn-name">&#x201C;Buzz&#x201D;</p>
+      <h2 class="horse-name">Buzz Lightyear</h2>
+      <p class="horse-meta">2018 Kentucky Thoroughbred</p>
+      <div class="horse-tags">
+        <span class="tag tag-dressage">Dressage</span>
+        <span class="tag tag-eventing">Eventing</span>
+      </div>
+      <div class="horse-bio">
+        <p>Buzz is a 2018 Kentucky Thoroughbred and one of Applewood&#x2019;s newest additions. Cute as a button and in-your-pocket friendly, he is currently developing his dressage and jumping skills in the Applewood program and is on track to begin his competition career in 2026.</p>
+      </div>
+    </div>
+    <div class="horse-img-side">
+      <img src="/images/winter-clinic-veronica-buzz-jumping.jpg" alt="Buzz Lightyear at the winter clinic" style="object-position: center 20%;">
+    </div>
+  </article>
+
+  <hr class="profile-divider">
+
+  <!-- 8. Paraika (Poppy) — image L, text R -->
+  <article class="horse-profile reverse">
+    <div class="horse-text-side">
+      <p class="horse-barn-name">&#x201C;Poppy&#x201D;</p>
+      <h2 class="horse-name">Paraika</h2>
+      <p class="horse-meta">2020 Dutch Warmblood Mare &mdash; Cantango &times; Gribaladi &times; Inspector</p>
+      <div class="horse-tags">
+        <span class="tag tag-dressage">Dressage</span>
+        <span class="tag tag-eventing">Eventing</span>
+      </div>
+      <div class="horse-bio">
+        <p>This 2020 Dutch Warmblood mare is a lovely new addition to the Applewood program. Sweet, willing, and enthusiastic&#x2014;she absolutely loves to jump. She is currently developing both her dressage and jumping skills in the Applewood program. By Cantango x Gribaladi x Inspector, she shows exciting potential, and we&#x2019;re looking forward to her competing in dressage and eventing in 2026.</p>
+      </div>
+    </div>
+    <div class="horse-img-side">
+      <img src="/images/winter-clinic-kylie-rosie.jpg" alt="Paraika (Poppy) at the winter clinic" style="object-position: center 30%;">
+    </div>
+  </article>
+
+  <!-- JOIN THE RIDE -->
+  <section class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form class="jtr-form" onsubmit="return false;">
+        <input class="jtr-input" type="email" placeholder="Email" aria-label="Email address">
+        <button class="btn btn-active" type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="jtr-right">
+      <img src="/images/Horse_720x300.jpg" alt="Horses at Applewood Farm">
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img class="footer-logo" src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne">
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p style="margin-top:0.5rem;"><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p style="margin-top:0.4rem; font-size:0.85rem;">Email or text unless urgent</p>
+        </div>
+        <div class="footer-col">
+          <h4>Applewood Farm</h4>
+          <ul>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/horses/">Horses</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="/bio/">Marilyn&#x2019;s Bio</a></li>
+            <li><a href="/lesson-calendar/">Lesson Calendar</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; Marilyn Payne 2026</span>
+        <span>30 Fox Hill Road, Califon NJ 07830</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
