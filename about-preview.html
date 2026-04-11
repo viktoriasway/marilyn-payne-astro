@@ -76,7 +76,8 @@
     .about-photo-col { position: sticky; top: calc(var(--nav-h) + 2rem); }
     .about-photo-col img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-lg); object-fit: cover; }
     @media (max-width: 768px) {
-      .nav-menu, .nav-cta-left { display: none; }
+      .nav-menu { display: none; }
+      .nav-cta-left a:last-child { display: none; }
       .nav-hamburger { display: flex; }
       .about-section { grid-template-columns: 1fr; padding: 2.5rem 0; gap: 2rem; }
       .about-photo-col { position: static; max-width: 480px; margin: 0 auto; }

@@ -141,25 +141,43 @@
       color: var(--body-text);
     }
 
+    /* Left column wrapper */
+    .christmas-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .christmas-featured-photo {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+
     /* Slideshow — right column */
     .christmas-slideshow {
       position: relative;
       overflow: hidden;
       border-radius: var(--radius);
       box-shadow: var(--shadow-lg);
-      height: 560px;
+      background: var(--body-bg);
+      height: 660px;
     }
     .christmas-slide-track {
       display: flex;
+      align-items: stretch;
       height: 100%;
       transition: transform 0.6s ease;
     }
     .christmas-slide-track img {
       min-width: 100%;
-      height: 100%;
+      max-width: 100%;
+      height: 660px;
       object-fit: cover;
       object-position: center top;
       flex-shrink: 0;
+      display: block;
     }
 
     /* ===== PARTY HEADING SECTION ===== */
@@ -173,42 +191,23 @@
       color: var(--body-text);
     }
 
-    /* ===== MASONRY GALLERY ===== */
+    /* ===== GALLERY TICKER ===== */
     .gallery-section {
       background: var(--body-bg);
       padding: 0 0 80px;
     }
-    .gallery-masonry {
-      column-count: 4;
-      column-gap: 10px;
-    }
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 10px;
-      display: block;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .gallery-item img {
-      width: 100%;
-      display: block;
-      height: auto;
-      transition: transform 0.35s ease;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.04);
-    }
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(114, 19, 62, 0.18);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
+    .gallery-ticker-wrap { overflow: hidden; position: relative; margin-bottom: 0.5rem; }
+    .gallery-ticker-wrap::before,
+    .gallery-ticker-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+    .gallery-ticker-wrap::before { left: 0; background: linear-gradient(to right, var(--body-bg), transparent); }
+    .gallery-ticker-wrap::after  { right: 0; background: linear-gradient(to left,  var(--body-bg), transparent); }
+    .gallery-ticker { display: flex; gap: 0.5rem; width: max-content; animation: galleryTicker 120s linear infinite; }
+    .gallery-ticker.reverse { animation-name: galleryTickerReverse; animation-duration: 90s; }
+    .gallery-ticker:hover { animation-play-state: paused; cursor: pointer; }
+    .gallery-ticker img { height: 220px; width: auto; object-fit: cover; flex-shrink: 0; display: block; }
+    .gallery-ticker.portrait img { height: 280px; }
+    @keyframes galleryTicker        { 0% { transform: translateX(0);    } 100% { transform: translateX(-50%); } }
+    @keyframes galleryTickerReverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0);    } }
 
     /* ===== FOOTER ===== */
     .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
@@ -224,17 +223,15 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
       .christmas-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .christmas-slideshow { height: 420px; }
       .gallery-masonry { column-count: 3; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
       :root { --nav-h: 68px; }
       .nav-menu { display: none; }
-      .nav-cta-left { display: none; }
+      .nav-cta-left a:last-child { display: none; }
       .nav-hamburger { display: flex; }
       .christmas-hero { padding: 48px 0 56px; }
-      .christmas-slideshow { height: 320px; }
       .gallery-masonry { column-count: 2; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
     }
@@ -251,52 +248,52 @@
     <div class="container nav-inner">
 
       <div class="nav-cta-left">
-        <a href="#">Ride Times</a>
-        <a href="#">Entry Forms</a>
+        <a href="/ride-times/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
       </div>
 
       <nav class="nav-menu" aria-label="Main navigation">
 
         <div class="nav-item has-dropdown">
-          <a href="#">About Marilyn</a>
+          <a href="/about/">About Marilyn</a>
           <div class="dropdown">
-            <a href="#">Marilyn's Bio</a>
+            <a href="/bio/">Marilyn's Bio</a>
           </div>
         </div>
 
         <div class="nav-item has-dropdown">
-          <a href="#">Applewood Farm</a>
+          <a href="/applewood-farm/">Applewood Farm</a>
           <div class="dropdown">
-            <a href="#">Lessons</a>
-            <a href="#">Horses</a>
-            <a href="training.html">Training</a>
-            <a href="christmas.html" class="active">Christmas</a>
+            <a href="/lessons/">Lessons</a>
+            <a href="/horses/">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/" class="active">Christmas</a>
           </div>
         </div>
 
         <div class="nav-item">
-          <a href="#">Clinics</a>
+          <a href="/clinics/">Clinics</a>
         </div>
 
         <div class="nav-item">
-          <a href="#">Shows</a>
+          <a href="/shows/">Shows</a>
         </div>
 
         <div class="nav-item has-dropdown">
-          <a href="#">Lesson Calendar</a>
+          <a href="/lesson-calendar/">Lesson Calendar</a>
           <div class="dropdown">
-            <a href="#">Horse Schedule</a>
+            <a href="/horse-schedule/">Horse Schedule</a>
           </div>
         </div>
 
         <div class="nav-item">
-          <a href="#">Working Student</a>
+          <a href="/working-student/">Working Student</a>
         </div>
 
       </nav>
 
-      <a href="index.html" class="nav-logo">
-        <img src="images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm">
+      <a href="/" class="nav-logo">
+        <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm">
       </a>
 
       <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
@@ -307,41 +304,44 @@
 
   <!-- Mobile nav -->
   <nav class="nav-mobile" id="mobile-nav">
-    <a href="#" style="color: var(--brand); font-weight: 700; border-bottom: 2px solid var(--brand);">Ride Times</a>
-    <a href="#" style="color: var(--brand); font-weight: 600;">Entry Forms</a>
-    <a href="#">About Marilyn</a>
-    <a href="#" class="nav-sub">Marilyn's Bio</a>
-    <a href="#">Applewood Farm</a>
-    <a href="#" class="nav-sub">Lessons</a>
-    <a href="#" class="nav-sub">Horses</a>
-    <a href="training.html" class="nav-sub">Training</a>
-    <a href="christmas.html" class="nav-sub active">Christmas</a>
-    <a href="#">Clinics</a>
-    <a href="#">Shows</a>
-    <a href="#">Lesson Calendar</a>
-    <a href="#" class="nav-sub">Horse Schedule</a>
-    <a href="#">Working Student</a>
+    <a href="/lesson-calendar/" style="color: var(--brand); font-weight: 700; border-bottom: 2px solid var(--brand);">Ride Times</a>
+    <a href="/shows/" style="color: var(--brand); font-weight: 600;">Entry Forms</a>
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn's Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub">Lessons</a>
+    <a href="/horses/" class="nav-sub">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub active">Christmas</a>
+    <a href="/clinics/">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
+    <a href="/working-student/">Working Student</a>
   </nav>
 
   <!-- ===== CHRISTMAS HERO ===== -->
   <section class="christmas-hero">
     <div class="container christmas-hero-grid">
 
-      <!-- LEFT: text -->
-      <div class="christmas-text">
-        <h1 class="christmas-title">Christmas</h1>
-        <h2 class="christmas-subtitle">Gymkhana</h2>
-        <p class="christmas-body">The Saturday before Christmas, we dress ourselves and our horses in costume and play games! Wearing everything from antlers to tiaras, our equine friends compete in the high-jump, musical stalls, a trotting race, apple-on-a-spoon, and other equally silly classes. After the fray, we have hot chocolate and cookies by the fire.</p>
+      <!-- LEFT: text + poles photo below -->
+      <div class="christmas-left-col">
+        <div class="christmas-text">
+          <h1 class="christmas-title">Christmas</h1>
+          <h2 class="christmas-subtitle">Gymkhana</h2>
+          <p class="christmas-body">The Saturday before Christmas, we dress ourselves and our horses in costume and play games! Wearing everything from antlers to tiaras, our equine friends compete in the high-jump, musical stalls, a trotting race, apple-on-a-spoon, and other equally silly classes. After the fray, we have hot chocolate and cookies by the fire.</p>
+        </div>
+        <img src="/images/InLine_MusicalStalls.jpg" alt="Musical Stalls at the Christmas Gymkhana" class="christmas-featured-photo">
       </div>
 
-      <!-- RIGHT: slideshow (auto-advance, no controls) -->
+      <!-- RIGHT: slideshow -->
       <div class="christmas-slideshow">
         <div class="christmas-slide-track" id="christmasTrack">
-          <img src="images/IMG_2300.jpg" alt="Christmas Gymkhana">
-          <img src="images/DSCF5863.jpg" alt="Christmas at Applewood">
-          <img src="images/image-113.jpg" alt="Christmas party">
-          <img src="images/Marilyn_Eric.jpg" alt="Marilyn and Eric">
-          <img src="images/IMG_0322.jpg" alt="Christmas Gymkhana">
+          <img src="/images/IMG_2300.jpg" alt="Christmas Gymkhana">
+          <img src="/images/DSCF5863.jpg" alt="Christmas at Applewood">
+          <img src="/images/image-113.jpg" alt="Christmas party">
+          <img src="/images/Marilyn_Eric.jpg" alt="Marilyn and Eric">
+          <img src="/images/IMG_0322.jpg" alt="Christmas Gymkhana">
         </div>
       </div>
 
@@ -355,88 +355,55 @@
     </div>
   </div>
 
-  <!-- ===== GALLERY ===== -->
+  <!-- ===== GALLERY TICKER ===== -->
   <section class="gallery-section">
-    <div class="container">
-      <div class="gallery-masonry">
 
-        <div class="gallery-item">
-          <img src="images/IMG_3462.jpg" alt="Applewood Farm cookies">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/Marilyn_Dick.jpg" alt="Marilyn and Dick">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/IMG_9017.jpg" alt="Christmas Gymkhana jumping">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/DSCF5863.jpg" alt="Christmas at Applewood">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/Zoe.jpg" alt="Zoe">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/IMG_0322.jpg" alt="Decorated horse at Christmas">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/Kelly_Skye.jpg" alt="Kelly and Skye">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/Pops_Kenny.jpg" alt="Pops and Kenny">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/DSCF5892.jpg" alt="Christmas Gymkhana">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/IMG_7421.jpg" alt="Horse with reindeer antlers">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/DSCF5747.jpg" alt="Christmas at Applewood">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/IMG_2300.jpg" alt="Christmas Gymkhana">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/image-113.jpg" alt="Christmas party">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/DSCF5378.jpg" alt="Christmas at Applewood">
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="images/Barn_Gymkhana.jpg" alt="Christmas Gymkhana at Applewood barn">
-          <div class="gallery-overlay"></div>
-        </div>
-
+    <!-- Strip 1: left to right -->
+    <div class="gallery-ticker-wrap">
+      <div class="gallery-ticker" aria-label="Christmas at Applewood Farm">
+        <img src="/images/InLine_MusicalStalls.jpg" alt="Musical Stalls at the Christmas Gymkhana">
+        <img src="/images/IMG_3462.jpg" alt="Applewood Christmas cookies">
+        <img src="/images/DSCF5892.jpg" alt="Christmas Gymkhana">
+        <img src="/images/IMG_9017.jpg" alt="Christmas Gymkhana jumping">
+        <img src="/images/DSCF5747.jpg" alt="Christmas at Applewood">
+        <img src="/images/Barn_Gymkhana.jpg" alt="Christmas Gymkhana at Applewood barn">
+        <img src="/images/IMG_2300.jpg" alt="Christmas Gymkhana">
+        <img src="/images/DSCF5378.jpg" alt="Christmas at Applewood">
+        <!-- duplicate for seamless loop -->
+        <img src="/images/InLine_MusicalStalls.jpg" alt="" aria-hidden="true">
+        <img src="/images/IMG_3462.jpg" alt="" aria-hidden="true">
+        <img src="/images/DSCF5892.jpg" alt="" aria-hidden="true">
+        <img src="/images/IMG_9017.jpg" alt="" aria-hidden="true">
+        <img src="/images/DSCF5747.jpg" alt="" aria-hidden="true">
+        <img src="/images/Barn_Gymkhana.jpg" alt="" aria-hidden="true">
+        <img src="/images/IMG_2300.jpg" alt="" aria-hidden="true">
+        <img src="/images/DSCF5378.jpg" alt="" aria-hidden="true">
       </div>
     </div>
+
+    <!-- Strip 2: right to left -->
+    <div class="gallery-ticker-wrap">
+      <div class="gallery-ticker reverse" aria-label="Applewood Christmas party">
+        <img src="/images/Marilyn_Dick.jpg" alt="Marilyn and Dick at Christmas">
+        <img src="/images/Kelly_Skye.jpg" alt="Kelly and Skye">
+        <img src="/images/Pops_Kenny.jpg" alt="Pops and Kenny">
+        <img src="/images/IMG_7421.jpg" alt="Horse with reindeer antlers">
+        <img src="/images/Zoe.jpg" alt="Zoe at Christmas">
+        <img src="/images/DSCF5863.jpg" alt="Christmas at Applewood">
+        <img src="/images/IMG_0322.jpg" alt="Decorated horse at Christmas">
+        <img src="/images/image-113.jpg" alt="Christmas party">
+        <!-- duplicate for seamless loop -->
+        <img src="/images/Marilyn_Dick.jpg" alt="" aria-hidden="true">
+        <img src="/images/Kelly_Skye.jpg" alt="" aria-hidden="true">
+        <img src="/images/Pops_Kenny.jpg" alt="" aria-hidden="true">
+        <img src="/images/IMG_7421.jpg" alt="" aria-hidden="true">
+        <img src="/images/Zoe.jpg" alt="" aria-hidden="true">
+        <img src="/images/DSCF5863.jpg" alt="" aria-hidden="true">
+        <img src="/images/IMG_0322.jpg" alt="" aria-hidden="true">
+        <img src="/images/image-113.jpg" alt="" aria-hidden="true">
+      </div>
+    </div>
+
   </section>
 
   <!-- ===== FOOTER ===== -->
@@ -444,19 +411,19 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
           <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
           <ul>
-            <li><a href="#">About Marilyn</a></li>
-            <li><a href="#">Lessons</a></li>
-            <li><a href="training.html">Training</a></li>
-            <li><a href="#">Shows &amp; Entry Forms</a></li>
-            <li><a href="#">Clinics</a></li>
-            <li><a href="christmas.html">Christmas</a></li>
-            <li><a href="#">Working Student</a></li>
+            <li><a href="/about/">About Marilyn</a></li>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
           </ul>
         </div>
         <div class="footer-col">

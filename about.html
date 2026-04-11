@@ -111,7 +111,8 @@
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .nav-menu, .nav-cta-left { display: none; }
+      .nav-menu { display: none; }
+      .nav-cta-left a:last-child { display: none; }
       .nav-hamburger { display: flex; }
       .nav-logo img { height: 46px; }
       .about-section { grid-template-columns: 1fr; padding: 2.5rem 0 3rem; gap: 2rem; }
