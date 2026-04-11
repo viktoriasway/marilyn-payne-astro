@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lessons – Marilyn Payne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #72133E; --brand-dark: #56102f;
+      --body-bg: #F3F3F3; --body-text: #333333;
+      --gray-mid: #C7C7C7; --gray-light: #EBEBEB; --gray-dark: #555555;
+      --white: #FFFFFF;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --nav-h: 80px; --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,0.16);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); font-size: 17px; line-height: 1.7; color: var(--body-text); background: var(--body-bg); }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.25; }
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .btn { display: inline-block; font-family: var(--font-sans); font-weight: 600; font-size: 0.9rem; padding: 0.65rem 1.4rem; border-radius: var(--radius); border: 2px solid var(--brand); background: var(--brand); color: var(--white); cursor: pointer; transition: background 0.2s, border-color 0.2s; text-decoration: none; white-space: nowrap; }
+    .btn:hover { background: var(--brand-dark); border-color: var(--brand-dark); color: var(--white); text-decoration: none; }
+    .btn-outline { background: transparent; color: var(--brand); }
+    .btn-outline:hover { background: var(--brand); color: var(--white); }
+
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ===== NAV ===== */
+    .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+    .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-cta-left a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-cta-left a:hover { background: var(--brand); color: var(--white); text-decoration: none; }
+    .nav-menu { display: flex; align-items: center; gap: 0.1rem; }
+    .nav-item { position: relative; }
+    .nav-item > a { font-family: var(--font-sans); font-size: 0.88rem; font-weight: 500; color: var(--body-text); padding: 0.4rem 0.65rem; border-radius: var(--radius); transition: color 0.2s, background 0.2s; white-space: nowrap; text-decoration: none; display: flex; align-items: center; gap: 0.2rem; }
+    .nav-item > a:hover { color: var(--brand); background: #f5e6ed; }
+    .nav-item.active > a { color: var(--brand); font-weight: 700; background: #f5e6ed; }
+    .has-dropdown > a::after { content: '▾'; font-size: 0.65rem; opacity: 0.55; margin-left: 0.1rem; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 180px; padding: 0.4rem 0; z-index: 200; border-top: 3px solid var(--brand); }
+    .nav-item:hover .dropdown, .nav-item:focus-within .dropdown { display: block; }
+    .dropdown a { display: block; padding: 0.5rem 1.1rem; font-size: 0.86rem; color: var(--body-text); text-decoration: none; transition: color 0.15s, background 0.15s; }
+    .dropdown a:hover { color: var(--brand); background: #f5e6ed; }
+    .dropdown a.active { color: var(--brand); font-weight: 600; background: #f5e6ed; }
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 54px; width: auto; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--brand); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--white); box-shadow: var(--shadow-lg); padding: 1rem 1.5rem 1.5rem; z-index: 999; max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a { display: block; font-size: 1rem; font-weight: 500; color: var(--body-text); padding: 0.7rem 0.25rem; border-bottom: 1px solid var(--gray-light); text-decoration: none; }
+    .nav-mobile a:hover { color: var(--brand); }
+    .nav-mobile .nav-sub { padding-left: 1.25rem; font-size: 0.92rem; color: var(--gray-dark); font-weight: 400; }
+    .nav-mobile .nav-sub.active { color: var(--brand); font-weight: 600; }
+
+    /* ===== PAGE BANNER ===== */
+    .page-banner { position: relative; width: 100%; height: 400px; overflow: hidden; }
+    .page-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+    .page-banner-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0.05) 100%); display: flex; align-items: flex-end; padding: 2.5rem 3rem; }
+    .page-banner-overlay h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--white); font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.35); }
+
+    /* ===== LESSONS INTRO ===== */
+    .lessons-intro { background: var(--white); padding: 4rem 0; }
+    .lessons-intro-inner { max-width: 780px; }
+    .lessons-intro h5 { font-family: var(--font-serif); font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 400; font-style: italic; color: var(--brand); margin-bottom: 1.5rem; line-height: 1.4; }
+    .lessons-intro p { font-size: 1rem; line-height: 1.8; color: var(--body-text); }
+    .lessons-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+
+    /* ===== PHOTO CAROUSEL ===== */
+    .at-applewood { background: var(--body-bg); padding: 48px 0 0; overflow: hidden; }
+    .at-applewood-heading { font-family: var(--font-serif); font-size: clamp(4rem, 10vw, 9rem); font-weight: 700; color: rgba(0,0,0,0.07); text-align: center; line-height: 1; margin-bottom: 24px; pointer-events: none; user-select: none; }
+    .at-applewood-carousel { position: relative; overflow: hidden; }
+    .at-applewood-track { display: flex; transition: transform 0.6s ease; }
+    .at-applewood-track img { flex-shrink: 0; width: 25vw; height: 220px; object-fit: cover; display: block; }
+    @media (max-width: 900px) { .at-applewood-track img { width: 33.333vw; } }
+    @media (max-width: 600px) { .at-applewood-track img { width: 50vw; height: 160px; } }
+
+    /* ===== BUY APPAREL ===== */
+    .apparel-section { background: var(--brand); padding: 4rem 0; text-align: center; }
+    .apparel-section h2 { font-family: var(--font-serif); color: var(--white); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.75rem; }
+    .apparel-section p { color: rgba(255,255,255,0.85); font-size: 1rem; margin-bottom: 1.75rem; }
+    .btn-white { background: var(--white); color: var(--brand); border-color: var(--white); }
+    .btn-white:hover { background: var(--gray-light); border-color: var(--gray-light); color: var(--brand); }
+
+    /* ===== JOIN THE RIDE ===== */
+    .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
+    .jtr-left { background: var(--gray-light); display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
+    .jtr-heading { font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--body-text); margin-bottom: 0.6rem; }
+    .jtr-sub { font-size: 0.95rem; color: var(--gray-dark); max-width: 320px; margin-bottom: 1.25rem; }
+    .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
+    .jtr-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.95rem; background: var(--white); color: var(--body-text); }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-col h4 { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
+    .footer-col p { color: #aaa; line-height: 1.6; margin-bottom: 0.4rem; }
+    .footer-col a { color: #aaa; }
+    .footer-col a:hover { color: var(--white); text-decoration: none; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 1rem; filter: brightness(0) invert(1); opacity: 0.85; }
+    .footer-bottom { border-top: 1px solid #444; padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; color: #888; font-size: 0.82rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 768px) {
+      :root { --nav-h: 68px; }
+      .nav-menu { display: none; }
+      .nav-cta-left a:last-child { display: none; }
+      .nav-hamburger { display: flex; }
+      .page-banner { height: 260px; }
+      .page-banner-overlay { padding: 1.5rem; }
+      .lessons-intro { padding: 2.5rem 0; }
+      .lessons-links { flex-direction: column; }
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 2.5rem 1.5rem; }
+      .jtr-right { height: 240px; }
+      .jtr-form { flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+      .footer-bottom { flex-direction: column; gap: 0.25rem; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 1rem; }
+      .gallery-grid { gap: 3px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <div class="nav-cta-left">
+        <a href="/ride-times/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
+      </div>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <div class="nav-item has-dropdown">
+          <a href="/about/">About Marilyn</a>
+          <div class="dropdown"><a href="/bio/">Marilyn's Bio</a></div>
+        </div>
+        <div class="nav-item has-dropdown active">
+          <a href="/applewood-farm/">Applewood Farm</a>
+          <div class="dropdown">
+            <a href="/lessons/" class="active">Lessons</a>
+            <a href="/horses/">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/">Christmas</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="/clinics/">Clinics</a></div>
+        <div class="nav-item"><a href="/shows/">Shows</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="/lesson-calendar/">Lesson Calendar</a>
+          <div class="dropdown"><a href="/horse-schedule/">Horse Schedule</a></div>
+        </div>
+        <div class="nav-item"><a href="/working-student/">Working Student</a></div>
+      </nav>
+      <a href="/" class="nav-logo"><img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm"></a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="nav-mobile" id="mobile-nav">
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn's Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub active">Lessons</a>
+    <a href="/horses/" class="nav-sub">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub">Christmas</a>
+    <a href="/clinics/">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
+    <a href="/working-student/">Working Student</a>
+  </nav>
+
+  <!-- ===== PAGE BANNER ===== -->
+  <div class="page-banner">
+    <img src="/images/4F384F0D-7DD0-4F18-9319-115A5BD9AA58.jpg" alt="Marilyn Payne teaching a dressage lesson">
+    <div class="page-banner-overlay"><h1>Lessons</h1></div>
+  </div>
+
+  <!-- ===== LESSONS INTRO ===== -->
+  <section class="lessons-intro">
+    <div class="container">
+      <div class="lessons-intro-inner">
+        <h5>Private And Semi-Private Lessons Are Available Year-Round At All Levels</h5>
+        <p>Ride with Marilyn Payne, the Olympic judge whose specialty is bringing horse and rider to their full potential! Every rider receives personalized attention to their individual goals. Ride your own horse or one of Applewood's experienced dressage and event horses to refine your skills. Longe line lessons on our schoolmasters can be arranged, allowing you to concentrate on improving your seat and position.</p>
+        <p>Please use the lesson time request form to schedule lessons for up to three months at a time. Rates are listed on the form, and there is a discount depending on the frequency of your scheduled lessons.</p>
+        <div class="lessons-links">
+          <a href="/pdfs/Applewood-2026-Lesson-Request-Form-Q2.pdf" target="_blank" class="btn">Lesson Request Form</a>
+          <a href="/pdfs/Applewood-Farm-Liability-Release.pdf" target="_blank" class="btn btn-outline">Release from Liability</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PHOTO CAROUSEL ===== -->
+  <section class="at-applewood">
+    <div class="at-applewood-heading">At Applewood</div>
+    <div class="at-applewood-carousel">
+      <div class="at-applewood-track" id="aawTrack">
+        <img src="/images/IMG_9608.jpg" alt="At Applewood Farm" style="object-position: center top;">
+        <img src="/images/IMG_9756.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_9824.jpg" alt="At Applewood Farm">
+        <img src="/images/MandMary.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_1040.jpg" alt="At Applewood Farm" style="object-position: center 40%;">
+        <img src="/images/IMG_1042.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_6890.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_6099.jpg" alt="At Applewood Farm">
+        <img src="/images/image-084.jpg" alt="At Applewood Farm">
+        <img src="/images/image-109.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_9838.jpg" alt="At Applewood Farm">
+        <img src="/images/ULIF3645.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_8991.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_9078.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_9285.jpg" alt="At Applewood Farm">
+        <img src="/images/IMG_9477.jpg" alt="At Applewood Farm">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BUY APPLEWOOD APPAREL ===== -->
+  <section class="apparel-section">
+    <div class="container">
+      <h2>Buy Applewood Apparel</h2>
+      <p>Show your Applewood Farm pride with our official apparel collection.</p>
+      <a href="https://grandimpressiondesign.com/collections/applewood-farm" target="_blank" rel="noopener" class="btn btn-white">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- ===== JOIN THE RIDE ===== -->
+  <section class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form action="mailto:hollywc@comcast.net" method="get" enctype="text/plain" class="jtr-form">
+        <input type="hidden" name="subject" value="Join The Ride - New Subscriber">
+        <input type="email" name="body" placeholder="Your email address" class="jtr-input" required>
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </div>
+    <div class="jtr-right">
+      <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/about/">About Marilyn</a></li>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p style="font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; Marilyn Payne 2026</span>
+        <span>Applewood Farm &mdash; Califon, NJ</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    }));
+
+    // ===== AT APPLEWOOD STRIP CAROUSEL =====
+    (function() {
+      const track = document.getElementById('aawTrack');
+      if (!track) return;
+      const origImgs = Array.from(track.children);
+      const total = origImgs.length;
+      let idx = 0;
+      let isSnapping = false;
+
+      function getVisible() {
+        if (window.innerWidth <= 600) return 2;
+        if (window.innerWidth <= 900) return 3;
+        return 4;
+      }
+      function imgPx() { return window.innerWidth / getVisible(); }
+
+      function buildClones() {
+        track.querySelectorAll('.aaw-clone').forEach(c => c.remove());
+        const visible = getVisible();
+        for (let i = 0; i < visible; i++) {
+          const clone = origImgs[i % total].cloneNode(true);
+          clone.classList.add('aaw-clone');
+          track.appendChild(clone);
+        }
+      }
+
+      function moveTo(n, animate) {
+        track.style.transition = animate ? 'transform 0.6s ease' : 'none';
+        track.style.transform = `translateX(-${n * imgPx()}px)`;
+      }
+
+      function advance() {
+        if (isSnapping) return;
+        idx++;
+        moveTo(idx, true);
+        if (idx >= total) {
+          isSnapping = true;
+          setTimeout(() => {
+            track.style.transition = 'none';
+            idx = 0;
+            track.style.transform = 'translateX(0)';
+            requestAnimationFrame(() => requestAnimationFrame(() => { isSnapping = false; }));
+          }, 680);
+        }
+      }
+
+      buildClones();
+      moveTo(0, false);
+      setInterval(advance, 2800);
+      window.addEventListener('resize', () => { buildClones(); moveTo(idx, false); });
+    })();
+  </script>
+
+</body>
+</html>

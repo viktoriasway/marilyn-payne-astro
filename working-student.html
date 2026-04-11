@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Working Student – Marilyn Payne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #72133E; --brand-dark: #56102f;
+      --body-bg: #F3F3F3; --body-text: #333333;
+      --gray-mid: #C7C7C7; --gray-light: #EBEBEB; --gray-dark: #555555;
+      --white: #FFFFFF;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --nav-h: 80px; --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,0.16);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); font-size: 17px; line-height: 1.7; color: var(--body-text); background: var(--body-bg); }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1,h2,h3,h4 { font-family: var(--font-serif); line-height: 1.25; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+    ul { list-style: none; }
+
+    /* Buttons */
+    .btn { display: inline-block; font-family: var(--font-sans); font-weight: 600; font-size: 0.9rem; padding: 0.65rem 1.4rem; border-radius: var(--radius); border: 2px solid var(--brand); background: var(--brand); color: var(--white); cursor: pointer; transition: background 0.2s, border-color 0.2s; text-decoration: none; white-space: nowrap; }
+    .btn:hover { background: var(--brand-dark); border-color: var(--brand-dark); color: var(--white); text-decoration: none; }
+
+    /* Layout */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ===== NAV ===== */
+    .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+
+    .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-cta-left a {
+      font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600;
+      color: var(--brand); border: 2px solid var(--brand); background: transparent;
+      padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap;
+      text-decoration: none; transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta-left a:hover { background: var(--brand); color: var(--white); text-decoration: none; }
+
+    .nav-menu { display: flex; align-items: center; gap: 0.1rem; }
+    .nav-item { position: relative; }
+    .nav-item > a {
+      font-family: var(--font-sans); font-size: 0.88rem; font-weight: 500;
+      color: var(--body-text); padding: 0.4rem 0.65rem; border-radius: var(--radius);
+      transition: color 0.2s, background 0.2s; white-space: nowrap; text-decoration: none;
+      display: flex; align-items: center; gap: 0.2rem;
+    }
+    .nav-item > a:hover { color: var(--brand); background: #f5e6ed; }
+    .nav-item.active > a { color: var(--brand); font-weight: 700; background: #f5e6ed; }
+
+    .has-dropdown > a::after { content: '▾'; font-size: 0.65rem; opacity: 0.55; margin-left: 0.1rem; }
+
+    .dropdown {
+      display: none; position: absolute; top: calc(100% + 4px); left: 0;
+      background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg);
+      min-width: 180px; padding: 0.4rem 0; z-index: 200;
+      border-top: 3px solid var(--brand);
+    }
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown { display: block; }
+    .dropdown a {
+      display: block; padding: 0.5rem 1.1rem; font-size: 0.86rem;
+      color: var(--body-text); text-decoration: none;
+      transition: color 0.15s, background 0.15s;
+    }
+    .dropdown a:hover { color: var(--brand); background: #f5e6ed; }
+    .dropdown a.active { color: var(--brand); font-weight: 600; background: #f5e6ed; }
+
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 54px; width: auto; }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--brand); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--white); box-shadow: var(--shadow-lg); padding: 1rem 1.5rem 1.5rem; z-index: 999; max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a { display: block; font-size: 1rem; font-weight: 500; color: var(--body-text); padding: 0.7rem 0.25rem; border-bottom: 1px solid var(--gray-light); text-decoration: none; }
+    .nav-mobile a:hover { color: var(--brand); }
+    .nav-mobile .nav-sub { padding-left: 1.25rem; font-size: 0.92rem; color: var(--gray-dark); font-weight: 400; }
+    .nav-mobile .active { color: var(--brand); font-weight: 700; }
+
+    /* ===== WORKING STUDENT MAIN ===== */
+    .ws-section {
+      padding: 72px 0 88px;
+      background: var(--body-bg);
+    }
+    .ws-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 4rem;
+      align-items: flex-start;
+    }
+
+    /* Left column */
+    .ws-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--brand);
+      margin-bottom: 0.75rem;
+    }
+    .ws-left h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--brand);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .ws-subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-style: italic;
+      color: var(--gray-dark);
+      margin-bottom: 1.75rem;
+      line-height: 1.4;
+    }
+    .ws-intro {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--body-text);
+      margin-bottom: 2.5rem;
+    }
+
+    .ws-block { margin-bottom: 2.5rem; }
+    .ws-block h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+      color: var(--body-text);
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gray-light);
+    }
+    .ws-block p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--body-text);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Offer list — bold lead + description */
+    .offer-list { list-style: none; padding: 0; }
+    .offer-list li {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.97rem;
+      line-height: 1.6;
+      color: var(--body-text);
+    }
+    .offer-list li::before {
+      content: '→';
+      color: var(--brand);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* Responsibilities list — simple bullets */
+    .resp-list { list-style: none; padding: 0;
+      columns: 2; column-gap: 1.5rem;
+    }
+    .resp-list li {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.97rem;
+      line-height: 1.5;
+      color: var(--body-text);
+      break-inside: avoid;
+    }
+    .resp-list li::before {
+      content: '–';
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+
+    /* Right column (sidebar) */
+    .ws-sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+    }
+    .ws-photo {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .ws-photo img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    .ws-detail-block {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .ws-detail-block h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--brand);
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gray-light);
+    }
+    .ws-detail-block p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--body-text);
+      margin-bottom: 0.5rem;
+    }
+    .ws-detail-block ul {
+      list-style: none; padding: 0; margin-top: 0.5rem;
+    }
+    .ws-detail-block ul li {
+      font-size: 0.93rem;
+      line-height: 1.55;
+      color: var(--body-text);
+      padding: 0.25rem 0;
+      display: flex;
+      gap: 0.55rem;
+    }
+    .ws-detail-block ul li::before {
+      content: '–';
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+    .ws-contact-note {
+      font-size: 0.88rem;
+      color: var(--gray-dark);
+      margin-top: 0.75rem;
+    }
+    .ws-contact-note a { color: var(--brand); }
+
+    /* ===== JOIN THE RIDE ===== */
+    .join-the-ride {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 360px;
+    }
+    .jtr-left {
+      background: var(--gray-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 56px;
+    }
+    .jtr-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--body-text);
+      margin-bottom: 0.6rem;
+    }
+    .jtr-sub {
+      font-size: 0.95rem;
+      color: var(--gray-dark);
+      max-width: 320px;
+      margin-bottom: 1.25rem;
+    }
+    .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
+    .jtr-input {
+      flex: 1;
+      padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius);
+      font-family: var(--font-sans); font-size: 0.95rem;
+      background: var(--white); color: var(--body-text);
+    }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+    /* ===== FOOTER ===== */
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-col h4 { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
+    .footer-col p { color: #aaa; line-height: 1.6; }
+    .footer-col a { color: #aaa; }
+    .footer-col a:hover { color: var(--white); text-decoration: none; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 1rem; filter: brightness(0) invert(1); opacity: 0.85; }
+    .footer-bottom { border-top: 1px solid #444; padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; color: #888; font-size: 0.82rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .ws-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .ws-sidebar { position: static; }
+      .resp-list { columns: 1; }
+    }
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .nav-hamburger { display: flex; }
+      .ws-section { padding: 48px 0 64px; }
+      .ws-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .ws-sidebar { position: static; }
+      .ws-photo img { height: 420px; }
+      .resp-list { columns: 1; }
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 40px 1.5rem; }
+      .jtr-right { height: 240px; }
+      .jtr-form { flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+      .footer-bottom { flex-direction: column; gap: 0.25rem; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container nav-inner">
+
+      <!-- LEFT: CTA buttons -->
+      <div class="nav-cta-left">
+        <a href="/ride-times/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
+      </div>
+
+      <!-- CENTER: main navigation -->
+      <nav class="nav-menu" aria-label="Main navigation">
+
+        <div class="nav-item has-dropdown">
+          <a href="/about/">About Marilyn</a>
+          <div class="dropdown">
+            <a href="/bio/">Marilyn's Bio</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="/applewood-farm/">Applewood Farm</a>
+          <div class="dropdown">
+            <a href="/lessons/">Lessons</a>
+            <a href="/horses/">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/">Christmas</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="/clinics/">Clinics</a>
+        </div>
+
+        <div class="nav-item">
+          <a href="/shows/">Shows</a>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="/lesson-calendar/">Lesson Calendar</a>
+          <div class="dropdown">
+            <a href="/horse-schedule/">Horse Schedule</a>
+          </div>
+        </div>
+
+        <div class="nav-item active">
+          <a href="/working-student/">Working Student</a>
+        </div>
+
+      </nav>
+
+      <!-- RIGHT: logo -->
+      <a href="/" class="nav-logo">
+        <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne – Applewood Farm">
+      </a>
+
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="nav-mobile" id="mobile-nav">
+    <a href="/ride-times/">Ride Times</a>
+    <a href="/shows/">Entry Forms</a>
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn's Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub">Lessons</a>
+    <a href="/horses/" class="nav-sub">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub">Christmas</a>
+    <a href="/clinics/">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
+    <a href="/working-student/" class="active">Working Student</a>
+  </nav>
+
+  <!-- ===== WORKING STUDENT CONTENT ===== -->
+  <section class="ws-section">
+    <div class="container">
+      <div class="ws-grid">
+
+        <!-- LEFT: main content -->
+        <div class="ws-left">
+          <p class="ws-eyebrow">Join Us</p>
+          <h1>Working Students Wanted!</h1>
+          <p class="ws-subtitle">Train with an Olympic-Level Judge &amp; Trainer at Applewood Farm</p>
+          <p class="ws-intro">Are you a motivated rider looking to immerse yourself in high-level dressage and eventing? Applewood Farm offers part-time working student positions with the rare opportunity to train directly with an Olympic-level judge and trainer, ride steady schoolmasters, and help develop talented young horses. Basic level of horse experience preferred.</p>
+
+          <div class="ws-block">
+            <h2>What We Offer Working Students</h2>
+            <p>You'll be part of a supportive, professional training environment and have access to:</p>
+            <ul class="offer-list">
+              <li><span><strong>Lessons on quality schoolmasters</strong>, including longe-line lessons to deepen your seat and improve your position</span></li>
+              <li><span><strong>Supervised instruction</strong> while warming up, schooling, and handling young horses and horses in training</span></li>
+              <li><span><strong>Opportunities to compete</strong> in dressage and/or eventing (showing experience can be tailored to your goals)</span></li>
+              <li><span><strong>Varied riding experience</strong> on a range of horses at different stages of training</span></li>
+              <li><span><strong>Participation in on-farm clinics and shows</strong> held at Applewood</span></li>
+              <li><span><strong>A friendly, team-oriented barn culture</strong> focused on learning, kindness, and professionalism</span></li>
+              <li><span><strong>Additional income opportunities</strong> through grooming, clipping, and braiding boarders' horses</span></li>
+            </ul>
+          </div>
+
+          <div class="ws-block">
+            <h2>Typical Responsibilities</h2>
+            <p>Depending on your experience and ability, your work may include:</p>
+            <ul class="resp-list">
+              <li>Exercising and schooling horses</li>
+              <li>Longeing and handling young horses</li>
+              <li>Warming up and cooling out horses</li>
+              <li>Tacking up and untacking</li>
+              <li>Trail riding and conditioning</li>
+              <li>Grooming and cleaning tack</li>
+              <li>Feeding, turnout, and routine barn chores</li>
+              <li>Basic office and computer work</li>
+              <li>Assisting with overall barn management</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- RIGHT: photo + details sidebar -->
+        <div class="ws-sidebar">
+          <div class="ws-photo">
+            <img src="/images/IMG_7029.jpg" alt="Working students at Applewood Farm">
+          </div>
+
+          <div class="ws-detail-block">
+            <h3>Position Details</h3>
+            <p><strong>Part-Time Working Student</strong></p>
+            <ul>
+              <li>Flexible hours and days — single, half-day, and afternoon slots</li>
+              <li>Compensation based on the number of hours worked</li>
+            </ul>
+          </div>
+
+          <div class="ws-detail-block">
+            <h3>Qualifications</h3>
+            <p>The most important qualities are <strong>dedication, reliability, and a strong desire to learn</strong>. Additional (helpful but not required) skills include:</p>
+            <ul>
+              <li>Solid riding ability</li>
+              <li>Experience longeing</li>
+              <li>Confidence handling horses of all ages and temperaments</li>
+            </ul>
+            <p class="ws-contact-note" style="margin-top:1.25rem;">If you're eager to grow as a horseperson, ride outstanding horses, and learn from top-level instruction, we'd love to hear from you. For more information or to arrange an interview, please contact:<br><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOIN THE RIDE ===== -->
+  <section class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form action="mailto:hollywc@comcast.net" method="get" enctype="text/plain" class="jtr-form">
+        <input type="hidden" name="subject" value="Join The Ride - New Subscriber">
+        <input type="email" name="body" placeholder="Your email address" class="jtr-input" required>
+        <button type="submit" class="btn btn-active">Subscribe</button>
+      </form>
+    </div>
+    <div class="jtr-right">
+      <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/about/">About Marilyn</a></li>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p style="margin-top:0.75rem;"><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p style="margin-top:0.5rem;font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; Marilyn Payne 2026</span>
+        <span>Applewood Farm &mdash; Califon, NJ</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    }));
+  </script>
+
+</body>
+</html>
