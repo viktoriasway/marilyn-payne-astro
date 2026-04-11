@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinics - Marilyn Payne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    :root {
+      --brand: #72133E; --brand-dark: #56102f; --body-bg: #F3F3F3;
+      --body-text: #333333; --gray-mid: #C7C7C7; --gray-light: #EBEBEB;
+      --gray-dark: #555555; --white: #FFFFFF;
+      --font-serif: 'Libre Baskerville', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --nav-h: 80px; --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,0.16);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--body-bg); color: var(--body-text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
+    /* NAV */
+    .site-header { position: sticky; top: 0; z-index: 1000; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); height: var(--nav-h); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+    .nav-cta-left { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-cta-left a { font-size: 0.88rem; font-weight: 600; color: var(--brand); border: 2px solid var(--brand); background: transparent; padding: 0.4rem 0.9rem; border-radius: 30px; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+    .nav-cta-left a:hover { background: var(--brand); color: var(--white); }
+    .nav-menu { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-item { position: relative; }
+    .nav-item > a { font-size: 0.95rem; font-weight: 400; color: var(--brand); white-space: nowrap; padding: 0.3rem 0; transition: opacity 0.2s; }
+    .nav-item > a:hover { opacity: 0.7; }
+    .nav-item.active > a { font-weight: 700; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: var(--white); border: 1px solid var(--gray-light); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 160px; padding: 0.4rem 0; z-index: 200; }
+    .dropdown a { display: block; padding: 0.5rem 1rem; font-size: 0.88rem; color: var(--body-text); white-space: nowrap; }
+    .dropdown a:hover { background: var(--gray-light); }
+    .nav-item.has-dropdown:hover .dropdown { display: block; }
+    .nav-logo img { height: 56px; width: auto; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--brand); border-radius: 2px; }
+    .nav-mobile { display: none; position: fixed; inset: 0; background: var(--white); z-index: 999; flex-direction: column; padding: 2rem 1.5rem; gap: 0; overflow-y: auto; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { display: block; padding: 0.75rem 0; font-size: 1.05rem; color: var(--brand); border-bottom: 1px solid var(--gray-light); font-weight: 600; }
+    .nav-mobile a.nav-sub { font-size: 0.92rem; font-weight: 400; color: var(--body-text); padding-left: 1rem; }
+    .nav-mobile-close { align-self: flex-end; background: none; border: none; font-size: 1.8rem; color: var(--brand); cursor: pointer; margin-bottom: 1rem; }
+    /* PAGE TITLE (no banner — this page has no photo banner on live WP) */
+    .page-title { background: var(--white); padding: 2.5rem 0; text-align: center; }
+    .page-title h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.2rem); color: var(--body-text); font-weight: 700; margin-bottom: 1rem; }
+    .page-title p { max-width: 720px; margin: 0 auto; font-size: 1.08rem; line-height: 1.75; color: var(--body-text); }
+    /* CLINIC SECTIONS */
+    .clinic-section { padding: 3.5rem 0; }
+    .clinic-section:nth-child(even) { background: var(--white); }
+    .clinic-section:nth-child(odd) { background: var(--gray-light); }
+    .clinic-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    /* LEFT: text content */
+    .clinic-content h2 { font-family: var(--font-serif); font-size: clamp(1.5rem, 2.8vw, 2.1rem); margin-bottom: 1rem; line-height: 1.25; color: var(--body-text); }
+    .clinic-content p { font-size: 0.97rem; line-height: 1.75; margin-bottom: 1.1rem; }
+    .clinic-subhead { font-weight: 700; font-size: 1rem; margin-bottom: 0.75rem; color: var(--body-text); }
+    .clinic-fee { font-size: 0.9rem; font-weight: 600; color: var(--brand); margin-bottom: 1.1rem; }
+    /* RIGHT: photos + dates */
+    .clinic-aside { display: flex; flex-direction: column; gap: 1.25rem; }
+    .clinic-photo-single { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .clinic-photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .clinic-photo-pair img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+    /* dates */
+    .clinic-dates { background: var(--white); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow); }
+    .clinic-section:nth-child(even) .clinic-dates { background: var(--gray-light); }
+    .dates-header { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand); margin-bottom: 0.75rem; }
+    .date-row { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--gray-mid); gap: 1rem; }
+    .date-row:last-child { border-bottom: none; }
+    .date-label { font-size: 0.9rem; font-weight: 600; }
+    /* buttons */
+    .btn { display: inline-block; padding: 0.45rem 1.1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+    .btn-active { background: var(--brand); color: var(--white); border: 2px solid var(--brand); }
+    .btn-active:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+    .btn-disabled { background: transparent; color: var(--gray-dark); border: 2px solid var(--gray-mid); cursor: default; pointer-events: none; }
+    .btn-white { background: var(--white); color: var(--brand); border: 2px solid var(--white); }
+    .btn-white:hover { background: transparent; color: var(--white); }
+    .btn-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    /* levels list */
+    .levels-list { list-style: none; margin: 0 0 1.25rem; padding: 0; }
+    .levels-list li { font-size: 0.9rem; padding: 0.3rem 0; border-bottom: 1px solid var(--gray-mid); }
+    .levels-list li:last-child { border-bottom: none; }
+    /* GET IN TOUCH */
+    .get-in-touch { background: var(--brand); padding: 3rem 0; text-align: center; }
+    .get-in-touch h2 { font-family: var(--font-serif); color: var(--white); font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 1.5rem; }
+    .contact-grid { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; }
+    .contact-item { color: rgba(255,255,255,0.85); font-size: 0.97rem; line-height: 1.7; }
+    .contact-item a { color: var(--white); text-decoration: underline; }
+    /* APPAREL */
+    .apparel-cta { background: var(--body-text); padding: 3.5rem 0; text-align: center; }
+    .apparel-cta h2 { font-family: var(--font-serif); color: var(--white); font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 1.5rem; }
+    /* JOIN THE RIDE */
+    .join-the-ride { display: grid; grid-template-columns: 1fr 1fr; height: 360px; }
+    .jtr-left { background: var(--gray-light); display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; }
+    .jtr-heading { font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--body-text); margin-bottom: 0.6rem; }
+    .jtr-sub { font-size: 0.95rem; color: var(--gray-dark); max-width: 320px; margin-bottom: 1.5rem; line-height: 1.6; }
+    .jtr-form { display: flex; gap: 0.6rem; max-width: 380px; }
+    .jtr-input { flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--gray-mid); border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.95rem; background: var(--white); color: var(--body-text); }
+    .jtr-input:focus { outline: none; border-color: var(--brand); }
+    .jtr-right { overflow: hidden; }
+    .jtr-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    /* FOOTER */
+    .site-footer { background: var(--body-text); color: #ccc; padding: 56px 0 32px; font-size: 0.92rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo { height: 48px; width: auto; margin-bottom: 0.75rem; filter: brightness(0) invert(1); opacity: 0.7; }
+    .footer-col p { color: #aaa; line-height: 1.6; margin-bottom: 0.4rem; }
+    .footer-col h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--white); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.4rem; }
+    .footer-col ul li a, .footer-col a { color: #aaa; transition: color 0.2s; }
+    .footer-col ul li a:hover, .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 0; display: flex; justify-content: space-between; font-size: 0.82rem; color: #888; }
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .nav-cta-left a:last-child { display: none; }
+      .nav-hamburger { display: flex; }
+      .clinic-inner { grid-template-columns: 1fr; }
+      .clinic-photo-pair { grid-template-columns: 1fr 1fr; }
+      .clinic-photo-pair img { aspect-ratio: 4/3; }
+      .join-the-ride { grid-template-columns: 1fr; height: auto; }
+      .jtr-left { padding: 2rem 1.5rem; }
+      .jtr-right { height: 200px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.25rem; }
+      .date-row { flex-direction: column; align-items: flex-start; }
+      .contact-grid { flex-direction: column; gap: 1.25rem; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <div class="nav-cta-left">
+        <a href="/ride-times/">Ride Times</a>
+        <a href="/shows/">Entry Forms</a>
+      </div>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <div class="nav-item has-dropdown">
+          <a href="/about/">About Marilyn</a>
+          <div class="dropdown"><a href="/bio/">Marilyn's Bio</a></div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="/applewood-farm/">Applewood Farm</a>
+          <div class="dropdown">
+            <a href="/lessons/">Lessons</a>
+            <a href="/horses/">Horses</a>
+            <a href="/training/">Training</a>
+            <a href="/christmas/">Christmas</a>
+          </div>
+        </div>
+        <div class="nav-item active"><a href="/clinics/">Clinics</a></div>
+        <div class="nav-item"><a href="/shows/">Shows</a></div>
+        <div class="nav-item has-dropdown">
+          <a href="/lesson-calendar/">Lesson Calendar</a>
+          <div class="dropdown"><a href="/horse-schedule/">Horse Schedule</a></div>
+        </div>
+        <div class="nav-item"><a href="/working-student/">Working Student</a></div>
+      </nav>
+      <a href="/" class="nav-logo"><img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne - Applewood Farm"></a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="nav-mobile" id="mobile-nav">
+    <a href="/lesson-calendar/" style="color: var(--brand); font-weight: 700; border-bottom: 2px solid var(--brand);">Ride Times</a>
+    <a href="/shows/" style="color: var(--brand); font-weight: 600;">Entry Forms</a>
+    <a href="/about/">About Marilyn</a>
+    <a href="/bio/" class="nav-sub">Marilyn's Bio</a>
+    <a href="/applewood-farm/">Applewood Farm</a>
+    <a href="/lessons/" class="nav-sub">Lessons</a>
+    <a href="/horses/" class="nav-sub">Horses</a>
+    <a href="/training/" class="nav-sub">Training</a>
+    <a href="/christmas/" class="nav-sub">Christmas</a>
+    <a href="/clinics/" class="active">Clinics</a>
+    <a href="/shows/">Shows</a>
+    <a href="/lesson-calendar/">Lesson Calendar</a>
+    <a href="/horse-schedule/" class="nav-sub">Horse Schedule</a>
+    <a href="/working-student/">Working Student</a>
+  </nav>
+
+  <!-- PAGE TITLE — no banner on live WP page -->
+  <div class="page-title">
+    <h1>Riding Clinics at Applewood</h1>
+    <p>Clinics are held throughout the year for both eventers and dressage riders. All horses and riders from entry level through advanced are welcome! Participants are scheduled in groups of four to six, at the appropriate level for their stage of development and their goals.</p>
+  </div>
+
+  <!-- WINTER JUMPING & CAVALETTI CLINICS -->
+  <div class="clinic-section">
+    <div class="container clinic-inner">
+      <div class="clinic-content">
+        <h2>Winter Jumping &amp; Cavaletti Clinics</h2>
+        <div class="btn-row">
+          <span class="btn btn-disabled">Entry Form</span>
+        </div>
+        <p>Applewood&rsquo;s winter series of jumping clinics offer an opportunity to tune up your jumping skills and get ready for the spring season, while riding in comfort indoors on perfect footing. Levels offered: Intro/Starter through Preliminary.</p>
+        <p>Dressage riders enjoy the cavalletti-only sessions, which include cavalletti at walk, trot and canter, on straight lines and circles, plus exercises for lengthening and shortening strides. Each one of the three clinics in this series will include cavalletti-only sessions for dressage horses and riders.</p>
+        <p>Auditors may observe at no charge from the heated viewing lounge, which is equipped with a sound system. Complimentary refreshments are available all day.</p>
+        <p>Each group includes 4 to 6 riders and runs 1&frac12; to 2 hours. Please indicate the date you prefer on the entry form &mdash; one date per clinic! You may enter the entire series at once, or enter individual clinics.</p>
+        <ul class="levels-list">
+          <li>Cavaletti only</li>
+          <li>Starter: x-rails to 2&prime;3&Prime;</li>
+          <li>Beginner Novice: 2&prime;3&Prime; to 2&prime;7&Prime;</li>
+          <li>Novice: 2&prime;7&Prime; to 2&prime;11&Prime;</li>
+          <li>Training: 2&prime;11&Prime; to 3&prime;3&Prime;</li>
+          <li>Modified: 3&prime;3&Prime; to 3&prime;5&Prime;</li>
+          <li>Preliminary: 3&prime;5&Prime; to 3&prime;7&Prime;</li>
+        </ul>
+      </div>
+      <div class="clinic-aside">
+        <div class="clinic-photo-pair">
+          <img src="/images/DSCF6595.jpg" alt="Winter clinic at Applewood Farm">
+          <img src="/images/AF-Winter-Clinic-Cavaletti-2024-2.jpg" alt="Cavaletti clinic at Applewood Farm">
+        </div>
+        <div class="clinic-dates">
+          <div class="dates-header">2026 Jumping Clinic Dates</div>
+          <div class="date-row">
+            <span class="date-label">January 23rd, 24th &amp; 25th</span>
+            <span class="btn btn-disabled">Ride Times</span>
+          </div>
+          <div class="date-row">
+            <span class="date-label">February 20th, 21st &amp; 22nd</span>
+            <span class="btn btn-disabled">Ride Times</span>
+          </div>
+          <div class="date-row">
+            <span class="date-label">March 27th, 28th &amp; 29th</span>
+            <span class="btn btn-disabled">Ride Times</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW DRESSAGE TESTS CLINIC -->
+  <div class="clinic-section">
+    <div class="container clinic-inner">
+      <div class="clinic-content">
+        <h2>New Dressage Tests Clinic</h2>
+        <div class="btn-row">
+          <span class="btn btn-disabled">Entry Form</span>
+        </div>
+        <p class="clinic-subhead">Discover the New USEA 2026 Dressage Tests</p>
+        <p>Join us at Applewood Farm on January 31 for a welcoming, educational clinic focused on the new USEA 2026 Dressage Tests. This clinic is open to judges, riders, and trainers who want to deepen their understanding of the updates, intent, and rideability of the new tests. Participants are invited to learn in the way that suits them best &mdash; observe comfortably from the heated viewing room or join us in the indoor arena for interactive, engaging discussions. Whether you&rsquo;re preparing to teach, judge, or ride these tests, this clinic offers a relaxed and supportive environment to ask questions, share perspectives, and leave feeling confident and inspired.</p>
+        <p><strong>Day 1 &mdash; Demo rides:</strong> Marilyn will explain each new test with a demo horse and rider, followed by a discussion with both judges and riders. 30 min per test.</p>
+        <p><strong>Day 2 &mdash; Fix-a-test:</strong> Riders can sign up to ride a test of their choice, then Marilyn will work with the rider on any elements she feels need improving for the remainder of the session. 30 minutes per test; lunch will be served.</p>
+        <p class="clinic-fee">Fee: Demo rides &mdash; $100 per rider, $25 to audit &nbsp;&bull;&nbsp; Fix-a-test rides &mdash; $125 per rider, $25 to audit</p>
+      </div>
+      <div class="clinic-aside">
+        <img class="clinic-photo-single" src="/images/Layla-and-Kylie-2020.jpg" alt="Dressage clinic at Applewood Farm">
+        <div class="clinic-dates">
+          <div class="dates-header">2026 &mdash; New USEA Tests</div>
+          <div class="date-row">
+            <span class="date-label">January 31st</span>
+            <span class="btn btn-disabled">Ride Times</span>
+          </div>
+          <div class="date-row">
+            <span class="date-label">February 1st</span>
+            <span class="btn btn-disabled">Ride Times</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CROSS COUNTRY CLINICS -->
+  <div class="clinic-section">
+    <div class="container clinic-inner">
+      <div class="clinic-content">
+        <h2>Cross Country Clinics</h2>
+        <div class="btn-row">
+          <a href="/pdfs/Applewood-2026-Spring-XC-Tune-up-Entry-Form.pdf" target="_blank" class="btn btn-active">Entry Form</a>
+        </div>
+        <p>Tune up your cross-country skills! Get ready for the spring events, or enjoy the outdoors on your dressage horse. Groups for Starter through Prelim levels, including cavaletti-only. All groups will ride from the indoor arena to the outdoor and back, to avoid early-spring footing problems. Learn to trot, canter, gallop and jump from light into dark, and vice-versa. Work on galloping and balancing before fences, practice narrow fences, &ldquo;fake&rdquo; ditches, and turn questions outdoors. Cavaletti groups will ride both indoors and out, working on lengthening and shortening strides, bending lines and going from light to dark and back again.</p>
+        <p>Cross-country clinics offer groups for every level, including Applewood&rsquo;s very popular cavaletti-only group for dressage horses and riders. All groups consist of up to six riders; each group rides between one and two hours. Depending on the level, obstacles include ditches, banks, water and other appropriate XC questions.</p>
+        <p>This clinic will be outdoors and will include a variety of obstacles on Applewood Farm&rsquo;s cross-country courses. Groups of no more than six riders of similar experience will ride at levels ranging from Starter through Training, schooling over banks, ditches, logs, water and other obstacles, depending on the appropriateness of these challenges for the level of each group. A special group for dressage riders will consist of cavaletti only, and will include questions such as bending lines, riding up and down gentle grades, lengthening and shortening strides, and a shallow water crossing.</p>
+        <ul class="levels-list">
+          <li>Cavaletti only</li>
+          <li>Starter: x-rails to 2&prime;3&Prime;</li>
+          <li>Beginner Novice: 2&prime;3&Prime; to 2&prime;7&Prime;</li>
+          <li>Novice: 2&prime;7&Prime; to 2&prime;11&Prime;</li>
+          <li>Training: 2&prime;11&Prime; to 3&prime;3&Prime;</li>
+          <li>Modified: 3&prime;3&Prime; to 3&prime;5&Prime;</li>
+          <li>Preliminary: 3&prime;5&Prime; to 3&prime;7&Prime;</li>
+        </ul>
+        <p class="clinic-fee">Fee: $125 per rider per group</p>
+      </div>
+      <div class="clinic-aside">
+        <div class="clinic-photo-pair">
+          <img src="/images/May-Applewood-2016-148.jpg" alt="Cross country clinic at Applewood Farm">
+          <img src="/images/Travis-2020-2.jpg" alt="Cross country jumping at Applewood Farm">
+        </div>
+        <div class="clinic-dates">
+          <div class="dates-header">2026 Cross Country Dates</div>
+          <div class="date-row">
+            <span class="date-label">April 10th &amp; 12th</span>
+            <span class="btn btn-disabled">Ride Times</span>
+          </div>
+          <div class="date-row">
+            <span class="date-label">Summer 1 &mdash; TBD</span>
+            <span class="btn btn-disabled">Ride Times</span>
+          </div>
+          <div class="date-row">
+            <span class="date-label">Summer 2 &mdash; TBD</span>
+            <span class="btn btn-disabled">Ride Times</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GET IN TOUCH -->
+  <section class="get-in-touch">
+    <h2>Get In Touch</h2>
+    <div class="contact-grid">
+      <div class="contact-item">30 Fox Hill Road<br>Califon, NJ 07830</div>
+      <div class="contact-item"><a href="tel:9083340105">908-334-0105</a></div>
+      <div class="contact-item"><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a><br>Email or text unless urgent</div>
+    </div>
+  </section>
+
+  <!-- BUY APPLEWOOD APPAREL -->
+  <section class="apparel-cta">
+    <h2>Buy Applewood Apparel</h2>
+    <a href="https://grandimpressiondesign.com/collections/applewood-farm" target="_blank" class="btn btn-white">Click Here</a>
+  </section>
+
+  <!-- JOIN THE RIDE -->
+  <section class="join-the-ride">
+    <div class="jtr-left">
+      <h2 class="jtr-heading">Join The Ride</h2>
+      <p class="jtr-sub">Subscribe to receive emails about upcoming shows and clinics.</p>
+      <form action="mailto:hollywc@comcast.net" method="get" enctype="text/plain" class="jtr-form">
+        <input type="hidden" name="subject" value="Join The Ride - New Subscriber">
+        <input type="email" name="body" placeholder="Your email address" class="jtr-input" required>
+        <button type="submit" class="btn btn-active">Subscribe</button>
+      </form>
+    </div>
+    <div class="jtr-right">
+      <img src="/images/join-the-ride.jpg" alt="Applewood Farm">
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="/images/MP-Logo-2@2x.png" alt="Marilyn Payne" class="footer-logo">
+          <p>Eventing, dressage, lessons, clinics, and shows at Applewood Farm in Califon, NJ.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/about/">About Marilyn</a></li>
+            <li><a href="/lessons/">Lessons</a></li>
+            <li><a href="/training/">Training</a></li>
+            <li><a href="/shows/">Shows &amp; Entry Forms</a></li>
+            <li><a href="/clinics/">Clinics</a></li>
+            <li><a href="/christmas/">Christmas</a></li>
+            <li><a href="/working-student/">Working Student</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>30 Fox Hill Road<br>Califon, NJ 07830</p>
+          <p style="margin-top:0.75rem;"><a href="tel:9083340105">908-334-0105</a></p>
+          <p><a href="mailto:applewoodfarm@comcast.net">applewoodfarm@comcast.net</a></p>
+          <p style="margin-top:0.5rem;font-size:0.88rem;color:#777;">Email or text unless urgent.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; Marilyn Payne 2026</span>
+        <span>Applewood Farm &mdash; Califon, NJ</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+    }));
+  </script>
+
+</body>
+</html>
