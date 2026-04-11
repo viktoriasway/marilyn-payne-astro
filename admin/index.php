@@ -39,10 +39,35 @@ if (isset($_GET['logout'])) {
 
 $authed = !empty($_SESSION['authed']);
 
-// Load shows data
+// Load / save shows data
 function load_shows() {
   $data = file_get_contents(SHOWS_JSON);
-  return json_decode($data, true) ?: ['ride_times' => [], 'results' => (object)[]];
+  return json_decode($data, true) ?: ['ride_times' => [], 'results' => []];
+}
+function save_shows($data) {
+  file_put_contents(SHOWS_JSON, json_encode($data, JSON_PRETTY_PRINT));
+}
+
+// Handle deletes (processed here so no separate delete.php needed)
+if ($authed && isset($_POST['delete_type'])) {
+  $shows_d = load_shows();
+  if (!is_array($shows_d['results'])) $shows_d['results'] = [];
+
+  if ($_POST['delete_type'] === 'ride_times') {
+    $index = (int)($_POST['index'] ?? -1);
+    if (isset($shows_d['ride_times'][$index])) {
+      array_splice($shows_d['ride_times'], $index, 1);
+      save_shows($shows_d);
+    }
+  } elseif ($_POST['delete_type'] === 'results') {
+    $slug = $_POST['slug'] ?? '';
+    if (isset($shows_d['results'][$slug])) {
+      unset($shows_d['results'][$slug]);
+      save_shows($shows_d);
+    }
+  }
+  header('Location: /admin/?msg=del');
+  exit;
 }
 
 $shows = load_shows();
@@ -159,8 +184,8 @@ $message = $_GET['msg'] ?? '';
               <div class="pdf-name"><?= htmlspecialchars($rt['event']) ?></div>
               <div class="pdf-file"><a href="<?= htmlspecialchars($rt['pdf']) ?>" target="_blank">View PDF</a></div>
             </div>
-            <form method="post" action="/admin/delete.php">
-              <input type="hidden" name="type" value="ride_times">
+            <form method="post" action="/admin/">
+              <input type="hidden" name="delete_type" value="ride_times">
               <input type="hidden" name="index" value="<?= $i ?>">
               <button type="submit" class="btn btn-del" onclick="return confirm('Remove this ride times entry?')">Delete</button>
             </form>
@@ -209,8 +234,8 @@ $message = $_GET['msg'] ?? '';
               <div class="pdf-name"><?= htmlspecialchars($show_options[$slug] ?? $slug) ?></div>
               <div class="pdf-file"><a href="<?= htmlspecialchars($pdf) ?>" target="_blank">View PDF</a></div>
             </div>
-            <form method="post" action="/admin/delete.php">
-              <input type="hidden" name="type" value="results">
+            <form method="post" action="/admin/">
+              <input type="hidden" name="delete_type" value="results">
               <input type="hidden" name="slug" value="<?= htmlspecialchars($slug) ?>">
               <button type="submit" class="btn btn-del" onclick="return confirm('Remove results for this show?')">Delete</button>
             </form>
