@@ -52,10 +52,24 @@ if (!isset($shows['results']) || !is_array($shows['results'])) {
   $shows['results'] = [];
 }
 
+$show_labels = [
+  'schooling-2026-may-13'  => 'Schooling Show — May 13',
+  'schooling-2026-jun-17'  => 'Schooling Show — June 17',
+  'schooling-2026-jul-08'  => 'Schooling Show — July 8',
+  'schooling-2026-aug-05'  => 'Schooling Show — August 5',
+  'schooling-2026-sep-09'  => 'Schooling Show — September 9',
+  'schooling-2026-oct-10'  => 'Schooling Show — October 10',
+  'mini-event-2026-jul-15' => 'Mini Event — July 15',
+  'mini-event-2026-aug-12' => 'Mini Event — August 12',
+  'yeh-2026-jul-15'        => 'Young Event Horse — July 15',
+  'yeh-2026-aug-12'        => 'Young Event Horse — August 12',
+];
+
 if ($type === 'ride_times') {
-  $event = trim($_POST['event_name'] ?? '');
-  if (empty($event)) { header('Location: /admin/?msg=err'); exit; }
-  $shows['ride_times'][] = ['event' => $event, 'pdf' => '/pdfs/' . $filename];
+  $slug = $_POST['show_slug'] ?? '';
+  if (!in_array($slug, $valid_slugs, true)) { header('Location: /admin/?msg=err'); exit; }
+  $event = $show_labels[$slug];
+  $shows['ride_times'][] = ['show_slug' => $slug, 'event' => $event, 'pdf' => '/pdfs/' . $filename];
 
 } elseif ($type === 'results') {
   $slug = $_POST['show_slug'] ?? '';

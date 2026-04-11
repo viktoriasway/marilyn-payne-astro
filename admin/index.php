@@ -174,8 +174,13 @@ $message = $_GET['msg'] ?? '';
       <form method="post" action="/admin/upload.php" enctype="multipart/form-data">
         <input type="hidden" name="type" value="ride_times">
         <div class="field">
-          <label>Event Name (e.g. Schooling Show — May 13)</label>
-          <input type="text" name="event_name" placeholder="Event name" required>
+          <label>Show</label>
+          <select name="show_slug" required>
+            <option value="">— Select a show —</option>
+            <?php foreach ($show_options as $slug => $label): ?>
+              <option value="<?= $slug ?>"><?= htmlspecialchars($label) ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
         <div class="field">
           <label>PDF File</label>
