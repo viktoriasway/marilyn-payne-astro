@@ -14,7 +14,11 @@ $valid_slugs = [
 
 function load_shows() {
   $data = file_get_contents(SHOWS_JSON);
-  return json_decode($data, true) ?: ['ride_times' => [], 'results' => []];
+  $d = json_decode($data, true) ?: [];
+  if (!isset($d['ride_times']))  $d['ride_times']  = [];
+  if (!isset($d['results']))     $d['results']     = [];
+  if (!isset($d['prize_lists'])) $d['prize_lists'] = [];
+  return $d;
 }
 function save_shows($data) {
   file_put_contents(SHOWS_JSON, json_encode($data, JSON_PRETTY_PRINT));
@@ -48,9 +52,6 @@ if (!move_uploaded_file($_FILES['pdf']['tmp_name'], $dest)) {
 }
 
 $shows = load_shows();
-if (!isset($shows['results']) || !is_array($shows['results'])) {
-  $shows['results'] = [];
-}
 
 $show_labels = [
   'schooling-2026-may-13'  => 'Schooling Show — May 13',
@@ -75,6 +76,11 @@ if ($type === 'ride_times') {
   $slug = $_POST['show_slug'] ?? '';
   if (!in_array($slug, $valid_slugs, true)) { header('Location: /admin/?msg=err'); exit; }
   $shows['results'][$slug] = '/pdfs/' . $filename;
+
+} elseif ($type === 'prize_lists') {
+  $slug = $_POST['show_slug'] ?? '';
+  if (!in_array($slug, $valid_slugs, true)) { header('Location: /admin/?msg=err'); exit; }
+  $shows['prize_lists'][$slug] = '/pdfs/' . $filename;
 
 } else {
   header('Location: /admin/?msg=err'); exit;

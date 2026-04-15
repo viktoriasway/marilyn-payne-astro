@@ -42,7 +42,11 @@ $authed = !empty($_SESSION['authed']);
 // Load / save shows data
 function load_shows() {
   $data = file_get_contents(SHOWS_JSON);
-  return json_decode($data, true) ?: ['ride_times' => [], 'results' => []];
+  $d = json_decode($data, true) ?: [];
+  if (!isset($d['ride_times']))  $d['ride_times']  = [];
+  if (!isset($d['results']))     $d['results']     = [];
+  if (!isset($d['prize_lists'])) $d['prize_lists'] = [];
+  return $d;
 }
 function save_shows($data) {
   file_put_contents(SHOWS_JSON, json_encode($data, JSON_PRETTY_PRINT));
@@ -63,6 +67,12 @@ if ($authed && isset($_POST['delete_type'])) {
     $slug = $_POST['slug'] ?? '';
     if (isset($shows_d['results'][$slug])) {
       unset($shows_d['results'][$slug]);
+      save_shows($shows_d);
+    }
+  } elseif ($_POST['delete_type'] === 'prize_lists') {
+    $slug = $_POST['slug'] ?? '';
+    if (isset($shows_d['prize_lists'][$slug])) {
+      unset($shows_d['prize_lists'][$slug]);
       save_shows($shows_d);
     }
   }
@@ -248,6 +258,56 @@ $message = $_GET['msg'] ?? '';
       <h3>Add Results PDF</h3>
       <form method="post" action="/admin/upload.php" enctype="multipart/form-data">
         <input type="hidden" name="type" value="results">
+        <div class="field">
+          <label>Show</label>
+          <select name="show_slug" required>
+            <option value="">— Select a show —</option>
+            <?php foreach ($show_options as $slug => $label): ?>
+              <option value="<?= $slug ?>"><?= htmlspecialchars($label) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="field">
+          <label>PDF File</label>
+          <input type="file" name="pdf" accept=".pdf" required>
+        </div>
+        <button type="submit" class="btn btn-brand">Upload &amp; Post</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── PRIZE LISTS ── -->
+  <div class="section">
+    <h2>Prize Lists</h2>
+    <p class="desc">Upload a prize list PDF for a show. The Prize List button for that show will go live on the <a href="/shows/" target="_blank">Shows page</a>.</p>
+
+    <?php
+    $prize_lists = is_array($shows['prize_lists']) ? $shows['prize_lists'] : [];
+    ?>
+    <?php if (empty($prize_lists)): ?>
+      <p class="empty-note">No prize lists currently posted.</p>
+    <?php else: ?>
+      <ul class="pdf-list">
+        <?php foreach ($prize_lists as $slug => $pdf): ?>
+          <li>
+            <div>
+              <div class="pdf-name"><?= htmlspecialchars($show_options[$slug] ?? $slug) ?></div>
+              <div class="pdf-file"><a href="<?= htmlspecialchars($pdf) ?>" target="_blank">View PDF</a></div>
+            </div>
+            <form method="post" action="/admin/">
+              <input type="hidden" name="delete_type" value="prize_lists">
+              <input type="hidden" name="slug" value="<?= htmlspecialchars($slug) ?>">
+              <button type="submit" class="btn btn-del" onclick="return confirm('Remove prize list for this show?')">Delete</button>
+            </form>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>
+
+    <div class="upload-form">
+      <h3>Add Prize List PDF</h3>
+      <form method="post" action="/admin/upload.php" enctype="multipart/form-data">
+        <input type="hidden" name="type" value="prize_lists">
         <div class="field">
           <label>Show</label>
           <select name="show_slug" required>
