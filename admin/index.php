@@ -42,7 +42,7 @@ $authed = !empty($_SESSION['authed']);
 // Load / save shows data
 function load_shows() {
   $data = file_get_contents(SHOWS_JSON);
-  return json_decode($data, true) ?: ['ride_times' => [], 'results' => []];
+  return json_decode($data, true) ?: ['ride_times' => [], 'results' => [], 'prize_lists' => []];
 }
 function save_shows($data) {
   file_put_contents(SHOWS_JSON, json_encode($data, JSON_PRETTY_PRINT));
@@ -63,6 +63,12 @@ if ($authed && isset($_POST['delete_type'])) {
     $slug = $_POST['slug'] ?? '';
     if (isset($shows_d['results'][$slug])) {
       unset($shows_d['results'][$slug]);
+      save_shows($shows_d);
+    }
+  } elseif ($_POST['delete_type'] === 'prize_list') {
+    $key = $_POST['key'] ?? '';
+    if (isset($shows_d['prize_lists'][$key])) {
+      unset($shows_d['prize_lists'][$key]);
       save_shows($shows_d);
     }
   }
@@ -204,6 +210,57 @@ $message = $_GET['msg'] ?? '';
             <option value="">— Select a show —</option>
             <?php foreach ($show_options as $slug => $label): ?>
               <option value="<?= $slug ?>"><?= htmlspecialchars($label) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="field">
+          <label>PDF File</label>
+          <input type="file" name="pdf" accept=".pdf" required>
+        </div>
+        <button type="submit" class="btn btn-brand">Upload &amp; Post</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── PRIZE LISTS ── -->
+  <div class="section">
+    <h2>Prize Lists</h2>
+    <p class="desc">One prize list per show category. Uploading a new one replaces the old. The Prize List button on the <a href="/shows/" target="_blank">Shows page</a> goes live immediately.</p>
+
+    <?php
+    $prize_labels = ['schooling' => 'Schooling Shows', 'mini-event' => 'Mini Events', 'yeh' => 'Young Event Horse'];
+    $prize_lists  = is_array($shows['prize_lists'] ?? null) ? $shows['prize_lists'] : [];
+    ?>
+    <?php if (empty($prize_lists)): ?>
+      <p class="empty-note">No prize lists currently posted.</p>
+    <?php else: ?>
+      <ul class="pdf-list">
+        <?php foreach ($prize_lists as $key => $pdf): ?>
+          <li>
+            <div>
+              <div class="pdf-name"><?= htmlspecialchars($prize_labels[$key] ?? $key) ?></div>
+              <div class="pdf-file"><a href="<?= htmlspecialchars($pdf) ?>" target="_blank">View PDF</a></div>
+            </div>
+            <form method="post" action="/admin/">
+              <input type="hidden" name="delete_type" value="prize_list">
+              <input type="hidden" name="key" value="<?= htmlspecialchars($key) ?>">
+              <button type="submit" class="btn btn-del" onclick="return confirm('Remove this prize list?')">Delete</button>
+            </form>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>
+
+    <div class="upload-form">
+      <h3>Upload Prize List PDF</h3>
+      <form method="post" action="/admin/upload.php" enctype="multipart/form-data">
+        <input type="hidden" name="type" value="prize_list">
+        <div class="field">
+          <label>Show Category</label>
+          <select name="prize_key" required>
+            <option value="">— Select a category —</option>
+            <?php foreach ($prize_labels as $key => $label): ?>
+              <option value="<?= $key ?>"><?= htmlspecialchars($label) ?></option>
             <?php endforeach; ?>
           </select>
         </div>

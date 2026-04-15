@@ -11,6 +11,7 @@ $valid_slugs = [
   'mini-event-2026-jul-15', 'mini-event-2026-aug-12',
   'yeh-2026-jul-15', 'yeh-2026-aug-12',
 ];
+$valid_prize_keys = ['schooling', 'mini-event', 'yeh'];
 
 function load_shows() {
   $data = file_get_contents(SHOWS_JSON);
@@ -48,9 +49,8 @@ if (!move_uploaded_file($_FILES['pdf']['tmp_name'], $dest)) {
 }
 
 $shows = load_shows();
-if (!isset($shows['results']) || !is_array($shows['results'])) {
-  $shows['results'] = [];
-}
+if (!isset($shows['results'])     || !is_array($shows['results']))     $shows['results']     = [];
+if (!isset($shows['prize_lists']) || !is_array($shows['prize_lists'])) $shows['prize_lists'] = [];
 
 $show_labels = [
   'schooling-2026-may-13'  => 'Schooling Show — May 13',
@@ -75,6 +75,11 @@ if ($type === 'ride_times') {
   $slug = $_POST['show_slug'] ?? '';
   if (!in_array($slug, $valid_slugs, true)) { header('Location: /admin/?msg=err'); exit; }
   $shows['results'][$slug] = '/pdfs/' . $filename;
+
+} elseif ($type === 'prize_list') {
+  $key = $_POST['prize_key'] ?? '';
+  if (!in_array($key, $valid_prize_keys, true)) { header('Location: /admin/?msg=err'); exit; }
+  $shows['prize_lists'][$key] = '/pdfs/' . $filename;
 
 } else {
   header('Location: /admin/?msg=err'); exit;
