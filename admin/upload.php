@@ -15,7 +15,11 @@ $valid_prize_keys = ['schooling', 'mini-event', 'yeh'];
 
 function load_shows() {
   $data = file_get_contents(SHOWS_JSON);
-  return json_decode($data, true) ?: ['ride_times' => [], 'results' => []];
+  $d = json_decode($data, true) ?: [];
+  if (!isset($d['ride_times']))  $d['ride_times']  = [];
+  if (!isset($d['results']))     $d['results']     = [];
+  if (!isset($d['prize_lists'])) $d['prize_lists'] = [];
+  return $d;
 }
 function save_shows($data) {
   file_put_contents(SHOWS_JSON, json_encode($data, JSON_PRETTY_PRINT));
@@ -49,8 +53,6 @@ if (!move_uploaded_file($_FILES['pdf']['tmp_name'], $dest)) {
 }
 
 $shows = load_shows();
-if (!isset($shows['results'])     || !is_array($shows['results']))     $shows['results']     = [];
-if (!isset($shows['prize_lists']) || !is_array($shows['prize_lists'])) $shows['prize_lists'] = [];
 
 $show_labels = [
   'schooling-2026-may-13'  => 'Schooling Show — May 13',

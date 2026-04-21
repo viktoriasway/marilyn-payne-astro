@@ -36,8 +36,9 @@
     .nav-item > a:hover { color: var(--brand); background: #f5e6ed; }
     .nav-item.active > a { color: var(--brand); font-weight: 600; background: #f5e6ed; }
     .has-dropdown > a::after { content: '▾'; font-size: 0.65rem; opacity: 0.55; margin-left: 0.1rem; }
-    .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 180px; padding: 0.4rem 0; z-index: 200; border-top: 3px solid var(--brand); }
+    .dropdown { display: none; position: absolute; top: 100%; left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 180px; padding: 0.4rem 0; z-index: 200; border-top: 3px solid var(--brand); }
     .nav-item:hover .dropdown, .nav-item:focus-within .dropdown { display: block; }
+    .has-dropdown.dropdown-open .dropdown { display: block; }
     .dropdown a { display: block; padding: 0.5rem 1.1rem; font-size: 0.86rem; color: var(--body-text); text-decoration: none; transition: color 0.15s, background 0.15s; }
     .dropdown a:hover { color: var(--brand); background: #f5e6ed; }
     .dropdown a.active { color: var(--brand); font-weight: 600; }
@@ -380,6 +381,25 @@
       mobileNav.classList.remove('open');
       hamburger.classList.remove('open');
     }));
+
+    // Touch-device dropdown: first tap opens dropdown, second tap navigates
+    document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var item = this.closest('.has-dropdown');
+        if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+          if (!item.classList.contains('dropdown-open')) {
+            e.preventDefault();
+            document.querySelectorAll('.has-dropdown.dropdown-open').forEach(function(d) { d.classList.remove('dropdown-open'); });
+            item.classList.add('dropdown-open');
+          }
+        }
+      });
+    });
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.has-dropdown')) {
+        document.querySelectorAll('.has-dropdown.dropdown-open').forEach(function(d) { d.classList.remove('dropdown-open'); });
+      }
+    });
   </script>
 
 </body>

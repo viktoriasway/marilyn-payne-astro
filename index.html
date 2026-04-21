@@ -84,13 +84,15 @@
 
     /* Dropdown menu */
     .dropdown {
-      display: none; position: absolute; top: calc(100% + 4px); left: 0;
+      display: none; position: absolute; top: 100%; left: 0;
       background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg);
       min-width: 180px; padding: 0.4rem 0; z-index: 200;
       border-top: 3px solid var(--brand);
     }
     .nav-item:hover .dropdown,
     .nav-item:focus-within .dropdown { display: block; }
+    .has-dropdown.dropdown-open .dropdown { display: block; }
+
     .dropdown a {
       display: block; padding: 0.5rem 1.1rem; font-size: 0.86rem;
       color: var(--body-text); text-decoration: none;
@@ -831,6 +833,25 @@
       const diff = introTouchX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 40) goIntro(introIdx + (diff > 0 ? 1 : -1));
       introTouchX = null;
+    });
+
+    // Touch-device dropdown: first tap opens dropdown, second tap navigates
+    document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var item = this.closest('.has-dropdown');
+        if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+          if (!item.classList.contains('dropdown-open')) {
+            e.preventDefault();
+            document.querySelectorAll('.has-dropdown.dropdown-open').forEach(function(d) { d.classList.remove('dropdown-open'); });
+            item.classList.add('dropdown-open');
+          }
+        }
+      });
+    });
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.has-dropdown')) {
+        document.querySelectorAll('.has-dropdown.dropdown-open').forEach(function(d) { d.classList.remove('dropdown-open'); });
+      }
     });
   </script>
 

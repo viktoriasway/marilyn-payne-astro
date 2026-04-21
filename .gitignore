@@ -1,0 +1,34 @@
+# System
+.DS_Store
+~$*
+
+# Working documents (not site files)
+*.docx
+*.zip
+*.xml
+*.pdf
+
+# Dev folders
+.claude/
+uploads/
+marilyn-payne-astro/
+node_modules/
+public_html (1)/
+"Marilyn Clinic Photos - Feb 2026"/
+
+# Old scripts
+push-to-github.command
+extract-page.js
+package.json
+package-lock.json
+
+# Dynamic VPS files (PHP writes these, do not track)
+pdfs/
+
+# Internal dev files
+_template.html
+PREVIEW_homepage.html
+*-preview.html
+*-current.html
+pipeline-test.html
+mcp-monitor.html

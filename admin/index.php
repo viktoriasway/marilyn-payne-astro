@@ -42,7 +42,11 @@ $authed = !empty($_SESSION['authed']);
 // Load / save shows data
 function load_shows() {
   $data = file_get_contents(SHOWS_JSON);
-  return json_decode($data, true) ?: ['ride_times' => [], 'results' => [], 'prize_lists' => []];
+  $d = json_decode($data, true) ?: [];
+  if (!isset($d['ride_times']))  $d['ride_times']  = [];
+  if (!isset($d['results']))     $d['results']     = [];
+  if (!isset($d['prize_lists'])) $d['prize_lists'] = [];
+  return $d;
 }
 function save_shows($data) {
   file_put_contents(SHOWS_JSON, json_encode($data, JSON_PRETTY_PRINT));
@@ -272,6 +276,7 @@ $message = $_GET['msg'] ?? '';
       </form>
     </div>
   </div>
+
 
   <!-- ── RESULTS ── -->
   <div class="section">
