@@ -46,6 +46,7 @@ function load_shows() {
   if (!isset($d['ride_times']))  $d['ride_times']  = [];
   if (!isset($d['results']))     $d['results']     = [];
   if (!isset($d['prize_lists'])) $d['prize_lists'] = [];
+  if (!isset($d['entry_forms'])) $d['entry_forms'] = [];
   return $d;
 }
 function save_shows($data) {
@@ -67,6 +68,12 @@ if ($authed && isset($_POST['delete_type'])) {
     $slug = $_POST['slug'] ?? '';
     if (isset($shows_d['results'][$slug])) {
       unset($shows_d['results'][$slug]);
+      save_shows($shows_d);
+    }
+  } elseif ($_POST['delete_type'] === 'entry_form') {
+    $key = $_POST['key'] ?? '';
+    if (isset($shows_d['entry_forms'][$key])) {
+      unset($shows_d['entry_forms'][$key]);
       save_shows($shows_d);
     }
   } elseif ($_POST['delete_type'] === 'prize_list') {
@@ -214,6 +221,57 @@ $message = $_GET['msg'] ?? '';
             <option value="">— Select a show —</option>
             <?php foreach ($show_options as $slug => $label): ?>
               <option value="<?= $slug ?>"><?= htmlspecialchars($label) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="field">
+          <label>PDF File</label>
+          <input type="file" name="pdf" accept=".pdf" required>
+        </div>
+        <button type="submit" class="btn btn-brand">Upload &amp; Post</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── ENTRY FORMS ── -->
+  <div class="section">
+    <h2>Entry Forms</h2>
+    <p class="desc">One entry form PDF per show category. Uploading a new one replaces the old. The Entry Form button on the <a href="/shows/" target="_blank">Shows page</a> goes live immediately.</p>
+
+    <?php
+    $entry_labels = ['schooling' => 'Schooling Shows', 'mini-event' => 'Mini Events', 'yeh' => 'Young Event Horse (USEA)'];
+    $entry_forms  = is_array($shows['entry_forms'] ?? null) ? $shows['entry_forms'] : [];
+    ?>
+    <?php if (empty($entry_forms)): ?>
+      <p class="empty-note">No entry forms currently posted.</p>
+    <?php else: ?>
+      <ul class="pdf-list">
+        <?php foreach ($entry_forms as $key => $pdf): ?>
+          <li>
+            <div>
+              <div class="pdf-name"><?= htmlspecialchars($entry_labels[$key] ?? $key) ?></div>
+              <div class="pdf-file"><a href="<?= htmlspecialchars($pdf) ?>" target="_blank">View PDF</a></div>
+            </div>
+            <form method="post" action="/admin/">
+              <input type="hidden" name="delete_type" value="entry_form">
+              <input type="hidden" name="key" value="<?= htmlspecialchars($key) ?>">
+              <button type="submit" class="btn btn-del" onclick="return confirm('Remove this entry form?')">Delete</button>
+            </form>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>
+
+    <div class="upload-form">
+      <h3>Upload Entry Form PDF</h3>
+      <form method="post" action="/admin/upload.php" enctype="multipart/form-data">
+        <input type="hidden" name="type" value="entry_form">
+        <div class="field">
+          <label>Show Category</label>
+          <select name="entry_key" required>
+            <option value="">— Select a category —</option>
+            <?php foreach ($entry_labels as $key => $label): ?>
+              <option value="<?= $key ?>"><?= htmlspecialchars($label) ?></option>
             <?php endforeach; ?>
           </select>
         </div>

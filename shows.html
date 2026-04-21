@@ -175,7 +175,7 @@
         <p>Applewood offers six ESDCTA-registered Dressage Shows, Combined Tests (dressage and show jumping) &amp; Clear Round jumping. Trophy and six ribbons per class. Dressage is in the outdoor dressage arena; warm-up is indoors; both arenas are sand/rubber and dust-free! Jumping takes place in the grass show jumping field. Scores can be applied to ESDCTA Year-End Awards and volunteer hours to ESDCTA volunteer requirement. All shows are on Wednesday.</p>
         <div class="show-btn-row">
           <span class="btn btn-disabled prize-list-btn" data-prizelist="schooling">Prize List</span>
-          <a href="/pdfs/esdcta-entry-form.pdf" target="_blank" class="btn btn-active">Entry Form</a>
+          <span class="btn btn-disabled entry-form-btn" data-entryform="schooling">Entry Form</span>
         </div>
         <div class="show-dates-header">2026 Show Dates</div>
         <div class="date-row"><span class="date-label">Wednesday, May 13</span><div class="date-btns"><span class="btn btn-disabled ride-times-btn" data-show="schooling-2026-may-13">Ride Times</span><span class="btn btn-disabled results-btn" data-show="schooling-2026-may-13">Results</span></div></div>
@@ -196,7 +196,7 @@
         <p>Interested in Eventing? Thinking of moving up a level? The mini event consists of a dressage test appropriate for the level, and a jumping phase that starts with five stadium-type jumps in an open grass field flowing into a short cross country course. Levels include: Starter (X-rails-2'3"), Beginner Novice (2'3"-2'7"), Novice (2'7"-2'11"), Training (2'11"-3'3"). Trophy and 6 ribbons per division, plus Best Amateur Horse and Best Amateur Rider awards. Dressage Test of Choice: Select any USEF or USEA test, 8-10 minutes per test. (Not ESDCTA recognized.)</p>
         <div class="show-btn-row">
           <span class="btn btn-disabled prize-list-btn" data-prizelist="mini-event">Prize List</span>
-          <span class="btn btn-disabled">Entry Form</span>
+          <span class="btn btn-disabled entry-form-btn" data-entryform="mini-event">Entry Form</span>
         </div>
         <div class="show-dates-header">2026 Mini Event Dates</div>
         <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled ride-times-btn" data-show="mini-event-2026-jul-15">Ride Times</span><span class="btn btn-disabled results-btn" data-show="mini-event-2026-jul-15">Results</span></div></div>
@@ -213,7 +213,7 @@
         <p>YEH includes the YEH dressage test for either 4 or 5 year old eventing prospects, and a jumping phase that begins with five straightforward show jumps which feed directly into several inviting XC fences. The jumping phase is immediately followed by the galloping phase, in which horses are judged on the quality of the gallop and ability to cover ground. YEH entries must be registered with USEA and must use the USEA Entry Form available from <a href="https://www.useventing.com" target="_blank" style="color:var(--brand);text-decoration:underline;">useventing.com</a>. YEH must use the special 4yo and 5yo dressage tests, also available at useventing.com.</p>
         <div class="show-btn-row">
           <span class="btn btn-disabled prize-list-btn" data-prizelist="yeh">Prize List</span>
-          <a href="https://www.useventing.com" target="_blank" class="btn btn-active">Entry Form (USEA)</a>
+          <span class="btn btn-disabled entry-form-btn" data-entryform="yeh">Entry Form (USEA)</span>
         </div>
         <div class="show-dates-header">2026 YEH Dates</div>
         <div class="date-row"><span class="date-label">Wednesday, July 15</span><div class="date-btns"><span class="btn btn-disabled ride-times-btn" data-show="yeh-2026-jul-15">Ride Times</span><span class="btn btn-disabled results-btn" data-show="yeh-2026-jul-15">Results</span></div></div>
@@ -321,6 +321,19 @@
             a.target = '_blank';
             a.className = 'btn btn-active';
             a.textContent = 'Prize List';
+            btn.replaceWith(a);
+          }
+        });
+
+        const entryForms = data.entry_forms || {};
+        document.querySelectorAll('.entry-form-btn').forEach(btn => {
+          const key = btn.dataset.entryform;
+          if (entryForms[key]) {
+            const a = document.createElement('a');
+            a.href = entryForms[key];
+            a.target = '_blank';
+            a.className = 'btn btn-active';
+            a.textContent = btn.textContent;
             btn.replaceWith(a);
           }
         });

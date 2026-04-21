@@ -12,6 +12,7 @@ $valid_slugs = [
   'yeh-2026-jul-15', 'yeh-2026-aug-12',
 ];
 $valid_prize_keys = ['schooling', 'mini-event', 'yeh'];
+$valid_entry_keys = ['schooling', 'mini-event', 'yeh'];
 
 function load_shows() {
   $data = file_get_contents(SHOWS_JSON);
@@ -19,6 +20,7 @@ function load_shows() {
   if (!isset($d['ride_times']))  $d['ride_times']  = [];
   if (!isset($d['results']))     $d['results']     = [];
   if (!isset($d['prize_lists'])) $d['prize_lists'] = [];
+  if (!isset($d['entry_forms'])) $d['entry_forms'] = [];
   return $d;
 }
 function save_shows($data) {
@@ -82,6 +84,11 @@ if ($type === 'ride_times') {
   $key = $_POST['prize_key'] ?? '';
   if (!in_array($key, $valid_prize_keys, true)) { header('Location: /admin/?msg=err'); exit; }
   $shows['prize_lists'][$key] = '/pdfs/' . $filename;
+
+} elseif ($type === 'entry_form') {
+  $key = $_POST['entry_key'] ?? '';
+  if (!in_array($key, $valid_entry_keys, true)) { header('Location: /admin/?msg=err'); exit; }
+  $shows['entry_forms'][$key] = '/pdfs/' . $filename;
 
 } else {
   header('Location: /admin/?msg=err'); exit;
